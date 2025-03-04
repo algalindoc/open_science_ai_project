@@ -3,7 +3,7 @@ Open Science AI Project
 =========================
 
 🚀 Descripción
-==============
+================
 Este proyecto utiliza **Grobid** y herramientas de análisis de datos en **Python** para extraer información de documentos científicos en formato PDF. Con Docker, se garantiza una ejecución reproducible y sin complicaciones.
 
 ---
@@ -35,6 +35,45 @@ Para ejecutar el proyecto con **Docker Compose**:
 Esto iniciará **Grobid** y el análisis de documentos.
 
 ✅ **Los archivos de salida estarán en la carpeta `output/`**.
+
+---
+
+🔄 Reproducibilidad: Configuración del Entorno sin Docker
+=========================================================
+
+Si prefieres ejecutar el proyecto sin Docker, sigue estos pasos:
+
+1️⃣ Crear un entorno virtual
+-----------------------------
+.. code-block:: bash
+
+    python -m venv env
+    source env/bin/activate  # En Linux/Mac
+    env\Scripts\activate  # En Windows
+
+2️⃣ Instalar dependencias
+-------------------------
+.. code-block:: bash
+
+    pip install -r requirements.txt
+
+3️⃣ Ejecutar el análisis
+------------------------
+Coloca los archivos **PDFs** en la carpeta `papers/` y ejecuta:
+
+.. code-block:: bash
+
+    python scripts/main.py
+
+✅ **Los archivos procesados se guardarán en `output/`**.
+
+4️⃣ Desactivar el entorno virtual
+---------------------------------
+Cuando termines:
+
+.. code-block:: bash
+
+    deactivate
 
 ---
 
@@ -87,24 +126,17 @@ Esto ejecutará las pruebas en `tests/` para validar la extracción de datos.
     │── scripts/             # Código fuente
     │   ├── main.py          # Script principal
     │   ├── process_papers.py # Procesa PDFs con Grobid
-    │   ├── extract_data.py  # Extrae y analiza datos de los documentos
+    │   └── extract_data.py  # Extrae y analiza datos de los documentos
     │── tests/               # Pruebas unitarias
     │── Dockerfile           # Configuración de Docker
     │── docker-compose.yml   # Configuración de Docker Compose
     │── requirements.txt     # Dependencias del proyecto
+    │── codemeta.json        # Archivo de metadatos JSON-LD
     │── README.md            # Documentación principal
 
 ---
 
-💡 Futuras Mejoras
-==================
-📌 **Agregar soporte para análisis de gráficos y tablas.**
-📌 **Optimizar el preprocesamiento de texto con NLP.**
-📌 **Integrar visualización interactiva de los resultados.**
-
----
-
-📄 Licencia
+📝 Licencia
 ===========
-Este proyecto está bajo la licencia MIT. ¡Siéntete libre de contribuir! 😊
-
+Este proyecto está bajo la licencia MIT.  
+Puedes leer más en el archivo `LICENSE`.
