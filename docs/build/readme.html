@@ -16,7 +16,7 @@
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="next" title="Rationale - Open Science AI Project" href="rationale.html" />
-    <link rel="prev" title="Welcome to Open Science AI Project’s documentation!" href="index.html" />
+    <link rel="prev" title="Open Science AI Project" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -69,6 +69,40 @@
 <p>—</p>
 </section>
 </section>
+<section id="reproducibilidad-configuracion-del-entorno-sin-docker">
+<h2>🔄 Reproducibilidad: Configuración del Entorno sin Docker<a class="headerlink" href="#reproducibilidad-configuracion-del-entorno-sin-docker" title="Link to this heading">¶</a></h2>
+<p>Si prefieres ejecutar el proyecto sin Docker, sigue estos pasos:</p>
+<section id="crear-un-entorno-virtual">
+<h3>1️⃣ Crear un entorno virtual<a class="headerlink" href="#crear-un-entorno-virtual" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>env
+<span class="nb">source</span><span class="w"> </span>env/bin/activate<span class="w">  </span><span class="c1"># En Linux/Mac</span>
+env<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">  </span><span class="c1"># En Windows</span>
+</pre></div>
+</div>
+</section>
+<section id="instalar-dependencias">
+<h3>2️⃣ Instalar dependencias<a class="headerlink" href="#instalar-dependencias" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+<section id="ejecutar-el-analisis">
+<h3>3️⃣ Ejecutar el análisis<a class="headerlink" href="#ejecutar-el-analisis" title="Link to this heading">¶</a></h3>
+<p>Coloca los archivos <strong>PDFs</strong> en la carpeta <cite>papers/</cite> y ejecuta:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/main.py
+</pre></div>
+</div>
+<p>✅ <strong>Los archivos procesados se guardarán en `output/`</strong>.</p>
+</section>
+<section id="desactivar-el-entorno-virtual">
+<h3>4️⃣ Desactivar el entorno virtual<a class="headerlink" href="#desactivar-el-entorno-virtual" title="Link to this heading">¶</a></h3>
+<p>Cuando termines:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>deactivate
+</pre></div>
+</div>
+<p>—</p>
+</section>
+</section>
 <section id="uso-del-proyecto">
 <h2>🛠️ Uso del Proyecto<a class="headerlink" href="#uso-del-proyecto" title="Link to this heading">¶</a></h2>
 <section id="agregar-pdfs-para-analizar">
@@ -111,26 +145,21 @@
 │── scripts/             # Código fuente
 │   ├── main.py          # Script principal
 │   ├── process_papers.py # Procesa PDFs con Grobid
-│   ├── extract_data.py  # Extrae y analiza datos de los documentos
+│   └── extract_data.py  # Extrae y analiza datos de los documentos
 │── tests/               # Pruebas unitarias
 │── Dockerfile           # Configuración de Docker
 │── docker-compose.yml   # Configuración de Docker Compose
 │── requirements.txt     # Dependencias del proyecto
+│── codemeta.json        # Archivo de metadatos JSON-LD
 │── README.md            # Documentación principal
 </pre></div>
 </div>
 <p>—</p>
 </section>
-<section id="futuras-mejoras">
-<h2>💡 Futuras Mejoras<a class="headerlink" href="#futuras-mejoras" title="Link to this heading">¶</a></h2>
-<p>📌 <strong>Agregar soporte para análisis de gráficos y tablas.</strong>
-📌 <strong>Optimizar el preprocesamiento de texto con NLP.</strong>
-📌 <strong>Integrar visualización interactiva de los resultados.</strong></p>
-<p>—</p>
-</section>
 <section id="licencia">
-<h2>📄 Licencia<a class="headerlink" href="#licencia" title="Link to this heading">¶</a></h2>
-<p>Este proyecto está bajo la licencia MIT. ¡Siéntete libre de contribuir! 😊</p>
+<h2>📝 Licencia<a class="headerlink" href="#licencia" title="Link to this heading">¶</a></h2>
+<p>Este proyecto está bajo la licencia MIT.
+Puedes leer más en el archivo <cite>LICENSE</cite>.</p>
 </section>
 </section>
 
@@ -160,16 +189,16 @@
     </div>
 </search>
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navegación</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Contenido:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Open Science AI Project</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#descripcion">🚀 Descripción</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#instalacion-y-configuracion">📦 Instalación y Configuración</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reproducibilidad-configuracion-del-entorno-sin-docker">🔄 Reproducibilidad: Configuración del Entorno sin Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uso-del-proyecto">🛠️ Uso del Proyecto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ejecutar-pruebas-unitarias">✅ Ejecutar Pruebas Unitarias</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#estructura-del-proyecto">📌 Estructura del Proyecto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#futuras-mejoras">💡 Futuras Mejoras</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#licencia">📄 Licencia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#licencia">📝 Licencia</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="rationale.html">Rationale - Open Science AI Project</a></li>
@@ -179,7 +208,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="capítulo anterior">Welcome to Open Science AI Project’s documentation!</a></li>
+      <li>Previous: <a href="index.html" title="capítulo anterior">Open Science AI Project</a></li>
       <li>Next: <a href="rationale.html" title="próximo capítulo">Rationale - Open Science AI Project</a></li>
   </ul></li>
 </ul>

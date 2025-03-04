@@ -1,7 +1,6 @@
 import os
 import sys
 
-# Agregar la carpeta `scripts` al path de Python para permitir importaciones
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import process_papers as process

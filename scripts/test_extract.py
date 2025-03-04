@@ -17,7 +17,6 @@ TEST_WORDCLOUD_FILE = os.path.join(OUTPUT_DIR, "wordcloud.png")
 
 print(f"🔎 Buscando archivos en: {OUTPUT_DIR}")
 
-# para crear un archivo de prueba en output/
 @pytest.fixture
 def setup_sample_data():
     """Crea un archivo CSV de prueba en output/"""
@@ -52,13 +51,13 @@ def test_extract_data(setup_sample_data):
 def test_plot_figures(setup_sample_data):
     """Verifica que la gráfica de figuras por artículo se genera correctamente."""
     extract_data.plot_figures()
-    time.sleep(2)  # 🔹 Espera un poco para asegurar la escritura del archivo
+    time.sleep(2)  # Espera un poco para asegurar la escritura del archivo
     assert os.path.exists(TEST_FIGURES_FILE), f" {TEST_FIGURES_FILE}"
 
 def test_save_links(setup_sample_data):
     """Verifica que el archivo de enlaces se genera correctamente."""
     extract_data.save_links()
-    time.sleep(2)  # 🔹 Espera para asegurar que el archivo se guarde
+    time.sleep(2)  # Espera para asegurar que el archivo se guarde
     assert os.path.exists(TEST_LINKS_FILE), f"No se encontró {TEST_LINKS_FILE}"
 
 def test_generate_wordcloud(setup_sample_data):

@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 import pandas as pd
 import matplotlib
 
-# 🔹 Usar backend sin GUI para evitar errores de `tkinter`
+# backend sin GUI para evitar errores de `tkinter`
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
@@ -16,24 +16,24 @@ NS = {"tei": "http://www.tei-c.org/ns/1.0"}
 def extract_data():
     """Extrae título, resumen, #figuras y enlaces de los XMLs en 'output/'."""
     if not os.path.exists(XML_FOLDER):
-        print(f"❌ ERROR: La carpeta {XML_FOLDER} no existe.")
+        print(f"ERROR: La carpeta {XML_FOLDER} no existe.")
         return
 
     xml_files = [os.path.join(XML_FOLDER, f) for f in os.listdir(XML_FOLDER) if f.endswith(".xml")]
 
     if not xml_files:
-        print("⚠️ No se encontraron archivos XML en la carpeta 'output/'.")
+        print("No se encontraron archivos XML en la carpeta 'output/'.")
         return
     
     extracted_data = []
     for xml_file in xml_files:
-        print(f"📂 Procesando archivo: {xml_file}")  # Verifica si está leyendo los XMLs
+        print(f"Procesando archivo: {xml_file}")
 
         try:
             arbol = ET.parse(xml_file)
             raiz = arbol.getroot()
         except Exception as e:
-            print(f"❌ ERROR: No se pudo leer {xml_file}. Detalles: {e}")
+            print(f"ERROR: No se pudo leer {xml_file}. Detalles: {e}")
             continue
 
         title = raiz.find(".//tei:titleStmt/tei:title", NS)
@@ -51,16 +51,16 @@ def extract_data():
 
     # Verificar si extracted_data tiene información
     if not extracted_data:
-        print("⚠️ No se extrajo ninguna información de los XMLs.")
+        print("No se extrajo ninguna información de los XMLs.")
         return
 
     # Guardar los resultados
     try:
         df = pd.DataFrame(extracted_data)
         df.to_csv(RESULTS_FILE, index=False)
-        print(f"✅ Archivo 'results.csv' guardado en {RESULTS_FILE}")
+        print(f"Archivo 'results.csv' guardado en {RESULTS_FILE}")
     except Exception as e:
-        print(f"❌ ERROR: No se pudo escribir en {RESULTS_FILE}. Detalles: {e}")
+        print(f"ERROR: No se pudo escribir en {RESULTS_FILE}. Detalles: {e}")
 
 
 def plot_figures():

@@ -5,54 +5,55 @@ Este proyecto utiliza **Grobid** y herramientas de análisis de datos en **Pytho
 
 ---
 
-## Instalación y Configuración
+## 📦 Instalación y Configuración
 
-### **1️. Requisitos Previos**
+### **1️⃣ Requisitos Previos**
 - Tener **Docker** y **Docker Compose** instalados.
   - [Descargar Docker](https://www.docker.com/get-started)
 - (Opcional) Tener **Python 3.10+** y `pip` instalados si deseas correr el código sin Docker.
 
-### **2️. Clonar el Repositorio**
+### **2️⃣ Clonar el Repositorio**
 ```bash
 git clone https://github.com/tu-usuario/open_science_ai_project.git
 cd open_science_ai_project
 ```
 
-### **3️. Ejecutar el Proyecto con Docker**
-Para ejecutar el proyecto con **Docker Compose**:
+---
+
+## 🔄 Opciones de Ejecución
+
+### **Opción 1: Ejecutar con Docker (Recomendada)**
 ```bash
 docker-compose up --build
 ```
-Esto iniciará **Grobid** y el análisis de documentos.
+Esto iniciará **Grobid** y el análisis de documentos de forma automatizada. 
 
- **Los archivos de salida estarán en la carpeta `output/`**.
+✅ **Los archivos de salida estarán en la carpeta `output/`.**
 
 ---
 
-## 🔄 Reproducibilidad: Configuración del Entorno sin Docker
-Si prefieres ejecutar el proyecto sin Docker, sigue estos pasos:
+### **Opción 2: Ejecutar sin Docker**
+Si prefieres no usar Docker, sigue estos pasos:
 
-### **1️. Crear un entorno virtual**
+1️⃣ **Crear un entorno virtual**
 ```bash
 python -m venv env
 source env/bin/activate  # En Linux/Mac
 env\Scripts\activate  # En Windows
 ```
 
-### **2️. Instalar dependencias**
+2️⃣ **Instalar dependencias**
 ```bash
 pip install -r requirements.txt
 ```
 
-### **3️. Ejecutar el análisis**
-Coloca los archivos **PDFs** en la carpeta `papers/` y ejecuta:
+3️⃣ **Ejecutar el análisis**
 ```bash
 python scripts/main.py
 ```
- **Los archivos procesados se guardarán en `output/`**.
+✅ **Los archivos procesados se guardarán en `output/`**.
 
-### **4️. Desactivar el entorno virtual**
-Cuando termines:
+4️⃣ **Desactivar el entorno virtual (opcional)**
 ```bash
 deactivate
 ```
@@ -61,16 +62,10 @@ deactivate
 
 ## 🛠️ Uso del Proyecto
 
-### **1️. Agregar PDFs para Analizar**
+### **1️⃣ Agregar PDFs para Analizar**
 Coloca los archivos **.pdf** en la carpeta `papers/`.
 
-### **2️. Ejecutar el Análisis Manualmente**
-Si ya tienes Docker en ejecución pero quieres ejecutar el script manualmente dentro del contenedor:
-```bash
-docker exec -it open_science_analysis python scripts/main.py
-```
-
-### **3️. Revisar Resultados**
+### **2️⃣ Revisar Resultados**
 Los resultados se guardan en `output/`:
 - `results.csv` 📝 → Tabla con títulos, resúmenes, figuras y enlaces extraídos.
 - `figures_per_article.png` 📊 → Gráfico de número de figuras por artículo.

@@ -19,4 +19,5 @@ services:
     volumes:
       - ./papers:/app/papers
       - ./output:/app/output
-    command: /bin/sh -c "sleep 20 && python scripts/main.py"
+    command: ["/bin/sh", "-c", "python scripts/main.py && tail -f /dev/null"]
+
