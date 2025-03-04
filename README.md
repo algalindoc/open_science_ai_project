@@ -10,11 +10,12 @@ Este proyecto utiliza **Grobid** y herramientas de análisis de datos en **Pytho
 ### **1️⃣ Requisitos Previos**
 - Tener **Docker** y **Docker Compose** instalados.
   - [Descargar Docker](https://www.docker.com/get-started)
+  - Abrir la aplicación de docker desktop
 - (Opcional) Tener **Python 3.10+** y `pip` instalados si deseas correr el código sin Docker.
 
 ### **2️⃣ Clonar el Repositorio**
 ```bash
-git clone https://github.com/tu-usuario/open_science_ai_project.git
+git clone https://github.com/algalindoc/open_science_ai_project.git
 cd open_science_ai_project
 ```
 

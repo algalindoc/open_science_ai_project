@@ -21,7 +21,7 @@ Este proyecto utiliza **Grobid** y herramientas de análisis de datos en **Pytho
 -------------------------
 .. code-block:: bash
 
-    git clone https://github.com/tu-usuario/open_science_ai_project.git
+    git clone https://github.com/algalindoc/open_science_ai_project.git
     cd open_science_ai_project
 
 3️⃣ Ejecutar el Proyecto con Docker
