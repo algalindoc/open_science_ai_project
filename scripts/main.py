@@ -14,12 +14,12 @@ def check_grobid_alive():
         try:
             response = requests.get(GROBID_ALIVE)
             if response.status_code == 200:
-                print("✅ Grobid está activo. Iniciando análisis...")
+                print("✅ Grobid está activo")
                 break
             else:
-                print("🔄 Grobid no está disponible aún. Reintentando...")
+                print("🔄 Grobid no está disponible aún, reintentando")
         except requests.exceptions.RequestException:
-            print("⏳ No se pudo conectar con Grobid. Reintentando en 5 segundos...")
+            print("⏳ No se pudo conectar con Grobid, reintentando en 5 segundos...")
         time.sleep(5)
 
 check_grobid_alive()  # Llamar la función antes de empezar el análisis
