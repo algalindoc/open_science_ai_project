@@ -1,0 +1,16 @@
+# Ignorar entorno virtual
+env/
+.venv/
+
+# Ignorar archivos de caché y compilación
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar dependencias envenv de Anaconda
+*.conda
+*.ipynb_checkpoints/
+
+# Ignorar configuraciones locales de VSCode
+.vscode/

@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Norm Growth and Stability Challenges in Localized Sequential Knowledge Editing</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+				<date type="published" when="2025-02-26">26 Feb 2025</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName><forename type="first">Akshat</forename><surname>Gupta</surname></persName>
+							<email>akshat.gupta@berkeley.edu</email>
+							<affiliation key="aff0">
+								<orgName type="institution">University of California Berkeley</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Christine</forename><surname>Fang</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">University of California Berkeley</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Atahan</forename><surname>Ozdemir</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">University of California Berkeley</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Maochuan</forename><surname>Lu</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">University of California Berkeley</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Ahmed</forename><surname>Alaa</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">University of California Berkeley</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Thomas</forename><surname>Hartvigsen</surname></persName>
+							<affiliation key="aff1">
+								<orgName type="institution">University of Virginia</orgName>
+							</affiliation>
+						</author>
+						<author>
+							<persName><forename type="first">Gopala</forename><surname>Anumanchipalli</surname></persName>
+							<affiliation key="aff0">
+								<orgName type="institution">University of California Berkeley</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Norm Growth and Stability Challenges in Localized Sequential Knowledge Editing</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2025-02-26">26 Feb 2025</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">5AC614891675920E03570AD081B857ED</idno>
+					<idno type="arXiv">arXiv:2502.19416v1[cs.CL]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-03-04T16:36+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>This study investigates the impact of localized updates to large language models (LLMs), specifically in the context of knowledge editing -a task aimed at incorporating or modifying specific facts without altering broader model capabilities. We first show that across different post-training interventions like continuous pre-training, full fine-tuning and LORA-based fine-tuning, the Frobenius norm of the updated matrices always increases. This increasing norm is especially detrimental for localized knowledge editing, where only a subset of matrices are updated in a model . We reveal a consistent phenomenon across various editing techniques, including fine-tuning, hypernetwork-based approaches, and locateand-edit methods: the norm of the updated matrix invariably increases with successive updates. Such growth disrupts model balance, particularly when isolated matrices are updated while the rest of the model remains static, leading to potential instability and degradation of downstream performance. Upon deeper investigations of the intermediate activation vectors, we find that the norm of internal activations decreases and is accompanied by shifts in the subspaces occupied by these activations, which shows that these activation vectors now occupy completely different regions in the representation space compared to the unedited model. With our paper, we highlight the technical challenges with continuous and localized sequential knowledge editing and their implications for maintaining model stability and utility.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Introduction</head><p>Recent advances in model interpretability have led to methods that perform localized updates to large language models by intervening at very specific locations <ref type="bibr">(Meng et al. 2022a,b;</ref><ref type="bibr" target="#b12">Hernandez, Li, and Andreas 2023)</ref>. A popular domain in which such methods are employed is knowledge editing <ref type="bibr" target="#b24">(Yao et al. 2023</ref>) -a task where singular facts are added or updated inside of a model in a data and compute efficient manner. This paper starts with a simple yet powerful observation that sequential knowledge updates made to a model always leads to an increase in the norm of the matrix being updated. We first ask the question -is the increase in norm with continous updates specific to localized knowledge editing methods or is this a general phenomenon?</p><p>Our experiments with numerous post-training interventions, including continual pretraining, full fine-tuning and LORA-based fine-tuning, present a very surprising resultthe norm of the weight matrices being updated always increases for all these post-training interventions. While there has been dispersed work showing norm growth <ref type="bibr" target="#b18">(Merrill et al. 2020)</ref>, to the best of our knowledge, our study is the first to emprically evaluate this comprehensively for large number of important post-training interventions.</p><p>We next study the presence and implications of this phenomenon when performing localized updates. To do so we study the task of knowledge editing where localized updates are very common. Knowledge editing methods usually update specific parts of the model, for example the MLP submodules of certain layers, to add or update new information. This allows data and compute efficient updates to be made to a model. We perform continuous sequential knowledge edits to a model using various parameter modifying knowledge editing methods along with localized fine-tuning, and find that for all these scenarios, the norm of the edited matrix always increases with the number of updates. While the increasing norm may not be concering in general, it is especially detrimental for performing localized updates. This is because disproportionate and contionuous growth in the norm of one or few layers of a model, while the rest of the model remains frozen, will compromise the balance and stability of the entire system, eventually leading to a breaking point as observed in prior work <ref type="bibr" target="#b8">(Gupta, Rao, and Anumanchipalli 2024;</ref><ref type="bibr" target="#b6">Gupta, Baskaran, and Anumanchipalli 2024)</ref>. This disprortionate growth is shown in Figure <ref type="figure" target="#fig_2">3</ref>.</p><p>We further analyze the effects of performing continous localized knowledge updates to a model by studying how the hidden activations of the model changes. We find that contrary to the increasing norm of edited matrix, the norm of the activation vectors generated after the edited layers continuously decreases. We also show that these activation begin to occupy different regions in space when compared to the original. A follow-up to our work by <ref type="bibr" target="#b7">Gupta et al. (2025)</ref> resolve the problems of disproportionate norm growth by using regularization methods and propose a more robust knowledge editing method called ENCORE.</p><p>To summarize, we make the following contributions in this paper: matrices always increases during post training interventions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.">The norm of edited matrix increases disproportionately</head><p>for localized knowledge updates, leading to model collapse. 3. This collapse is accompanied by a change in the norm and orientations of the resultant hidden activations, showing that the activations of the edited models now lie in a different region of representation space.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Norm Growth During Post-Training Interventions</head><p>We focus on the following common interventions that are applied on a model after the pretraining step -continual pretraining, full fine-tuning, LORA based fine-tuning <ref type="bibr" target="#b13">(Hu et al. 2021)</ref>. We discuss our experiment settings for each of the following below:</p><p>1. Continued pretraining (CPT) -We consider continued pretraining as as separate case from full fine-tuning although in both cases all the weights of the model are updated using a next-token prediction loss. We define continued pretraining as a process where the foundational knowledge of a model is extended by training on a large domain-specific corpora. In our experiments, we present the results for performing CPT on 20 billion tokens for Python programming <ref type="bibr" target="#b14">(Li et al. 2023a</ref>) on Llama-2 (7B) <ref type="bibr" target="#b22">(Touvron et al. 2023</ref>). 2. Full Fine-Tuning (FFT) -We define full fine-tuning as task specific next-token prediction training of a model to optimize the model's parameters on a particular task. We present the results for fine-tuning Llama-2 (7B) model on 110k question answer pairs for programming <ref type="bibr" target="#b24">(Wei et al. 2024</ref>). 3. LORA based full fine-tuning (LFFT) -Here we use LORA <ref type="bibr" target="#b13">(Hu et al. 2021)</ref> to fine-tune all the model weights in the same setting as FFT.</p><p>For each of the above, we present post-training intervention results using the checkpoints provided in the study by <ref type="bibr" target="#b1">Biderman et al. (2024)</ref>. In each of the above cases, the model update equation can be written as:</p><formula xml:id="formula_0">W new = W old + ∆W (1)</formula><p>Thus, the norm of the new weight matrix does not neccessarily have to decrease and can lie in the range as shown below using the triangle inequality:</p><formula xml:id="formula_1">||W old | F − |∆W | F | ≤ |W new | F ≤ |W old | F + |∆W | F (2)</formula><p>which means that after each update, the norm of the matrix being updated can both decrease or increase. Yet we find that the norm of the updated matrix in each of these interventions always increases. This can be seen in Figure <ref type="figure" target="#fig_0">1</ref>. The frobenius norm of all three MLP<ref type="foot" target="#foot_0">1</ref> and attention matrices in Llama-2 (7B) can be seen to increase during CPT, FFT and LFFT. While this increase in norm is not detrimental to model performance, we believe this is because the norm of all the weight matrices involved increases in conjunction with each other.</p><p>While our study is not exhaustive across different types of models or datasets used, we use the above findings to set the stage for the coming sections and to motivate studying norms of edited matrices when performing localized updates to a model. As only a few weight matrices are updated during parameter modifying knowledge editing methods, this phenomenon can have adverse consequences when the norm of some intermediate matrices grow while the remaining model remains frozen.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Localized Updates during Knowledge Editing</head><p>Knowledge editing is defined as the task of making data and compute efficient knowledge updates to large language model without compromising their general ability <ref type="bibr" target="#b24">(Yao et al. 2023;</ref><ref type="bibr" target="#b13">Kolbeinsson et al. 2024)</ref>. In this paper, we focus on parameter-modifying knowledge editing methods, where knowledge is updated by changing the weights of the model <ref type="bibr">(Meng et al. 2022a,b;</ref><ref type="bibr" target="#b9">Gupta, Sajnani, and Anumanchipalli 2024)</ref>. The compute efficient component of knowledge editing comes from the fact that usually only one or a few layers of a model are updated when incorporating new knowledge. In this paper we focus on four popular knowledge editing methods -ROME <ref type="bibr" target="#b16">(Meng et al. 2022a)</ref>, MEMIT <ref type="bibr" target="#b17">(Meng et al. 2022b)</ref>, MEND <ref type="bibr" target="#b19">(Mitchell et al. 2021)</ref> and PMET <ref type="bibr" target="#b15">(Li et al. 2023b</ref>). We perform sequential edits using these methods on GPT2-XL (1.5B) <ref type="bibr" target="#b20">(Radford et al. 2019</ref>) and GPT-J (6B) (Wang and Komatsuzaki 2021) for 2000 edits and analyze the different properties of the updated matrices. The list of layers updated for the different model editing algorithms can be seen in Table <ref type="table">1</ref>.</p><formula xml:id="formula_2">Algorithm GPT2-XL GPT-J ROME 17 5 MEMIT 13-17 3-8 MEND 45-47 25-27 PMET 13-17 3-8</formula><p>Table <ref type="table">1</ref>: List of layers edited when using each of the above algorithms for GPT2-XL and GPT-J.</p><p>As can be seen in Figure <ref type="figure">2</ref>, the norm of the edited matrices always increases for all four types of model editing methods used. Figure <ref type="figure">2</ref> also shows evidences of model degradation as a function of sequential model editing evaluated on 8 downstream tasks including MMLU <ref type="bibr" target="#b11">(Hendrycks et al. 2020</ref>) and a few tasks from the GLUE benchmark <ref type="bibr" target="#b22">(Wang et al. 2018)</ref>. A more detailed account of downstream measurement is provided in appendix . To put the norm growth in perspective of the rest of the model, we plot the norm of the edited matrix after 100, 500 and 2000 edits along with the norm of other matrices present inside the model in Figure <ref type="figure" target="#fig_2">3</ref>. We clearly see the anomolous growth in norm for the edited layers, while the norm of the remaining layers remains constant. Effect on Norm of Internal Activations. To understand further effects of the increase norm of the edited matrix, we look at its effect on the corresponding activations that are output from that layer. To do so, we send 1 million tokens of wikipedia articles through both GPT2-XL and GPT-J, and study the norm and orientations of the internal activations of the model before and after editing. Specifically, we are looking at the residual stream vectors after each layers inside an LLM. The norm of the activation before and after editing can be seen in Figure <ref type="figure" target="#fig_3">4</ref>. In this figure, we present the norm of the activation vectors for GPT2-XL when editing the model using ROME, comparing the unedited model with the model after 100, 500 and 2000 edits. We see that the activation norms remains the same until layer 17 for all cases, but slowly starts to decrease as we edit the model more. After 2000 edits, the norm of the activation vectors at layer 40 is much almost have that of the original enedited model, showing that the decrease in norm compounds as the activation vectors pass through the model. In contrast to the increasing norm of the edited weight matrices, the average norm of the activations decreases post editing. While in this paper we do not analyze the implications of this, it is studied in more detail in <ref type="bibr" target="#b7">Gupta et al. (2025)</ref>. They show that the norms of activation vectors generated from the edited matrices increase while the norms of activations from the subsequent layers decreases, resulting in an increased importance of vectors generated from those layers.</p><p>Effect on Orientation of Internal Activations. We further analyze the orientations of the activation vectors. To do so, we create classifiers between the residual stream vectors of layers "i" versus "j". Each classifier is a simple binary logistic regression classifier. A classifier C i,j is a binary classifier between two groups of vectors -residual stream vectors between layer i and residual stream vectors between layer j. The classifier is trained with 800k training vectors and tested on 200k test vectors, equally divided into the two classes. This classifiers are trained only on the activations of the un-edited model. The accuracy of the classifier can be seen in Figure <ref type="figure">5</ref> (a). We see that the simple binary classifiers  reach almost a 100% accuracy when classifying the activation vectors from different layers. This shows that the activation vectors of different layers are linearly separable from each other. When a classifier is trained with activation vectors from the same layers, which forms the diagonal line in Figure <ref type="figure">5</ref> (a), we see that the classification accuracy is 50% or at random. This shows that the activation vectors between the same layers are not linearly separable, stengthening the linear seprability claim.</p><p>We save the classifiers trained on the un-edited model and use them to clasify the activation vectors of the edited model. Figure <ref type="figure">5</ref> shows this for ROME, where we analyze the output for 200k activation vectors when passed through a model sequentially edited for 100, 500 and 2000 edits. The cell i−j corresponds to the case where classifier C i,j , trained on the activations coming from the i th and j th layer of the unedited model, are used to classifiy the activations of the j th layer of the edited model. We want to re-iterate to the reader that the graphs in Figure <ref type="figure">5</ref> are not supposed to be symmet-rical by definition. We will give an example below. For cell 3-5, we use the classifier C 3,5 trained between activations of layer 3 and layer 5 of the un-edited model, but use it to classify the activations of layer 5 at test time. For cell 5-3, we use the same classifier C 3,5 , but this time we use it to classify the activations of layer 3.</p><p>For cell i − j, if the orientations in space of the activation vectors of the edited models remains the same as that of the unedited model, the classifier C i,j would assign it the class j. But we see in Figure <ref type="figure">5</ref> that this is not the case. The test time accuracy of the classifier begins to get worse for activation vectors right after the edited layer. This shows that the activation vectors are not only changing in norms but also the regions they occupy in space. This is so much so that the activations coming out of layer j of the edited model after 2000 edits now lie in a region for layer i, leading to an incorrect classification accuracy for classifier C i,j .</p><p>With this study, we show that the increasing norm not only changes the norm of the internal activations of the model, but also the orientations in space in which these vectors lie. We observe that post-editing, the internal activations now lie in a very different region in space. The region is so different that a linear classifier trained to identify the activation vectors of a specific layer is now unable to identify the output activations from the specific layer.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Conclusion</head><p>This study highlights a critical challenge in the domain of localized updates for large language models: the persistent increase in the norm of updated matrices during sequential knowledge editing. While this phenomenon appears universal across post-training intervention methods, its implications are particularly pronounced in localized knowledge editing, where only specific parts of the model are modified. The resulting imbalance leads to downstream performance degradation, as evidenced by changes in both the norm and orientation of internal activations. Our findings emphasize the need for innovative strategies to address these challenges, paving the way for more robust and sustainable approaches to localized knowledge editing in LLMs. This work serves as a foundational step towards understanding and mitigating the inherent limitations of current techniques, with the ultimate goal of enabling dynamic and scalable updates to pre-trained models. A follow-up work by <ref type="bibr" target="#b7">Gupta et al. (2025)</ref> overcomes these highlighted limitations by using appropriate regularizations with knowledge editing, allowing long-term sequential knowledge editing.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>A.1 Downstream Performance Measurement</head><p>In this paper, we assess model degradation by measuring downstream performance at regular intervals of edits. Our evaluation suite is wide-ranging and consists of the following 8 tasks -sentiment analysis (SST2) <ref type="bibr" target="#b21">(Socher et al. 2013)</ref>, paraphrase detection (MRPC) <ref type="bibr" target="#b4">(Dolan and Brockett 2005)</ref>, natural language inference (NLI, RTE) <ref type="bibr" target="#b3">(Dagan, Glickman, and Magnini 2005;</ref><ref type="bibr" target="#b10">Haim et al. 2006;</ref><ref type="bibr" target="#b5">Giampiccolo et al. 2007;</ref><ref type="bibr" target="#b0">Bentivogli et al. 2009)</ref>, commonsense natural language inference (HellaSwag) <ref type="bibr">(Zellers et al. 2019)</ref>, linguistic acceptability classification (CoLA) <ref type="bibr" target="#b23">(Warstadt, Singh, and Bowman 2019)</ref>, multi-turn dialogue reasoning (MuTual) <ref type="bibr" target="#b2">(Cui et al. 2020</ref>) and massive multitask language understanding (MMLU) <ref type="bibr" target="#b11">(Hendrycks et al. 2020)</ref>.</p><p>For each task, we created a subset of 100 examples balanced across all multiple-choice options. The models were evaluated on the tasks above, and the accuracy score was measured at intervals of 5 edits for MEND, and 20 edits for PMET, ROME, and MEMIT. MEND leads to a rapid degradation within 100 edits, hence why a smaller granularity of 5 edit interval was used; a 20 edit interval was used for other methods to cut down on computation time.</p><p>In order to improve models' initial performance and achieve meaningful signals, we provided few-shot examples. The few-shot prompt templates used for each task are shown in Figures <ref type="figure" target="#fig_2">6-13</ref>.</p><p>Review : an exhilarating futuristic thriller-noir , minority report twists the best of technology around a gripping story , delivering a riveting , pulse intensifying escapist adventure of the first order Sentiment : positive Review : try as i may , i ca n't think of a single good reason to see this movie , even though everyone in my group extemporaneously shouted , ' thank you ! ' Sentiment : negative Review : the film 's performances are thrilling . Sentiment : positive Review : vera 's technical prowess ends up selling his film short ; he smoothes over hard truths even as he uncovers them . Sentiment : negative Review : [input] Sentiment :</p><p>Figure <ref type="figure">6</ref>: Few shot prompt template used for SST-2 Question: Which expression is equivalent to 4 x 9? <ref type="formula">4x5</ref>) Answer: A Question: A marketing researcher is conducting a survey in a large selling area by contacting a small group of people that is representative of all people in that area. The small, representative group is known as the (A) population (B) sample (C) stratification (D) universe Answer: B Question: A research participant eats half a bowl of M&amp;M candies, and then stops eating. How would a motivation researcher using drive reduction theory explain this participant's behavior? (A) Humans are instinctively driven to eat sugar and fat when presented to them. (B) The Yerkes-Dodson law explains that people will eat food when presented to them, but usually in moderate amounts in order to avoid being perceived as selfish. (C) The primary drive of hunger motivated the person to eat, and then stop when she/he regained homeostasis. (D) The research participant was satisfying the second step on the hierarchy of needs: Food needs. The town is also home to the Dalai Lama and to more than 10,000 Tibetans living in exile. Question: The Dalai Lama has been living in exile since 10,000. True or False? Answer: True P. Prayong, who like Kevala belongs to the Theravada sect of Buddhism, chose India over other Buddhist majority nations as it is the birthplace of Gautama Buddha. Question: P. Prayong is a member of Theravada. True or False? Answer: False</p><formula xml:id="formula_3">(A) (4x 4) + (4x5) (B) (4+4) x (4+5) (C) (4+4)+(4+5) (D) (4x 4) x (</formula><p>The medical student accused of murdering an erotic masseuse he met on Craigslist is drowning in more than $100,000 in student loan debt and is so broke he can't afford to pay an attorney, according to court papers. Philip Markoff, a 23-year-old suspended Boston University medical school student, owes $130,000 in student loans and does not get money from his parents, leaving him to lean on a taxpayer-funded attorney for his defense, according to a court document in Boston Municipal Court that labels him indigent. Markoff graduated from the State University of New York-Albany and was a second-year medical student at BU.  NASA's Saturn exploration spacecraft, Cassini , has discovered an atmosphere about the moon Enceladus . This is the first such discovery by Cassini, other than Titan , of the presence of an atmosphere around a Saturn moon. entails the Titan is the fifteenth of Saturn's known satellites. True or False? Answer: False Dr. Eric Goosby, a pioneer in the fight against AIDS, is President Obama's choice to run the American effort to combat the disease globally, the White House announced Monday. The President's Emergency Plan For AIDS Relief, known as Pepfar, was championed by President George W. Bush. It is expected to spend $48 billion over the next five years and is credited with markedly reducing the disease's death rate. Its prevention policy has been controversial because of its emphasis on socially conservative methods. With a new administration and a Democratic majority in the House, organizations seeking prevention choices beyond abstinence and fidelity -including a renewed commitment to distributing condoms -are eager to try to rewrite the guidelines. entails the Pepfar is committed to fighting AIDS. True or False? Answer: True              </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: Norm growth during post-training interventions</figDesc><graphic coords="3,80.50,320.92,110.88,102.35" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head></head><label></label><figDesc>Figure 2: Norm growth and downstream performance during knowledge editing on GPT2-XL for different methods.</figDesc><graphic coords="4,193.87,338.63,110.88,88.48" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Norm growth for edits 100, 500, 2000 for GPT2-XL.</figDesc><graphic coords="4,80.50,339.00,110.88,88.11" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Figure 4 :</head><label>4</label><figDesc>Figure 4: Activation Norms at different layers for unedited, edits 100, 500, 2000 for GPT2-XL/ROME.</figDesc><graphic coords="5,60.34,194.60,120.96,120.96" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>Figure 7 :Figure 8 :Figure 9 :</head><label>789</label><figDesc>Figure 7: Few shot prompt template used for MMLU</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Figure 10 :</head><label>10</label><figDesc>Figure 10: Few shot prompt template used for CoLA</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>Figure 11 :</head><label>11</label><figDesc>Figure 11: Few shot prompt template used for NLI</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>Figure 16 :</head><label>16</label><figDesc>Figure 16: Norm growth for edits 100, 500, 2000 for GPT-J.</figDesc><graphic coords="14,307.25,542.49,110.87,84.79" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><head>Figure 17 :</head><label>17</label><figDesc>Figure 17: Norm growth for edits 100, 500, 2000 for FT editing.</figDesc><graphic coords="15,143.47,235.26,161.28,161.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><head>Figure 18 :</head><label>18</label><figDesc>Figure 18: Boundary plots for unedited GPT2-XL and GPT-J.</figDesc><graphic coords="15,225.36,478.30,161.28,161.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><head>Figure 19 :</head><label>19</label><figDesc>Figure 19: Boundary plots for edits 100, 500, 2000 for GPT2-XL/ROME.</figDesc><graphic coords="15,61.58,478.30,161.28,161.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_11"><head>Figure 20 :</head><label>20</label><figDesc>Figure 20: Boundary plots for edits 100, 500, 2000 for GPT2-XL/PMET.</figDesc><graphic coords="16,61.58,107.85,161.28,161.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12"><head>Figure 21 :</head><label>21</label><figDesc>Figure 21: Boundary plots for edits 100, 500, 2000 for GPT2-XL/MEND.</figDesc><graphic coords="16,61.58,435.83,161.28,161.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13"><head>Figure 22 :</head><label>22</label><figDesc>Figure 22: Boundary plots for edits 100, 500, 2000 for GPT2-XL/MEMIT.</figDesc><graphic coords="17,61.58,107.85,161.28,161.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14"><head>Figure 23 :</head><label>23</label><figDesc>Figure 23: Boundary plots for edits 100, 500, 2000 for GPT2-XL/FT.</figDesc><graphic coords="17,61.58,435.83,161.28,161.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_15"><head>Figure 24 :</head><label>24</label><figDesc>Figure 24: Boundary plots for edits 100, 500, 2000 for GPT-J/ROME.</figDesc><graphic coords="18,61.58,107.85,161.28,161.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_16"><head>Figure 25 :</head><label>25</label><figDesc>Figure 25: Boundary plots for edits 100, 500, 2000 for GPT-J/PMET.</figDesc><graphic coords="18,61.58,435.83,161.28,161.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_17"><head>Figure 26 :</head><label>26</label><figDesc>Figure 26: Boundary plots for edits 100, 500, 2000 for GPT-J/MEND.</figDesc><graphic coords="19,61.58,107.85,161.28,161.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_18"><head>Figure 27 :</head><label>27</label><figDesc>Figure 27: Boundary plots for edits 100, 500, 2000 for GPT-J/MEMIT.</figDesc><graphic coords="19,61.58,435.83,161.28,161.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_19"><head>Figure 28 :Figure 29 :</head><label>2829</label><figDesc>Figure 28: Boundary plots for edits 100, 500, 2000 for GPT-J/FT.</figDesc><graphic coords="20,61.58,271.84,161.28,161.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head></head><label></label><figDesc>True or False? Answer: False Brooklyn Borough Hall featured a Who's Who in New York's literary community during the second annual Brooklyn Book Festival. According to Brooklyn Borough President Marty Markowitz, the borough's zip code 11215 boasts more authors than anywhere else in the country. It appeared to be the case on Sunday. More than 100 authors were featured at the day-long event, including The Basketball Diaries writer Jim Carroll, former M*A*S*H star Mike Farrell, author and illustrator Mo Willems, Jack Kerouac's sometime lover and National Book Critics Circle Award recipient Joyce Johnson and PEN American Center President Francine Prose. entails the The Brooklyn Book Festival is held in Brooklyn Borough every year.</figDesc><table><row><cell>True or False?</cell></row><row><cell>Answer: True</cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="1" xml:id="foot_0">Note that the Llama architecture has three MLP matrices instead of the common practice of two.</note>
+		</body>
+		<back>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Given the following: f : hi how are you doing ? m : i 've been good . i 'm in school right now . f : what school do you go to ? m : i go to a cooking school . i will spend one year there . f : really ? i know you love drawing and designing most . how do you like cooking so far ? m : i like it so far , my classes are pretty good , and i plan to have my own restaurant in the future . Which choice is correct? (A)f : really ? you mean you do n't like cooking but you plan to start a restaurant in the future ? (B)f : really ? you mean your classes are pretty good and you plan to start a restaurant in the future ? (C)f : so , although your classes are not pretty good , you plan to become a teacher in the future ? (D)f : so , although you do n't love drawing or designing , you want to design a building in the future ? Answer: B Given the following: f : dad , can i go out tonight ? m : no , i 'm sorry . you ca n't . f : can i ask nancy for dinner ? m : ok , but you ca n't let your brother alone . Which choice is correct? (A)f : ok. then i will ask nancy for dinner tonight . (B)f : i will stay at home alone because i do n't want ask nancy for dinner . (C)f : ok. so i can ask nancy for dinner tonight if i do n't have to have my brother companied . (D)f : i have to stay home with me brother because i will not ask nancy to have dinner . Answer: A Given the following: m : that was such an interesting english program , i wish you enjoyed it as much as i did . f : i must tell you the truth that i fell asleep after the first few minutes , as i could n't understand many of the words in the program . Which choice is correct? (A)m : seems that you found the program boring . (B)m : the english program is indeed difficult . i feel it , too ! (C)m : so you think the english program is difficult . do n't worry , let me help you . (D)m : good to know that you also found it interesting . Answer: C Given the following: m : should n't we invite kathy to the party tonight ? f : invite kathy ? she is the one who 's planning the whole thing . Which choice is correct? (A) This is a natural part of makeup, and you can use that to your advantage. If you must draw your brows in, that will be where most of the concealer and powder will come in. (B) You can always cover them up if need be. You can also apply some false lashes-it will look better, even if you only have the eyelashes. (C) You can cover them up with concealer. Apply the concealer in an upside-down pyramid shape. (D) [substeps] Use some concealer up off of your eyelids so you can wear concealer successfully without using too much. Apply concealer a little higher up on your eyelid than the same way.   </p></div>			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">The Fifth PASCAL Recognizing Textual Entailment Challenge</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Bentivogli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Clark</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Dagan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Giampiccolo</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2009">2009</date>
+			<publisher>TAC</publisher>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page">8</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<monogr>
+		<author>
+			<persName><forename type="first">D</forename><surname>Biderman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Portes</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">J G</forename><surname>Ortiz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Paul</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Greengard</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Jennings</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>King</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Havens</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Chiley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Frankle</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2405.09673</idno>
+		<title level="m">Lora learns less and forgets less</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">MuTual: A Dataset for Multi-Turn Dialogue Reasoning</title>
+		<author>
+			<persName><forename type="first">L</forename><surname>Cui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Zhou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 58th Conference of the</title>
+				<meeting>the 58th Conference of the</meeting>
+		<imprint>
+			<publisher>Association for Computational Linguistics. Association for Computational Linguistics</publisher>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">The pascal recognising textual entailment challenge</title>
+		<author>
+			<persName><forename type="first">I</forename><surname>Dagan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">O</forename><surname>Glickman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Magnini</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Machine learning challenges workshop</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="page" from="177" to="190" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Automatically constructing a corpus of sentential paraphrases</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Dolan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Brockett</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Third International Workshop on Paraphrasing (IWP2005)</title>
+				<imprint>
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">The third pascal recognizing textual entailment challenge</title>
+		<author>
+			<persName><forename type="first">D</forename><surname>Giampiccolo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Magnini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Dagan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><forename type="middle">B</forename><surname>Dolan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the ACL-PASCAL workshop on textual entailment and paraphrasing</title>
+				<meeting>the ACL-PASCAL workshop on textual entailment and paraphrasing</meeting>
+		<imprint>
+			<date type="published" when="2007">2007</date>
+			<biblScope unit="page" from="1" to="9" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<monogr>
+		<author>
+			<persName><forename type="first">A</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Baskaran</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Anumanchipalli</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2403.07175</idno>
+		<title level="m">Rebuilding rome: Resolving model collapse during sequential model editing</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<monogr>
+		<author>
+			<persName><forename type="first">A</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Prateepamornkul</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Lu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Alaa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Hartvigsen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Anumanchipalli</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2502.01636</idno>
+		<title level="m">Lifelong Sequential Knowledge Editing without Model Degradation</title>
+				<imprint>
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<monogr>
+		<author>
+			<persName><forename type="first">A</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Rao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Anumanchipalli</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2401.07453</idno>
+		<title level="m">Model Editing at Scale leads to Gradual and Catastrophic Forgetting</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<author>
+			<persName><forename type="first">A</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Sajnani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Anumanchipalli</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2403.14236</idno>
+		<title level="m">A unified framework for model editing</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">The second pascal recognising textual entailment challenge</title>
+		<author>
+			<persName><forename type="first">R</forename><forename type="middle">B</forename><surname>Haim</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Dagan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Dolan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Ferro</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Giampiccolo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Magnini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Szpektor</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Second PASCAL Challenges Workshop on Recognising Textual Entailment</title>
+				<meeting>the Second PASCAL Challenges Workshop on Recognising Textual Entailment</meeting>
+		<imprint>
+			<date type="published" when="2006">2006</date>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page" from="785" to="794" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<monogr>
+		<author>
+			<persName><forename type="first">D</forename><surname>Hendrycks</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Burns</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Basart</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Zou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mazeika</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Steinhardt</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2009.03300</idno>
+		<title level="m">Measuring massive multitask language understanding</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<monogr>
+		<author>
+			<persName><forename type="first">E</forename><surname>Hernandez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><forename type="middle">Z</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Andreas</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2304.00740</idno>
+		<title level="m">Inspecting and editing knowledge representations in language models</title>
+				<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<monogr>
+		<author>
+			<persName><forename type="first">E</forename><forename type="middle">J</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Wallis</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Allen-Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">W</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Kolbeinsson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>O'brien</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><forename type="middle">R</forename><surname>Schwarz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Vaidya</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">F</forename><surname>Mahmood</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Zitnik</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><surname>Chen</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2106.09685</idno>
+		<idno>arXiv:2407.06483</idno>
+		<title level="m">Lora: Low-rank adaptation of large language models</title>
+				<imprint>
+			<date type="published" when="2021">2021. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Composable interventions for language models</note>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<monogr>
+		<author>
+			<persName><forename type="first">R</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><forename type="middle">B</forename><surname>Allal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Zi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Muennighoff</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Kocetkov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Mou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Marone</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Akiki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Chim</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2305.06161</idno>
+		<title level="m">Starcoder: may the source be with you!</title>
+				<imprint>
+			<date type="published" when="2023">2023a</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<monogr>
+		<author>
+			<persName><forename type="first">X</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Yu</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2308.08742</idno>
+		<title level="m">Pmet: Precise model editing in a transformer</title>
+				<imprint>
+			<date type="published" when="2023">2023b</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Locating and editing factual associations in GPT</title>
+		<author>
+			<persName><forename type="first">K</forename><surname>Meng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bau</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Andonian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Belinkov</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in Neural Information Processing Systems</title>
+				<imprint>
+			<date type="published" when="2022">2022a</date>
+			<biblScope unit="volume">35</biblScope>
+			<biblScope unit="page" from="17359" to="17372" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<monogr>
+		<author>
+			<persName><forename type="first">K</forename><surname>Meng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">S</forename><surname>Sharma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Andonian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Belinkov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Bau</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2210.07229</idno>
+		<title level="m">Mass-editing memory in a transformer</title>
+				<imprint>
+			<date type="published" when="2022">2022b</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<monogr>
+		<author>
+			<persName><forename type="first">W</forename><surname>Merrill</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">V</forename><surname>Ramanujan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Goldberg</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Schwartz</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Smith</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2010.09697</idno>
+		<title level="m">Effects of parameter norm growth during transformer training: Inductive bias from gradient descent</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<author>
+			<persName><forename type="first">E</forename><surname>Mitchell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Bosselut</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Finn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">D</forename><surname>Manning</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2110.11309</idno>
+		<title level="m">Fast model editing at scale</title>
+				<imprint>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<analytic>
+		<title level="a" type="main">Language models are unsupervised multitask learners</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Radford</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Child</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Luan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Amodei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">I</forename><surname>Sutskever</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">OpenAI blog</title>
+		<imprint>
+			<biblScope unit="volume">1</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<biblScope unit="page">9</biblScope>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Recursive deep models for semantic compositionality over a sentiment treebank</title>
+		<author>
+			<persName><forename type="first">R</forename><surname>Socher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Perelygin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Chuang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">D</forename><surname>Manning</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><forename type="middle">Y</forename><surname>Ng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><surname>Potts</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 2013 conference on empirical methods in natural language processing</title>
+				<meeting>the 2013 conference on empirical methods in natural language processing</meeting>
+		<imprint>
+			<date type="published" when="2013">2013</date>
+			<biblScope unit="page" from="1631" to="1642" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">Llama 2: Open foundation and fine-tuned chat models</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Touvron</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Martin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">K</forename><surname>Stone</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Albert</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Almahairi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Babaei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Bashlykov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Batra</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Bhargava</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Bhosale</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1804.07461</idno>
+		<ptr target="https://github.com/kingoflolz/mesh-transformer-jax" />
+	</analytic>
+	<monogr>
+		<title level="m">GLUE: A multi-task benchmark and analysis platform for natural language understanding</title>
+				<meeting><address><addrLine>Wang, B</addrLine></address></meeting>
+		<imprint>
+			<date type="published" when="2018">2023. 2023. 2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Komatsuzaki, A. 2021. GPT-J-6B: A 6 Billion Parameter Autoregressive Language Model</note>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">Neural network acceptability judgments</title>
+		<author>
+			<persName><forename type="first">A</forename><surname>Warstadt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Singh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><forename type="middle">R</forename><surname>Bowman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Transactions of the Association for Computational Linguistics</title>
+		<imprint>
+			<biblScope unit="volume">7</biblScope>
+			<biblScope unit="page" from="625" to="641" />
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">Magicoder: Empowering code generation with oss-instruct</title>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">J</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Ding</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">L</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">P</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">B</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">S</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">H</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">N</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">R</forename><surname>Holtzman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Bisk</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename><surname>Farhadi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">A</forename><surname>Choi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Y</forename></persName>
+		</author>
+		<idno type="arXiv">arXiv:2305.13172</idno>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics</title>
+				<meeting>the 57th Annual Meeting of the Association for Computational Linguistics</meeting>
+		<imprint>
+			<date type="published" when="2019">2024. 2023. 2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+	<note>Editing Large Language Models: Problems, Methods, and Opportunities</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

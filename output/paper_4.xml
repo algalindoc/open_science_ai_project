@@ -1,0 +1,2612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">FinTSB: A Comprehensive and Practical Benchmark for Financial Time Series Forecasting</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+				<date type="published" when="2025-02-26">26 Feb 2025</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Yifan</forename><surname>Hu</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Yuante</forename><surname>Li</surname></persName>
+							<email>liyuante@tongji.edu.cn</email>
+						</author>
+						<author>
+							<persName><forename type="first">Peiyuan</forename><surname>Liu</surname></persName>
+							<email>peiyuanliu.edu@gmail.com</email>
+						</author>
+						<author>
+							<persName><forename type="first">Yuxia</forename><surname>Zhu</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Naiqi</forename><surname>Li</surname></persName>
+							<email>linaiqi@sz.tsinghua.edu.cn</email>
+						</author>
+						<author>
+							<persName><forename type="first">Tao</forename><surname>Dai</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Shu-Tao</forename><surname>Xia</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Dawei</forename><surname>Cheng</surname></persName>
+							<email>dcheng@tongji.edu.cn</email>
+						</author>
+						<author>
+							<persName><forename type="first">Changjun</forename><surname>Jiang</surname></persName>
+							<email>cjjiang@tongji.edu.cn</email>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="institution">Tongji University Shanghai</orgName>
+								<address>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="institution">Tongji University Shanghai</orgName>
+								<address>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="institution" key="instit1">SIGS</orgName>
+								<orgName type="institution" key="instit2">Tsinghua University Shenzhen</orgName>
+								<address>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="institution">Tongji University Shanghai</orgName>
+								<address>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="institution" key="instit1">SIGS</orgName>
+								<orgName type="institution" key="instit2">Tsinghua University Shenzhen</orgName>
+								<address>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="institution">Shenzhen University Shenzhen</orgName>
+								<address>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff6">
+								<orgName type="institution" key="instit1">SIGS</orgName>
+								<orgName type="institution" key="instit2">Tsinghua University Shenzhen</orgName>
+								<address>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff7">
+								<orgName type="institution">Tongji University &amp; Shanghai Artificial Intelligence Laboratory Shanghai</orgName>
+								<address>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff8">
+								<orgName type="institution">Tongji University &amp; Shanghai Artificial Intelligence Laboratory Shanghai</orgName>
+								<address>
+									<country key="CN">China</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">FinTSB: A Comprehensive and Practical Benchmark for Financial Time Series Forecasting</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2025-02-26">26 Feb 2025</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">CAA052DF4BB4B673FDE5AF4E064824DB</idno>
+					<idno type="arXiv">arXiv:2502.18834v1[cs.CE]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-03-04T16:36+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Financial Time Series</term>
+					<term>Computational Finance</term>
+					<term>Quantitative Trading</term>
+					<term>Benchmark</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>Financial time series (FinTS) record the behavior of human-brainaugmented decision-making, capturing valuable historical information that can be leveraged for profitable investment strategies. Not surprisingly, this area has attracted considerable attention from researchers, who have proposed a wide range of methods based on various backbones. However, the evaluation of the area often exhibits three systemic limitations: 1. Failure to account for the full spectrum of stock movement patterns observed in dynamic financial markets. (Diversity Gap), 2. The absence of unified assessment protocols undermines the validity of cross-study performance comparisons. (Standardization Deficit), and 3. Neglect of critical market structure factors, resulting in inflated performance metrics that lack practical applicability. (Real-World Mismatch). Addressing these limitations, we propose FinTSB, a comprehensive and practical benchmark for financial time series forecasting (FinTSF). To increase the variety, we categorize movement patterns into four specific parts, tokenize and pre-process the data, and assess the data quality based on some sequence characteristics. To eliminate biases due to different evaluation settings, we standardize the metrics across three dimensions and build a user-friendly, lightweight pipeline incorporating methods from various backbones. To accurately simulate real-world trading scenarios and facilitate practical implementation, we extensively model various regulatory</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Financial time series (FinTS) forecasting stands as a pivotal pillar within the realm of quantitative finance, offering profound insights that underpin the formulation of lucrative investment strategies <ref type="bibr" target="#b7">[8,</ref><ref type="bibr" target="#b8">9,</ref><ref type="bibr" target="#b65">65,</ref><ref type="bibr" target="#b79">[79]</ref><ref type="bibr" target="#b80">[80]</ref><ref type="bibr" target="#b81">[81]</ref>. Unlike general time series prediction challenges <ref type="bibr" target="#b10">[11,</ref><ref type="bibr" target="#b23">24,</ref><ref type="bibr" target="#b24">25,</ref><ref type="bibr" target="#b40">41]</ref>, stock prices are not merely statistical series but the manifestation of complex, often chaotic human behavior shaped by many cognitive, emotional, and sociopolitical factors. Accurately forecasting future returns amidst this maelstrom of data can unlock extraordinary financial gains, positioning it as an invaluable tool for strategic decision-making. As a result, FinTSF has emerged as a cutting-edge domain of scholarly exploration, drawing intense interest from the global research community.</p><p>Financial Time Series Forecasting Methods ⑥ LLM-Based Methods LLM-based MAS: FinCon <ref type="bibr" target="#b72">[72]</ref>, Trad-ingGPT <ref type="bibr" target="#b34">[35]</ref>, FinMem <ref type="bibr" target="#b31">[32]</ref>, ... LLM as a Predictor: TimeMoe <ref type="bibr" target="#b54">[55]</ref>, ... LLM as a Enhancer: CausalStock <ref type="bibr" target="#b32">[33]</ref>, FinAgent <ref type="bibr" target="#b75">[75]</ref>, ... ⑤ Generative-Based Methods: FactorVAE <ref type="bibr" target="#b14">[15]</ref>, DiffStock <ref type="bibr" target="#b11">[12]</ref>, Diffsformer <ref type="bibr" target="#b15">[16]</ref>, Market-GAN <ref type="bibr" target="#b66">[66]</ref>, ... ④ RL-Based Methods: AlphaStock <ref type="bibr" target="#b61">[61]</ref>, FinRL <ref type="bibr" target="#b41">[42]</ref>, DeepTrader <ref type="bibr" target="#b64">[64]</ref>, FreQuent <ref type="bibr" target="#b28">[29]</ref>, IMM <ref type="bibr" target="#b47">[48]</ref>, ... ③ DL-Based Methods MASTER <ref type="bibr" target="#b33">[34]</ref>, CI-STHPAN <ref type="bibr" target="#b65">[65]</ref>, VGNN <ref type="bibr" target="#b69">[69]</ref>, ... Inter-Stock Corr.</p><p>Temporal Features ② ML-Based Methods: XGBoost <ref type="bibr" target="#b5">[6]</ref>, SVM <ref type="bibr" target="#b38">[39]</ref>, ... ① Classic Strategies: CSM <ref type="bibr" target="#b27">[28]</ref>, BLSW <ref type="bibr" target="#b50">[51]</ref>, ... Financial time series refers to a sequence of data points ordered chronologically, typically representing asset price factors or market indicators, that reflect the dynamic behavior of financial markets. As shown in Fig. <ref type="figure" target="#fig_0">1</ref>, existing FinTSF methods can be broadly categorized into six types based on their underlying backbone approach. Early methods were primarily rooted in classic strategies derived from practitioner experience, ① classic quantitative trading strategies such as momentum <ref type="bibr" target="#b27">[28]</ref> and mean reversion <ref type="bibr" target="#b50">[51]</ref> strategies. ② machine learning-based methods <ref type="bibr" target="#b13">[14,</ref><ref type="bibr" target="#b26">27,</ref><ref type="bibr" target="#b38">39]</ref> include a wide range of algorithms, including autoregressive models like ARIMA <ref type="bibr" target="#b3">[4]</ref> and tree-based models like XGBoost <ref type="bibr" target="#b5">[6]</ref>, LightGBM <ref type="bibr" target="#b29">[30]</ref>, and Random Forests <ref type="bibr" target="#b78">[78]</ref>, each of which offers distinct advantages in capturing non-linear relationships in financial data. In recent years, ③ deep learning-based methods <ref type="bibr" target="#b24">[25,</ref><ref type="bibr" target="#b33">34,</ref><ref type="bibr" target="#b40">41,</ref><ref type="bibr" target="#b65">65,</ref><ref type="bibr" target="#b68">68,</ref><ref type="bibr" target="#b70">70,</ref><ref type="bibr" target="#b79">79]</ref> have demonstrated state-of-the-art (SOTA) performance by leveraging various neural network architectures (e.g. RNN, CNN, Transformer, Mamba, GNN) to model both stock features and inter-stock correlations, becoming a dominant paradigm in the FinTSF field. Moreover, ④ reinforcement learning-based methods <ref type="bibr" target="#b41">[42,</ref><ref type="bibr" target="#b48">49,</ref><ref type="bibr" target="#b53">54,</ref><ref type="bibr" target="#b55">56,</ref><ref type="bibr" target="#b64">64]</ref> have also emerged as another promising direction to better optimize sequential decision making processes and end-to-end optimization of some key non-differentiable metrics (such as the sharpe ratio, maximum drawdown). Additionally, to better capture the inherent noise and uncertainty within financial markets, ⑤ generative model-based methods <ref type="bibr" target="#b11">[12,</ref><ref type="bibr" target="#b14">15,</ref><ref type="bibr" target="#b15">16,</ref><ref type="bibr" target="#b19">20,</ref><ref type="bibr" target="#b25">26]</ref>, such as Variational Autoencoders (VAE) and Diffusion Models, have been adapted to reflect the heightened levels of uncertainty characteristic of the market, accounting for the low signal-to-noise FinTS. Recently, Large Language Models (LLMs) have attracted considerable attention due to their ability to process vast amounts of unstructured data and perform sophisticated reasoning. ⑥ LLM-based methods have found diverse applications in FinTSF, including: as an enhancer <ref type="bibr" target="#b32">[33,</ref><ref type="bibr" target="#b75">75]</ref>, where they utilize news sentiment and other textual information to augment decision making; as a predictor <ref type="bibr" target="#b39">[40,</ref><ref type="bibr" target="#b54">55]</ref>, where they   leverage extensive time series training to generalize effectively across different domains; and in LLM-based multi-agent systems (MAS) <ref type="bibr" target="#b31">[32,</ref><ref type="bibr" target="#b34">35,</ref><ref type="bibr" target="#b72">72]</ref>, where autonomous agents are employed to replicate decision-making processes, communication, and interactions.</p><p>As the number of proposed methods expands across various settings, the demand for comprehensive and practical empirical evaluations has correspondingly increased. However, as depicted in Fig. <ref type="figure" target="#fig_2">2</ref>, existing evaluation frameworks often face challenges such as Diversity Gap, Standardization Deficit, and Real-World Mismatch, which hinder their ability to fully assess the performance of these methods in real-world contexts. To address these limitations, we introduce FinTSB, a novel evaluation framework designed to enhance the robustness and applicability of empirical assessments, thereby improving the evaluation capabilities in FinTSF.</p><p>Issue ❶: Diversity Gap. Given the inherent complexity of financial markets, which often include different phases of stock movement such as uptrends, downtrends, periods of volatility, and extreme events (black swan events), current evaluation datasets face several limitations. On the one hand, some datasets contain only three to five years of historical data, which fails to comprehensively represent all possible movement patterns, thus hindering the generalization capacity of models and preventing them from effectively handling unseen patterns in the training set. On the other hand, datasets covering over a decade of data suffer from severe distribution shifts, resulting in reduced model accuracy when confronted with current market conditions. These shortcomings prevent existing evaluations from providing a complete picture of stock movement behavior. In addition, FinTS exhibits distinct characteristics in different markets. For example, the Chinese stock market is often characterized by high retail participation and higher volatility, while the U.S. market tends to have a more balanced mix of institutional and retail investors with a generally higher degree of efficiency. Some existing works evaluate models in only one market, which does not provide a holistic view of their performance.</p><p>Our approach emphasizes the diversity of FinTS, focusing on both the comprehensiveness of movement patterns and the broad scope of financial markets. This allows for a more thorough assessment of model performance. Specifically, in terms of movement  patterns, we advocate a fine-grained analysis of how different methods perform over different periods of market volatility, with the aim of more accurately reflecting real-world scenarios. Issue ❷. Standardization Deficit: In the existing literature, discrepancies in evaluation criteria lead to inconsistencies in performance comparisons. To address this issue, we classify the current evaluation metrics into three main categories: ranking metrics, which assess the distribution between predicted and actual daily returns; portfolio-based metrics, which evaluate the profitability and risk of investment strategies derived from predictions; and error metrics, which quantify the degree of approximation between predicted and true values. Nevertheless, it is important to note that forecasting errors show little correlation with overall investment returns.</p><p>On top of that, current FinTSF methods lack a standardized pipeline for evaluation. Evaluating SOTA models often requires re-running them on proprietary datasets and settings, which is both time-consuming and labor-intensive. In addition, factors such as differences in data pre-processing, feature engineering, and model tuning further complicate fair comparisons. While the Qlib <ref type="bibr" target="#b71">[71]</ref> framework offers a wealth of practical tools, its steep learning curve remains a significant barrier. There is an urgent need for a unified, user-friendly, and lightweight evaluation framework in FinTSF, similar to those found in general time series forecasting fields, such as TSLib <ref type="bibr" target="#b63">[63]</ref> and TFB <ref type="bibr" target="#b52">[53]</ref>.</p><p>Issue ❸: Real-World Mismatch. The ultimate goal of FinTSF methods is to be deployed in real-world trading scenarios and to generate actual investment returns in the highly competitive, human-brain-armed environment of financial markets. As a result, there are stringent requirements for simulating realistic trading conditions. Existing research often overlooks these constraints, resulting in overly optimistic portfolio metrics. For example, some models still assume short selling in the Chinese A-share market, which is impractical due to restrictions in certain sectors. Moreover, many studies do not take transaction fees into account, which is particularly critical when constructing portfolios based on the prediction of stocks with top-𝑘 returns. High turnover rates without considering transaction costs can result in significant overlooked expenses that negatively impact the profitability of the strategy. Furthermore, many works neglect trading restrictions such as limitups or trading halts, which are common in various markets and can have a profound effect on trading strategies. Thus, we emphasize the necessity of incorporating these real-world constraints into evaluations to ensure more objective and accurate assessments of model performance.</p><p>The importance of benchmarking in any field cannot be overstated, as it provides a common basis for comparing the performance of different approaches. Similar to computer vision, where benchmarks such as ImageNet <ref type="bibr" target="#b12">[13]</ref> or COCO <ref type="bibr" target="#b37">[38]</ref> provide standardized datasets against which models can be evaluated, the absence of a consistent benchmark in FinTSF leads to fragmented and incomparable results. Without a standardized evaluation, it becomes difficult to gauge the true effectiveness of models in real-world applications. By addressing the three key issues of establishing a consistent dataset for fair comparisons, ensuring comprehensive evaluation metrics, and considering real-world trading constraints, the FinTSF community will be able to establish a solid foundation for model assessment, ultimately advancing the field and improving its applicability in real-world investment scenarios.</p><p>Building on the above motivations, we propose FinTSB, a comprehensive and practical financial time series benchmark. This dataset first tokenizes sensitive information and then pre-processes real historical stock data from multiple financial markets to mitigate distribution shifts. It categorizes the data into four distinct movement patterns based on daily change rates and assesses the data quality through sequence-based metrics. Additionally, we conduct fair and robust evaluations of a diverse set of FinTSF methods, including all six different backbone models, and derive insightful and critical research conclusions. In a nutshell, our contributions are as follows:</p><p>• Diversity Inclusion. We collect and pre-process tokenization historical financial time series data to provide FinTSB, which captures all types of movement patterns across various markets. • Standardization Consistency. We advocate for a comprehensive evaluation of the capabilities of various methods from three perspectives: ranking, portfolio, and error, which ensures a holistic assessment. • Real-World Alignment. We meticulously design investment strategies that align with real-world market conditions, facilitating practical implementation in actual trading environments. • In-depth Evaluation. We evaluate a wide range of FinTSF methods and extract key insights that advance the understanding of model performance in the context of financial time series forecasting.</p><p>The paper is organized in the following manner: Sec. 2 provides a review of related work, while Sec. 3 introduces the definitions of FinTSF tasks and relevant concepts. In Sec. 4, we present the design of FinTSB, and Sec. 5 evaluates existing FinTSF methods using our benchmark. Finally, Sec. 6 concludes the paper.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Related Work</head><p>To date, there remains a significant gap in the availability of a comprehensive dataset of financial time series. Existing studies typically focus on specific slices of historical stock data for their experiments. Tao Dai, Shu-tao Xia, Dawei Cheng and Changjun Jiang For example, ALSP-TF <ref type="bibr" target="#b59">[60]</ref>, ADB-TRM <ref type="bibr" target="#b6">[7]</ref>, and CI-STHPAN <ref type="bibr" target="#b65">[65]</ref> utilize New York Stock Exchange (NYSE) and NASDAQ stocks for the period from 2013 to 2017. Meanwhile, MASTER <ref type="bibr" target="#b33">[34]</ref>, Factor-VAE <ref type="bibr" target="#b14">[15]</ref>, LARA <ref type="bibr" target="#b73">[73]</ref>, and RSAP-DFM <ref type="bibr" target="#b67">[67]</ref> select data from the Chinese A-share market, but with distinct temporal ranges: MAS-TER <ref type="bibr" target="#b33">[34]</ref> covers 2008 to 2022, FactorVAE <ref type="bibr" target="#b14">[15]</ref> covers 2010 to 2020, and both LARA <ref type="bibr" target="#b73">[73]</ref> and RSAP-DFM <ref type="bibr" target="#b67">[67]</ref> cover 2008 to 2020. Similarly, LSR-iGRU <ref type="bibr" target="#b79">[79]</ref>, FinMamba <ref type="bibr" target="#b22">[23]</ref>, and MCI-GRU <ref type="bibr" target="#b80">[80]</ref>, as well as THGNN <ref type="bibr" target="#b68">[68]</ref>, focus on stocks from both the Chinese and U.S. markets, with time slices ranging from 2018 to 2023 and 2016 to 2021, respectively. Qlib <ref type="bibr" target="#b71">[71]</ref> provides a wealth of raw data and factor data, from which users can extract the segments they need. The varying time horizons of these data slices pose a challenge to consistent and fair evaluations. Furthermore, after applying Principal Component Analysis (PCA) <ref type="bibr" target="#b0">[1]</ref> for dimensionality reduction, we visualized FinTSB and other time-sliced stocks as a hexbin plot in Fig. <ref type="figure" target="#fig_4">4</ref>. The results indicate that FinTSB covers the most cells, suggesting that reliance on sliced historical data lacks diversity. In contrast, FinTSB offers more comprehensive coverage, thus effectively capturing the complex distribution of financial time series.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Preliminaries</head><p>In this section, we will introduce some related concepts and formally define the problem of financial time series forecasting.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.1">Problem Definition</head><p>Definition 1. Stock Context. Let the set of all stocks be denoted as S = {𝑠 1 , 𝑠 2 , ..., 𝑠 𝑁 } ∈ R 𝑁 ×𝐿×𝐹 , where 𝑠 𝑖 is a specific stock, 𝑁 is the total number of stocks, 𝐿 is the length of the lookback window and 𝐹 is the number of features. For each stock 𝑠 𝑖 , its data on trading day 𝑡 is represented by 𝑠 𝑡 𝑖 ∈ R 𝐹 , with the closing price 𝑝 𝑡 𝑖 as one of the features. The one-day return ratio is given by 𝑟 𝑡 𝑖 =</p><formula xml:id="formula_0">𝑝 𝑡 𝑖 −𝑝 𝑡 −1 𝑖 𝑝 𝑡 −1</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>𝑖</head><p>. On any trading day 𝑡, stocks are ranked according to their underlying scores</p><formula xml:id="formula_1">𝑌 𝑡 = {𝑦 𝑡 1 ≥ 𝑦 𝑡 2 ≥ ... ≥ 𝑦 𝑡 𝑁 }. If 𝑟 𝑡 𝑖 ≥ 𝑟 𝑡 𝑗 , then 𝑦 𝑡 𝑖 ≥ 𝑦 𝑡 𝑗</formula><p>, establishes an overall ranking based on return ratios. This ranking reflects the expected investment returns for each stock on day 𝑡, where stocks that achieve higher ranking scores 𝑌 are expected to achieve a higher investment revenue (profit) on day 𝑡. Problem 1. Financial time series forecasting. Formally, given the stock-specific time series information of S, the goal is to develop a ranking function that predicts the scores 𝑌 𝐿+1 for the next day, ordering the stocks 𝑠 𝑖 by their expected profitability.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.2">Sequence Characteristics</head><p>To explore the intrinsic properties of financial time series data, we introduce the following sequence characteristics. This allows for a more thorough evaluation of the sophisticated dynamics within stock market behavior, providing deeper insights into the underlying patterns and trends that drive financial assets. Characteristic 1. Movement Patterns. Based on the daily return ratio 𝑟 , derived from the closing price changes, FinTS can be categorized into different periods, each characterized by a dominant movement pattern, including uptrends, downtrends, periods of volatility, and extreme events. Specifically, uptrends are characterized by a higher frequency of trading days with positive 𝑟 , while downtrends are marked by a higher frequency of trading days with negative 𝑟 . Extreme events are defined by significant fluctuations in 𝑟 , representing periods of sharp price movements. Conversely, periods of volatility are identified by a roughly equal number of positive and negative 𝑟 , indicating more frequent market fluctuations without a clear directional trend.</p><p>Characteristic 2. Non-Stationarity. It is well known that stock data, due to their inherent volatility and external influences, typically exhibit non-stationarity, reflecting complex, time-varying patterns that defy simple statistical modeling. Such time series are considered to be integrated of order 𝑘, denoted as 𝐼 (𝑘), if it becomes stationary after applying 𝑘 times differences. For example, a stock series</p><formula xml:id="formula_2">𝑠 𝑡 𝑖 is 𝐼 (1) if its first difference Δ𝑠 𝑡 𝑖 = 𝑠 𝑡 𝑖 − 𝑠 𝑡 −1</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>𝑖</head><p>is stationary. To test for non-stationarity, the Augmented Dickey-Fuller (ADF) test <ref type="bibr" target="#b45">[46]</ref> is commonly employed. It tests the null hypothesis of the presence of a unit root, indicating non-stationarity:</p><formula xml:id="formula_3">Δ𝑠 𝑡 𝑖 = 𝛼 + 𝛽𝑡 + 𝛾𝑠 𝑡 −1 𝑖 + 𝑝 ∑︁ 𝑗=1 𝛿 𝑗 Δ𝑠 𝑡 − 𝑗 𝑖 + 𝜖 𝑡<label>(1)</label></formula><p>Where Δ𝑋 𝑡 is the differenced series, 𝛾 represents the coefficient of the lagged series, and 𝜖 𝑡 is the error term. A rejection of the null hypothesis (𝛾 = 0) indicates stationarity, while a failure to reject it indicates non-stationarity. A smaller ADF test result indicates more stationary time series data. Characteristic 3. Autocorrelation. Autocorrelation <ref type="bibr" target="#b44">[45]</ref> measures the correlation between a time series and its 𝑘 lagged values. Strong autocorrelation 𝜏 (•) suggests that past values of the series have a significant influence on future values, which can be valuable for predictive modeling and identifying underlying patterns. Mathematically, this can be expressed as:</p><formula xml:id="formula_4">𝜏 (𝑠 𝑖 ) = 𝐿−𝑘 𝑡 =1 (𝑠 𝑡 𝑖 − s𝑖 )(𝑠 𝑡 +𝑘 𝑖 − s𝑖 ) 𝐿 𝑡 =1 (𝑠 𝑡 𝑖 − s𝑖 ) 2<label>(2)</label></formula><p>Characteristic 4. Forecastability. Forecasting is inextricably linked to the time domain. Following ForeCA <ref type="bibr" target="#b16">[17]</ref>, we can leverage frequency domain properties to assess the forecastability 𝜙 (•) of a time series. A higher value 𝜙 (𝑥) indicates that series 𝑥 exhibits a lower forecast uncertainty as measured by the entropy.</p><formula xml:id="formula_5">𝜙 (𝑠 𝑖 ) = 1 − 𝐻 (𝑠 𝑖 ) log(2𝜋)<label>(3)</label></formula><p>where 𝐻 (•) denotes the entropy derived from the Fourier decomposition of the time series. Next, we rank the remaining stocks based on a positive change rate, selecting the top 300 as uptrends, the bottom 300 as downtrends, and the remaining 300 as periods of volatility. Afterward, we compute sequence characteristics for each pattern and select the five most appropriate ones. It is important to note that in the pre-processing stage, we need to avoid future information leakage, which necessitates normalization at the stock dimension for each trading day, rather than across the time dimension. Through the above steps, we generate five smaller datasets for each of the four movement patterns, resulting in a total of 20 datasets in the FinTSB. This ensures that FinTSB is comprehensive and diverse, accurately reflecting the dynamics of the financial market. the low signal-to-noise ratio typical of financial data. Autocorrelation measures the degree to which a stock's past price movements influence its future behavior. It can be observed that stocks in the uptrend and downtrend patterns tend to exhibit higher autocorrelation, reflecting the persistence of their directional movements, while stocks in volatile periods show weaker autocorrelation due to frequent reversals. The predictability of different movement patterns varies significantly, with uptrends and downtrends generally being more predictable, while periods of volatility and extreme events pose greater forecasting challenges due to their inherent unpredictability and the occurrence of abrupt, large price movements.</p><p>Overall, FinTSB encompasses a wide variety of sequence indicators, ensuring that it captures the multifaceted nature of FinTS. By integrating these key characteristics, FinTSB enables the exploration of diverse forecasting challenges.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Comparison Baselines</head><p>To investigate the advantages and limitations of different methods, as well as their adaptability across different patterns, our evaluation covers the six categories of methods mentioned previously. For classic strategies, we choose CSM <ref type="bibr" target="#b27">[28]</ref> and BLSW <ref type="bibr" target="#b50">[51]</ref>. In terms of ML-based methods, we include XGBoost <ref type="bibr" target="#b5">[6]</ref>, LightGBM <ref type="bibr" target="#b29">[30]</ref>, Dou-bleEnsemble [2020] and ARIMA <ref type="bibr" target="#b3">[4]</ref>. Among DL-based methods, we choose Linear, LSTM <ref type="bibr" target="#b21">[22]</ref>, ALSTM <ref type="bibr" target="#b51">[52]</ref>, GRU <ref type="bibr" target="#b9">[10]</ref>, GCN <ref type="bibr" target="#b30">[31]</ref>, GAT <ref type="bibr" target="#b58">[59]</ref>, TCN <ref type="bibr" target="#b2">[3]</ref>, Transformer <ref type="bibr" target="#b57">[58]</ref>, Mamba <ref type="bibr" target="#b17">[18]</ref>, PatchTST <ref type="bibr" target="#b46">[47]</ref>, Crossformer <ref type="bibr" target="#b76">[76]</ref>, iTransformer <ref type="bibr" target="#b42">[43]</ref>, AMD <ref type="bibr" target="#b23">[24]</ref>, PDF <ref type="bibr" target="#b10">[11]</ref>, Localformer <ref type="bibr" target="#b77">[77]</ref>. For RL-based methods, we include PPO <ref type="bibr" target="#b53">[54]</ref>, DDPG <ref type="bibr" target="#b35">[36]</ref>, SAC <ref type="bibr" target="#b18">[19]</ref> and DQN <ref type="bibr" target="#b4">[5]</ref>. For Generative-based methods, we choose DDPM <ref type="bibr" target="#b20">[21]</ref>, DDIM <ref type="bibr" target="#b56">[57]</ref> and FactorVAE <ref type="bibr" target="#b14">[15]</ref>. For LLM-based methods, we include Timer <ref type="bibr" target="#b43">[44]</ref>, Time-MoE <ref type="bibr" target="#b54">[55]</ref> and Chronos <ref type="bibr" target="#b1">[2]</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3">Evaluation Metrics</head><p>Existing work on FinTSF evaluation varies. To achieve a consistent and comprehensive assessment of forecast performance, we employ eleven metrics across three dimensions, including ranking, portfolio, and error. The detailed explanation is provided below.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.1">Ranking Metrics.</head><p>Ranking metrics systematically assess the performance of predicted ranking scores (returns) 𝑌 in quantitative research, measuring both cross-sectional and predictive power.</p><p>Information Coefficient (IC) quantifies the directional alignment between 𝑌 and subsequent true returns 𝑟 , calculated as the Spearman correlation coefficient. It evaluates the raw predictive power of scores 𝑌 , with statistically significant positive IC values indicating economically meaningful forecasting power.</p><formula xml:id="formula_6">IC = 1 𝑁 𝑁 ∑︁ 𝑖=1 𝑡 𝑘=1 (𝑟 𝑘 𝑖 − r𝑖 )(𝑌 𝑘 𝑖 − Ȳ𝑖 ) √︃ 𝑡 𝑘=1 (𝑟 𝑘 𝑖 − r𝑖 ) 2 • √︃ 𝑡 𝑘=1 (𝑌 𝑘 𝑖 − Ȳ𝑖 ) 2 (4)</formula><p>Information Coefficient Information Ratio (ICIR) measures the stability of the performance of 𝑌 by comparing the annualized mean IC with its temporal volatility. (ICIR = mean(IC) std(IC) ) Rank Information Coefficient (RankIC) is the Spearman correlation metric that employs dual-ranking normalization: both 𝑌 and 𝑟 are converted to uniform percentile ranks before calculating the correlation. This process eliminates scaling artifacts and reduces sensitivity to outlier bias, which is particularly beneficial when analyzing non-linear factor-response relationships.</p><formula xml:id="formula_7">RankIC = 1 − 1 𝑁 𝑁 ∑︁ 𝑖=1 6 𝑡 𝑘=1 (𝑅(𝑟 𝑘 𝑖 ) − 𝑅(𝑌 𝑘 𝑗 )) 2 𝑡 (𝑡 2 − 1) (5)</formula><p>where 𝑅(•) is the rank function.</p><p>Rank Information Coefficient Information Ratio (RankICIR) evaluates the reliability of rank-based relationships between 𝑌 and 𝑟 . , where 𝑅 𝑏 is the daily return of the market index.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.3.3">Error</head><p>Metrics. Some reviewers emphasize the use of mean square error (MSE) and mean absolute error (MAE) to quantify the discrepancy between predicted 𝑌 and actual returns 𝑟 . However, it is important to note that a lower MSE or MAE does not guarantee profitability; market impact, position sizing rules and transaction costs ultimately determine the success of the strategy. The formulations are:</p><formula xml:id="formula_8">MSE = 1 𝐿 𝐿 𝑡 =0 (𝑌 𝑡 𝑖 − 𝑟 𝑡 𝑖 ) 2 , MAE = 1 𝐿 𝐿 𝑡 =0 |𝑌 𝑡 𝑖 − 𝑟 𝑡 𝑖 |.</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.4">Unified Pipeline</head><p>As discussed in Issue ❷, the use of divergent evaluation criteria has led to differences in model performance. To ensure a fair, comprehensive, and practical evaluation, we introduce a unified pipeline that is structurally divided into the data layer, the training layer, the backtesting layer, and the feedback layer. A detailed description of each module is provided below.</p><p>Data Layer stores comprehensive market information in FinTSB, encompassing four different movement patterns. For data pre processing, we implement tokenization (anonymization) and normalization operations. The dataloader dynamically constructs global training/validation/test sets based on the selected movement modes. Researchers can evaluate model performance under identical market conditions by maintaining consistent modes for training and Training Layer integrates dozens of canonical models built on six heterogeneous backbone architectures. We extend Qlib's foundation by designing an easy-to-use and unified training pipeline that ensures evaluation consistency. The framework maintains model-agnostic compatibility -researchers employing FinTSF paradigm can seamlessly integrate their new models while maintaining evaluation impartiality. In particular, we implement parameter encapsulation through dedicated configuration modules rather than monolithic config files/main functions, significantly enhancing code readability and customization flexibility.</p><p>Backtesting Layer currently incorporates two classic strategies: Top𝐾 and Top𝐾-Drop, with transaction cost simulations reflecting real market conditions. Through multi-dimensional evaluation spanning prediction errors (2 metrics), ranking accuracy (4 metrics), and portfolio performance (5 metrics), we comprehensively quantify model capabilities across 11 rigorously wide-used indicators.</p><p>Feedback Layer systematically archives training logs, preserves prediction results, and provides interactive visualization tools. This design facilitates continuous model optimization by tracking performance across training iterations, enables comparative analysis through standardized results formats, and supports decisionmaking via intuitive graphical representations of strategy behavior.</p><p>Users only need to deploy their method at the training layer and configure the configuration file, then FinTSB can automatically run the pipeline in Fig. <ref type="figure" target="#fig_7">5</ref>, enabling to better understand, compare, and select FinTSF methods for specific financial scenarios.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">Expeiments 5.1 Experiment Setup</head><p>Our experiment is trained on the NVIDIA A100 GPU for LLM-based methods and NVIDIA V100 GPU for others, and all models are built using PyTorch <ref type="bibr" target="#b49">[50]</ref>. The training, validation, and test sets (from FinTSB) are kept consistent for all models. The lookback horizon 𝐿 is set to 20 and we will predict the returns 𝑌 on the next trading day. For each method, we adhere to performing hyperparameter searches across multiple sets for optimal results. The training process employs a dual-objective optimization framework, simultaneously minimizing a composite loss function that integrates both point-wise regression loss and pair-wise ranking loss. These complementary objectives are balanced through an adaptive weighting coefficient 𝜂, which is set to 5.</p><formula xml:id="formula_9">L = 1 𝐿 𝐿 ∑︁ 𝑡 =1 ( 𝑁 ∑︁ 𝑖=1 ||𝑌 𝑡 𝑖 − 𝑟 𝑡 𝑖 || 2 + 𝜂 𝑁 ∑︁ 𝑖=1 𝑁 ∑︁ 𝑗=1 𝑚𝑎𝑥 (0, −(𝑌 𝑡 𝑖 − 𝑌 𝑡 𝑗 )(𝑟 𝑡 𝑖 − 𝑟 𝑡 𝑗 )))</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Trading Protocols</head><p>We adopt the Top𝐾-Drop strategy <ref type="bibr" target="#b71">[71]</ref> to maintain a portfolio on each trading day. The Top𝐾-Drop strategy improves upon Top𝐾 strategy by dynamically optimizing portfolio turnover. Rather than fully rebalancing holdings daily, it retains stocks that persistently rank in the top-𝐾 cohort and only replaces underperformers. This reduces the frequency of transactions, thereby lowering commission costs in proportion to the actual turnover rate, and maintains exposure to stocks with sustained high scores, avoiding unnecessary exits. Formally, on trading day 𝑡, Top𝐾-Drop constructs an equal-weighted portfolio of 𝑚 stocks P 𝑡 = {𝑠 𝑡 𝑖 1 , 𝑠 𝑡 𝑖 2 , ..., 𝑠 𝑡 𝑖 𝑚 }, which are selected according to the rank of predicted returns 𝑌 . Given the turnover constraint, the number of intersection stocks 𝑛 is required to fulfill the condition |P 𝑡 ∩ P 𝑡 −1 | ≥ 𝑚 − 𝑛. In our experiment, we set 𝑚 at one tenth of the total number of stocks, i.e., 𝑚 = 30, and 𝑛 is set to 5. Furthermore, we charge a transaction fee at a rate of 0.1%, in line with standard market practice.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.3">Experiment Results</head><p>The performance results of various FinTSF methods are reported in Tab. 2. We observe that no single method achieves the best performance across all three dimensional metrics. There is significant performance heterogeneity among different methods, even within the same backbone category, which we attribute to the critical factor of how effectively models capture temporal dependencies and Tao Dai, Shu-tao Xia, Dawei Cheng and Changjun Jiang   </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.4">Transfer Learning Results</head><p>To validate the cross-data generalization capability of FinTSB, we conduct transfer learning experiments by applying models pretrained on FinTSB to backtest the entire 2024 CSI 300 stock market. The empirical results reveal two key insights. First, as shown by the metrics in Tab. 3 and the cumulative return trajectories in Fig. <ref type="figure" target="#fig_8">6</ref>, the model demonstrates remarkable performance consistency across different market regimes. Second, the superior risk-adjusted returns achieved through this zero-shot transfer learning paradigm highlight FinTSB's unique advantages in both pattern diversity coverage and temporal robustness, establishing it as a comprehensive benchmark for heterogeneous market behaviors spanning bull, bear, and transitional market phases.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.5">Inference Efficiency</head><p>It is well known that quantitative trading in real-world markets places high demands on system latency sensitivity. Given this critical operational requirement, we conducted a comparative visualization analysis of representative algorithmic models in Fig. <ref type="figure" target="#fig_10">7</ref>, focusing on three key performance metrics, ASR performance, computational inference efficiency, and memory footprint allocation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Conclusion</head><p>In this paper, we propose FinTSB, a comprehensive benchmark for FinTSF that addresses three key challenges. By categorizing stock movement patterns into four different types, we ensure a more diverse and representative evaluation, filling the Diversity Gap overlooked in previous studies. Furthermore, we introduce a unified evaluation framework that standardizes performance metrics across multiple dimensions, mitigating the Standardization Deficit and enabling more reliable cross-study comparisons. To bridge the gap between theoretical models and real-world applications, we incorporate critical market structure factors to overcome the Real-World Mismatch that often distorts performance metrics. In general, FinTSB offers a robust platform for advancing the evaluation and development of FinTSF methods, which we believe may pave the way for further research into the practical application of FinTSF.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: FinTSF methods classified by backbone architectures and their representative works.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>FinTSB</head><label></label><figDesc></figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: In the field of financial time series forecasting, existing evaluation frameworks often face three issues: Diversity Gap, Standardization Deficit, and Real-World Mismatch.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Figure 3 :</head><label>3</label><figDesc>Figure 3: Visualization of financial time series data with different movement patterns.</figDesc><graphic coords="3,62.00,161.84,113.95,78.26" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>FinTSB_cnFigure 4 :</head><label>4</label><figDesc>Figure 4: Hexbin plots illustrating the normalized density values of the low-dimensional feature spaces generated by PCA, applied to stock features such as open price, close price, high price, low price, and trading volume for FinTSB, alongside four different time-sliced stock data.</figDesc><graphic coords="4,137.72,179.10,77.18,77.28" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>4 . 1 . 1</head><label>411</label><figDesc>Dataset Construction. We construct the FinTSB dataset by tokenizing and pre-processing a large amount of raw stock data. Specifically, we first divide 15 years of historical stock data into non-overlapping segments to prevent data leakage. Then, we calculate the daily return (change rate) 𝑟 for each stock and, based on this metric, categorize the stocks in each fixed 250-day segment into one of four distinct movement patterns. If there are extreme outliers in the change rate, the stocks are classified as black swan events.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head></head><label></label><figDesc>-Based Metrics. Portfolio-based metrics evaluate the performance and risk characteristics of investment strategies through simulated portfolio implementation. These metrics provide a perspective for assessing both absolute and risk-adjusted returns, drawdown behavior, and strategy efficiency of FinTSF methods.Annualized Return Ratio (ARR) measures the geometric mean return of a strategy annualized over the evaluation period and serves as the primary indicator of strategy profitability. (ARR = (1 + Total Return) 252 𝑛 − 1) Annualized Volatility (AVol) quantifies the dispersion of strategy returns and captures the consistency of performance delivery, with lower values indicating more stable return streams. 𝑅 𝑝 denotes the daily return of the portfolio. (AVol = √︁ 252 • Var(𝑅 𝑝 )) Maximum Draw Down (MDD) represents the largest peak-totrough decline (𝑝 𝑝𝑒𝑎𝑘 − 𝑝 𝑡𝑟𝑜𝑢𝑔ℎ ) in portfolio value over the evaluation period and is critical in assessing the strategy's risk tolerance and ability to preserve capital. (MDD = −max 𝑝 𝑝𝑒𝑎𝑘 −𝑝 𝑡𝑟𝑜𝑢𝑔ℎ 𝑝 𝑝𝑒𝑎𝑘 ) Annualized Sharpe Ratio (ASR) measures the excess return per unit of total risk, assessing risk-adjusted performance. (ASR = ARR AVol ) Information Ratio (IR) assesses the ability to generate excess returns relative to a benchmark and the effectiveness of active management. IR = mean(𝑅 𝑝 −𝑅 𝑏 ) std(𝑅 𝑝 −𝑅 𝑏 )</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>Figure 5 :</head><label>5</label><figDesc>Figure 5: The pipeline of FinTSB with four integral modules. testing phases. Cross-pattern evaluation through transfer learning (training on selected patterns and testing on others) enables granular analysis of strategy adaptability across market regimes, which is particularly valuable for assessing model generalization capabilities. Additionally, historical stock market data verification validates model effectiveness in real-world financial scenarios.Training Layer integrates dozens of canonical models built on six heterogeneous backbone architectures. We extend Qlib's foundation by designing an easy-to-use and unified training pipeline that ensures evaluation consistency. The framework maintains model-agnostic compatibility -researchers employing FinTSF paradigm can seamlessly integrate their new models while maintaining evaluation impartiality. In particular, we implement parameter encapsulation through dedicated configuration modules rather than monolithic config files/main functions, significantly enhancing code readability and customization flexibility.Backtesting Layer currently incorporates two classic strategies: Top𝐾 and Top𝐾-Drop, with transaction cost simulations reflecting real market conditions. Through multi-dimensional evaluation spanning prediction errors (2 metrics), ranking accuracy (4 metrics), and portfolio performance (5 metrics), we comprehensively quantify model capabilities across 11 rigorously wide-used indicators.Feedback Layer systematically archives training logs, preserves prediction results, and provides interactive visualization tools. This design facilitates continuous model optimization by tracking performance across training iterations, enables comparative analysis through standardized results formats, and supports decisionmaking via intuitive graphical representations of strategy behavior.Users only need to deploy their method at the training layer and configure the configuration file, then FinTSB can automatically run the pipeline in Fig.5, enabling to better understand, compare, and select FinTSF methods for specific financial scenarios.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><head>Figure 6 :</head><label>6</label><figDesc>Figure 6: Cumulative return of typical methods over the whole year of 2024 in the CSI 300.</figDesc><graphic coords="8,71.45,86.13,469.49,143.54" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><head></head><label></label><figDesc>0.225 -0.148 0.176 -0.003 cross-sectional relationships to predict future stock movements. Notably, LLM-based approaches exhibit a paradoxical pattern in which performance initially deteriorates with model scaling but subsequently shows marked improvement at larger scales, suggesting the emergence of financial time series specific capabilities that manifest only beyond critical thresholds of model capacity, possibly due to the need for sufficient parameters to disentangle complex market noise and latent factor interactions. Contrary to expectations, modern deep learning techniques do not universally outperform traditional quantitative strategies or tree-based models, underscoring the necessity for rigorous benchmarking across diverse architectures and temporal regimes. This empirical evidence argues for a more nuanced evaluation framework that takes into account both model scalability and FinTS characteristics.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_10"><head>Figure 7 :</head><label>7</label><figDesc>Figure 7: Inference efficiency comparison under FinTSB.</figDesc><graphic coords="8,317.96,250.11,242.03,138.16" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2"><head>Table 1 :</head><label>1</label><figDesc>Statistics of FinTSB.</figDesc><table><row><cell cols="5">Movement Patterns Non-Stationarity Autocorrelation Forecastability Split</cell></row><row><cell>Uptrends</cell><cell>-12.35</cell><cell>0.678</cell><cell>0.187</cell><cell>7:1:2</cell></row><row><cell>Downtrends</cell><cell>-16.25</cell><cell>0.681</cell><cell>0.092</cell><cell>7:1:2</cell></row><row><cell>Volatility</cell><cell>-15.63</cell><cell>0.676</cell><cell>0.112</cell><cell>7:1:2</cell></row><row><cell>Extreme</cell><cell>-15.48</cell><cell>0.639</cell><cell>0.068</cell><cell>7:1:2</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4"><head>Table 2 :</head><label>2</label><figDesc>Performance evaluation of compared models for financial time series forecasting in FinTSB. The best and least favorable results are highlighted in bold and underline, respectively.</figDesc><table><row><cell></cell><cell></cell><cell></cell><cell></cell><cell cols="3">FinTSB Evaluation</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell></cell><cell>Methods</cell><cell cols="2">Error Metrics MSE↓ MAE↓</cell><cell>IC↑</cell><cell cols="7">Ranking Metrics ICIR↑ RankIC↑ RankICIR↑ ARR↑ AVol↓ MDD↓ ASR↑ Portfolio-Based Metrics</cell><cell>IR↑</cell></row><row><cell>Classic</cell><cell>BLSW [1988]</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell>0.152</cell><cell cols="3">0.120 -0.061 0.865</cell><cell>0.000</cell></row><row><cell>Strategies</cell><cell>CSM [1993]</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell>-</cell><cell>-0.143</cell><cell>0.115</cell><cell cols="3">-0.075 -1.409 -0.559</cell></row><row><cell></cell><cell>ARIMA [1968]</cell><cell>0.017</cell><cell>0.382</cell><cell>0.0002</cell><cell>0.055</cell><cell>0.0003</cell><cell>0.023</cell><cell>0.062</cell><cell>0.088</cell><cell>-0.139</cell><cell>0.776</cell><cell>0.0002</cell></row><row><cell>ML-Based</cell><cell>XGBoost [2016]</cell><cell>0.015</cell><cell>0.365</cell><cell>0.098</cell><cell>0.308</cell><cell>0.095</cell><cell>0.283</cell><cell>0.221</cell><cell>0.136</cell><cell>-0.142</cell><cell>1.628</cell><cell>0.047</cell></row><row><cell>Methods</cell><cell>LightGBM [2017] DoubleEnsemble [2020]</cell><cell>0.016 0.017</cell><cell>0.382 0.383</cell><cell>0.109 0.011</cell><cell>0.533 0.122</cell><cell>0.086 0.081</cell><cell>0.345 0.122</cell><cell>0.171 0.191</cell><cell>0.102 0.105</cell><cell>-0.196 -0.135</cell><cell>1.679 1.813</cell><cell>0.109 0.114</cell></row><row><cell></cell><cell>Linear (Ridge)</cell><cell>0.012</cell><cell>0.325</cell><cell>0.007</cell><cell>0.061</cell><cell>0.008</cell><cell>0.099</cell><cell>0.026</cell><cell>0.140</cell><cell>-0.129</cell><cell>0.186</cell><cell>0.073</cell></row><row><cell></cell><cell>Linear (NNLS)</cell><cell>0.017</cell><cell>0.382</cell><cell>0.013</cell><cell>0.146</cell><cell>0.009</cell><cell>0.166</cell><cell>0.072</cell><cell>0.105</cell><cell>-0.127</cell><cell>0.686</cell><cell>0.013</cell></row><row><cell></cell><cell>LSTM [1997]</cell><cell>0.165</cell><cell>0.331</cell><cell>0.028</cell><cell>0.421</cell><cell>0.015</cell><cell>0.275</cell><cell>0.198</cell><cell>0.095</cell><cell>-0.268</cell><cell>2.083</cell><cell>0.125</cell></row><row><cell></cell><cell>Adv-LSTM [2017]</cell><cell>0.167</cell><cell>0.335</cell><cell cols="2">-0.005 -0.092</cell><cell>0.001</cell><cell>-0.004</cell><cell>0.124</cell><cell>0.084</cell><cell>-0.282</cell><cell>1.472</cell><cell>-0.022</cell></row><row><cell></cell><cell>GRU [2014]</cell><cell>0.166</cell><cell>0.332</cell><cell>0.002</cell><cell>0.034</cell><cell>0.007</cell><cell>0.121</cell><cell>0.179</cell><cell>0.093</cell><cell>-0.199</cell><cell>1.937</cell><cell>0.009</cell></row><row><cell></cell><cell>TCN [2018]</cell><cell>0.166</cell><cell>0.332</cell><cell>0.006</cell><cell>0.093</cell><cell>0.004</cell><cell>0.071</cell><cell>0.148</cell><cell>0.092</cell><cell>-0.259</cell><cell>1.611</cell><cell>0.027</cell></row><row><cell></cell><cell>GCN [2016]</cell><cell>0.083</cell><cell>0.250</cell><cell>0.005</cell><cell>0.075</cell><cell>0.002</cell><cell>0.029</cell><cell>0.093</cell><cell>0.084</cell><cell>-0.248</cell><cell>1.105</cell><cell>0.005</cell></row><row><cell>DL-Based</cell><cell>GAT [2017]</cell><cell>0.166</cell><cell>0.332</cell><cell>0.014</cell><cell>0.245</cell><cell>0.009</cell><cell>0.167</cell><cell>0.250</cell><cell>0.091</cell><cell>-0.197</cell><cell>2.746</cell><cell>0.014</cell></row><row><cell>Methods</cell><cell>Transformer [2017]</cell><cell>0.167</cell><cell>0.335</cell><cell cols="2">-0.009 -0.099</cell><cell>0.004</cell><cell>0.001</cell><cell>0.141</cell><cell>0.082</cell><cell>-0.214</cell><cell>1.720</cell><cell>-0.040</cell></row><row><cell></cell><cell>Mamba [2024]</cell><cell>0.165</cell><cell>0.329</cell><cell>0.013</cell><cell>0.184</cell><cell>0.018</cell><cell>0.288</cell><cell>0.178</cell><cell>0.093</cell><cell>-0.249</cell><cell>1.915</cell><cell>0.013</cell></row><row><cell></cell><cell>PatchTST [2023]</cell><cell>0.166</cell><cell>0.333</cell><cell>0.008</cell><cell>0.147</cell><cell>0.006</cell><cell>0.113</cell><cell>0.148</cell><cell>0.085</cell><cell>-0.200</cell><cell>1.739</cell><cell>0.036</cell></row><row><cell></cell><cell>Crossformer [2023]</cell><cell>0.163</cell><cell>0.329</cell><cell>0.002</cell><cell>0.035</cell><cell>-0.001</cell><cell>-0.007</cell><cell>0.069</cell><cell>0.082</cell><cell>-0.231</cell><cell>1.175</cell><cell>0.009</cell></row><row><cell></cell><cell>SegRNN [2023]</cell><cell>0.166</cell><cell>0.328</cell><cell cols="2">-0.002 -0.027</cell><cell>0.012</cell><cell>0.169</cell><cell>0.167</cell><cell>0.094</cell><cell>-0.193</cell><cell>1.765</cell><cell>-0.009</cell></row><row><cell></cell><cell>PDF [2024]</cell><cell>0.165</cell><cell>0.332</cell><cell>0.022</cell><cell>0.391</cell><cell>0.018</cell><cell>0.329</cell><cell>0.209</cell><cell>0.092</cell><cell>-0.135</cell><cell>2.277</cell><cell>0.098</cell></row><row><cell></cell><cell>TimeMixer [2024b]</cell><cell>0.165</cell><cell>0.330</cell><cell>0.015</cell><cell>0.249</cell><cell>0.107</cell><cell>0.187</cell><cell>0.200</cell><cell>0.088</cell><cell>-0.212</cell><cell>2.274</cell><cell>0.067</cell></row><row><cell></cell><cell>Localformer [2024]</cell><cell>0.162</cell><cell>0.328</cell><cell>0.044</cell><cell>0.646</cell><cell>0.037</cell><cell>0.662</cell><cell>0.355</cell><cell>0.100</cell><cell>-0.102</cell><cell>3.562</cell><cell>0.044</cell></row><row><cell>Generative-</cell><cell>DDPM [2020]</cell><cell>0.163</cell><cell>0.328</cell><cell>0.026</cell><cell>0.451</cell><cell>0.023</cell><cell>0.413</cell><cell>0.198</cell><cell>0.084</cell><cell>-0.147</cell><cell>2.353</cell><cell>0.026</cell></row><row><cell>Based</cell><cell>DDIM [2020]</cell><cell>0.166</cell><cell>0.333</cell><cell>0.002</cell><cell>0.043</cell><cell>0.003</cell><cell>0.044</cell><cell>0.112</cell><cell>0.084</cell><cell>-0.245</cell><cell>1.335</cell><cell>0.002</cell></row><row><cell>Methods</cell><cell>FactorVAE [2022]</cell><cell>0.167</cell><cell>0.334</cell><cell cols="3">-0.004 -0.061 -0.004</cell><cell>-0.077</cell><cell>0.093</cell><cell cols="2">0.081 -0.220</cell><cell>1.146</cell><cell>-0.004</cell></row><row><cell></cell><cell>Timer [2024d]</cell><cell>0.020</cell><cell>0.431</cell><cell>0.006</cell><cell>0.083</cell><cell>0.006</cell><cell>0.092</cell><cell>0.230</cell><cell>0.084</cell><cell>-0.123</cell><cell>2.756</cell><cell>0.006</cell></row><row><cell></cell><cell>Time-MoE Base [2025]</cell><cell>0.022</cell><cell>0.483</cell><cell>0.003</cell><cell>0.062</cell><cell>0.003</cell><cell>0.058</cell><cell>0.164</cell><cell>0.084</cell><cell>-0.129</cell><cell>1.964</cell><cell>0.003</cell></row><row><cell></cell><cell>Time-MoE Large [2025]</cell><cell>0.023</cell><cell>0.493</cell><cell>0.004</cell><cell>0.081</cell><cell>0.004</cell><cell>0.082</cell><cell>0.145</cell><cell>0.083</cell><cell>-0.124</cell><cell>1.756</cell><cell>0.004</cell></row><row><cell></cell><cell>Chronos-T5 Mini [2024]</cell><cell>0.017</cell><cell>0.387</cell><cell>0.011</cell><cell>0.174</cell><cell>0.013</cell><cell>0.205</cell><cell>0.291</cell><cell>0.090</cell><cell>-0.126</cell><cell>3.238</cell><cell>0.011</cell></row><row><cell></cell><cell>Chronos-T5 Tiny [2024]</cell><cell>0.017</cell><cell>0.387</cell><cell>0.010</cell><cell>0.163</cell><cell>0.013</cell><cell>0.197</cell><cell>0.219</cell><cell>0.088</cell><cell>-0.098</cell><cell>2.497</cell><cell>0.010</cell></row><row><cell>LLM-Based Methods</cell><cell>Chronos-T5 Small [2024] Chronos-T5 Base [2024]</cell><cell>0.017 0.017</cell><cell>0.386 0.387</cell><cell>0.009 0.009</cell><cell>0.144 0.149</cell><cell>0.011 0.011</cell><cell>0.180 0.167</cell><cell>0.227 0.210</cell><cell>0.089 0.088</cell><cell>-0.148 -0.135</cell><cell>2.549 2.394</cell><cell>0.009 0.010</cell></row><row><cell></cell><cell>Chronos-T5 Large [2024]</cell><cell>0.017</cell><cell>0.387</cell><cell>0.013</cell><cell>0.199</cell><cell>0.015</cell><cell>0.225</cell><cell>0.314</cell><cell>0.087</cell><cell>-0.114</cell><cell>3.593</cell><cell>0.013</cell></row><row><cell></cell><cell>Chronos-bolt Mini [2024]</cell><cell>0.017</cell><cell>0.393</cell><cell>0.015</cell><cell>0.234</cell><cell>0.015</cell><cell>0.241</cell><cell>0.296</cell><cell>0.089</cell><cell>-0.099</cell><cell>3.331</cell><cell>0.015</cell></row><row><cell></cell><cell>Chronos-bolt Tiny [2024]</cell><cell>0.017</cell><cell>0.395</cell><cell>0.013</cell><cell>0.202</cell><cell>0.013</cell><cell>0.194</cell><cell>0.303</cell><cell>0.088</cell><cell>-0.094</cell><cell>3.457</cell><cell>0.013</cell></row><row><cell></cell><cell cols="2">Chronos-bolt Small [2024] 0.017 Chronos-bolt Base [2024] 0.017</cell><cell>0.393 0.390</cell><cell>0.014 0.017</cell><cell>0.230 0.277</cell><cell>0.015 0.018</cell><cell>0.238 0.292</cell><cell>0.356 0.366</cell><cell>0.090 0.085</cell><cell cols="2">-0.080 -0.097 4.327 3.968</cell><cell>0.014 0.017</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5"><head>Table 3 :</head><label>3</label><figDesc>Performance evaluation of typical models on CSI 300 in 2024. The models are trained on FinTSB.Tested on CSI 300 in 2024, trained on FinTSB.</figDesc><table><row><cell>Methods</cell><cell cols="2">Ranking Metrics IC↑ ICIR↑</cell><cell>Portfolio-Based Metrics ARR↑ AVol↓ MDD↓ ASR↑ IR↑</cell></row><row><cell>LSTM [1997]</cell><cell>0.008</cell><cell>0.062</cell><cell>0.163 0.208 -0.159 0.782 0.008</cell></row><row><cell cols="2">Adv-LSTM [2017] -0.012</cell><cell>-0.087</cell><cell>0.167 0.250 -0.180 0.666 -0.012</cell></row><row><cell>TCN [2018]</cell><cell>-0.008</cell><cell>0.078</cell><cell>0.109 0.309 -0.243 0.351 -0.008</cell></row><row><cell>GAT [2017]</cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Principal component analysis</title>
+		<author>
+			<persName><forename type="first">Hervé</forename><surname>Abdi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lynne</forename><forename type="middle">J</forename><surname>Williams</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Wiley interdisciplinary reviews: computational statistics</title>
+				<imprint>
+			<date type="published" when="2010">2010. 2010</date>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="page" from="433" to="459" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title/>
+		<author>
+			<persName><forename type="first">Abdul</forename><surname>Fatir</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ansari</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lorenzo</forename><surname>Stella</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Caner</forename><surname>Turkmen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiyuan</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pedro</forename><surname>Mercado</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Huibin</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Oleksandr</forename><surname>Shchur</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Syama</forename><surname>Syndar Rangapuram</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sebastian</forename><surname>Pineda Arango</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shubham</forename><surname>Kapoor</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jasper</forename><surname>Zschiegner</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Danielle</forename><forename type="middle">C</forename><surname>Maddix</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michael</forename><forename type="middle">W</forename><surname>Mahoney</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kari</forename><surname>Torkkola</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><surname>Gordon Wilson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michael</forename><surname>Bohlke-Schneider</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuyang</forename><surname>Wang</surname></persName>
+		</author>
+		<ptr target="https://openreview.net/forum?id=gerNCVqqtR" />
+	</analytic>
+	<monogr>
+		<title level="j">Chronos: Learning the Language of Time Series. Transactions on Machine Learning Research</title>
+		<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<monogr>
+		<title level="m" type="main">An empirical evaluation of generic convolutional and recurrent networks for sequence modeling</title>
+		<author>
+			<persName><forename type="first">Shaojie</forename><surname>Bai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zico</forename><surname>Kolter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vladlen</forename><surname>Koltun</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1803.01271</idno>
+		<imprint>
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">Some Recent Advances in Forecasting and Control</title>
+		<author>
+			<persName><forename type="first">G</forename><forename type="middle">E P</forename><surname>Box</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Gwilym</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">John</forename><forename type="middle">F</forename><surname>Jenkins</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Macgregor</surname></persName>
+		</author>
+		<ptr target="https://api.semanticscholar.org/CorpusID" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of The Royal Statistical Society Series C-applied Statistics</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="page">227323668</biblScope>
+			<date type="published" when="1968">1968. 1968</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Multi-DQN: An ensemble of Deep Q-learning agents for stock market forecasting</title>
+		<author>
+			<persName><forename type="first">Salvatore</forename><surname>Carta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Anselmo</forename><surname>Ferreira</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alessandro</forename><surname>Sebastian Podda</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Diego</forename><forename type="middle">Reforgiato</forename><surname>Recupero</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Antonio</forename><surname>Sanna</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Expert Systems with Applications</title>
+		<imprint>
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">XGBoost: A Scalable Tree Boosting System</title>
+		<author>
+			<persName><forename type="first">Tianqi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Carlos</forename><surname>Guestrin</surname></persName>
+		</author>
+		<idno type="DOI">10.1145/2939672.2939785</idno>
+		<ptr target="https://doi.org/10.1145/2939672.2939785" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</title>
+				<meeting>the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining<address><addrLine>San Francisco, California, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2016">2016</date>
+			<biblScope unit="page" from="785" to="794" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Automatic De-Biased Temporal-Relational Modeling for Stock Investment Recommendation</title>
+		<author>
+			<persName><forename type="first">Weijun</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shun</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xipu</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Heyuan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wei</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tengjiao</forename><surname>Wang</surname></persName>
+		</author>
+		<idno type="DOI">10.24963/ijcai.2024/221</idno>
+		<ptr target="https://doi.org/10.24963/ijcai.2024/221MainTrack" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Thirty-Third International Joint Conference on Artificial Intelligence, IJCAI-24</title>
+				<editor>
+			<persName><forename type="first">Kate</forename><surname>Larson</surname></persName>
+		</editor>
+		<meeting>the Thirty-Third International Joint Conference on Artificial Intelligence, IJCAI-24</meeting>
+		<imprint>
+			<date type="published" when="1999">2024. 1999-2008</date>
+		</imprint>
+	</monogr>
+	<note>International Joint Conferences on Artificial Intelligence Organization</note>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Modeling Similarities Among Multi-Dimensional Financial Time Series</title>
+		<author>
+			<persName><forename type="first">Dawei</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ye</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhibin</forename><surname>Niu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Liqing</forename><surname>Zhang</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/ACCESS.2018.2862908</idno>
+		<ptr target="https://doi.org/10.1109/ACCESS.2018.2862908" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="page" from="43404" to="43413" />
+			<date type="published" when="2018">2018. 2018</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Financial time series forecasting with multi-modality graph neural network</title>
+		<author>
+			<persName><forename type="first">Dawei</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Fangzhou</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sheng</forename><surname>Xiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jin</forename><surname>Liu</surname></persName>
+		</author>
+		<idno type="DOI">10.1016/j.patcog.2021.108218</idno>
+		<ptr target="https://doi.org/10.1016/j.patcog.2021.108218" />
+	</analytic>
+	<monogr>
+		<title level="j">Pattern Recognition</title>
+		<imprint>
+			<biblScope unit="volume">121</biblScope>
+			<biblScope unit="page">108218</biblScope>
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<monogr>
+		<author>
+			<persName><forename type="first">Junyoung</forename><surname>Chung</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Caglar</forename><surname>Gulcehre</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kyunghyun</forename><surname>Cho</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yoshua</forename><surname>Bengio</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1412.3555</idno>
+		<title level="m">Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling</title>
+				<imprint>
+			<date type="published" when="2014">2014. 2014</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Dai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Beiliang</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peiyuan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Naiqi</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jigang</forename><surname>Bao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yong</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shu-Tao</forename><surname>Xia</surname></persName>
+		</author>
+		<title level="m">Periodicity Decoupling Framework for Long-term Series Forecasting. International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Diffstock: Probabilistic Relational Stock Market Predictions Using Diffusion Models</title>
+		<author>
+			<persName><forename type="first">Divyanshu</forename><surname>Daiya</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Monika</forename><surname>Yadav</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Harshit</forename><surname>Singh Rao</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ICASSP 2024 -2024 IEEE International Conference on Acoustics, Speech and Signal Processing</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note>ICASSP</note>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Im-ageNet: A large-scale hierarchical image database</title>
+		<author>
+			<persName><forename type="first">Jia</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wei</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Richard</forename><surname>Socher</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Li-Jia</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kai</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Li</forename><surname>Fei-Fei</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/CVPR.2009.5206848</idno>
+		<ptr target="https://doi.org/10.1109/CVPR.2009.5206848" />
+	</analytic>
+	<monogr>
+		<title level="m">2009 IEEE Conference on Computer Vision and Pattern Recognition</title>
+				<imprint>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="248" to="255" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Stock index direction forecasting using an explainable eXtreme Gradient Boosting and investor sentiments</title>
+		<author>
+			<persName><forename type="first">Shangkun</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiaoru</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yingke</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhihao</forename><surname>Su</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhe</forename><surname>Fu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tatsuro</forename><surname>Shimada</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">The North American Journal of Economics and Finance</title>
+		<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">FactorVAE: A Probabilistic Dynamic Factor Model Based on Variational Autoencoder for Predicting Cross-Sectional Stock Returns</title>
+		<author>
+			<persName><forename type="first">Yitong</forename><surname>Duan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lei</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qizhong</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jian</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the AAAI Conference on Artificial Intelligence</title>
+				<meeting>the AAAI Conference on Artificial Intelligence</meeting>
+		<imprint>
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<monogr>
+		<title level="m" type="main">DiffsFormer: A Diffusion Transformer on Stock Factor Augmentation</title>
+		<author>
+			<persName><forename type="first">Yuan</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haokun</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiang</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhicai</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xue</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jinyang</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bolin</forename><surname>Ding</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2402.06656</idno>
+		<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<analytic>
+		<title level="a" type="main">Forecastable component analysis</title>
+		<author>
+			<persName><forename type="first">Georg</forename><forename type="middle">M</forename><surname>Goerg</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Machine Learning (ICML&apos;13)</title>
+				<imprint>
+			<publisher>JMLR.org</publisher>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Mamba: Linear-Time Sequence Modeling with Selective State Spaces</title>
+		<author>
+			<persName><forename type="first">Albert</forename><surname>Gu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tri</forename><surname>Dao</surname></persName>
+		</author>
+		<ptr target="https://openreview.net/forum?id=tEYskw1VY2" />
+	</analytic>
+	<monogr>
+		<title level="m">First Conference on Language Modeling</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<monogr>
+		<author>
+			<persName><forename type="first">Tuomas</forename><surname>Haarnoja</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Aurick</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kristian</forename><surname>Hartikainen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">George</forename><surname>Tucker</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sehoon</forename><surname>Ha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jie</forename><surname>Tan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Vikash</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Henry</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Abhishek</forename><surname>Gupta</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pieter</forename><surname>Abbeel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sergey</forename><surname>Levine</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1812.05905</idno>
+		<title level="m">Soft Actor-Critic Algorithms and Applications</title>
+				<imprint>
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<title level="m" type="main">News Diffusion in Social Networks and Stock Market Reactions. The Review of Financial Studies</title>
+		<author>
+			<persName><forename type="first">David</forename><surname>Hirshleifer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lin</forename><surname>Peng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qiguang</forename><surname>Wang</surname></persName>
+		</author>
+		<idno type="DOI">10.1093/rfs/hhae025</idno>
+		<ptr target="https://doi.org/10.1093/rfs/hhae025" />
+		<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title level="m" type="main">Advances in neural information processing systems</title>
+		<author>
+			<persName><forename type="first">Jonathan</forename><surname>Ho</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ajay</forename><surname>Jain</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pieter</forename><surname>Abbeel</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+	<note>Denoising diffusion probabilistic models</note>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Long Short-Term Memory</title>
+		<author>
+			<persName><forename type="first">Sepp</forename><surname>Hochreiter</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jürgen</forename><surname>Schmidhuber</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Neural Computation</title>
+		<imprint>
+			<date type="published" when="1997">1997. 1997</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<monogr>
+		<title level="m" type="main">FinMamba: Market-Aware Graph Enhanced Multi-Level Mamba for Stock Movement Prediction</title>
+		<author>
+			<persName><forename type="first">Yifan</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peiyuan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuante</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dawei</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Naiqi</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Dai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jigang</forename><surname>Bao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xia</forename><surname>Shu-Tao</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2502.06707</idno>
+		<imprint>
+			<date type="published" when="2025">2025. 2025</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<monogr>
+		<author>
+			<persName><forename type="first">Yifan</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peiyuan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dawei</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Dai</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2406.03751</idno>
+		<title level="m">Adaptive Multi-Scale Decomposition Framework for Time Series Forecasting</title>
+				<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<monogr>
+		<author>
+			<persName><forename type="first">Yifan</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Guibin</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peiyuan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Disen</forename><surname>Lan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Naiqi</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dawei</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Dai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shu-Tao</forename><surname>Xia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shirui</forename><surname>Pan</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2501.13041</idno>
+		<title level="m">TimeFilter: Patch-Specific Spatial-Temporal Graph Filtration for Time Series Forecasting</title>
+				<imprint>
+			<date type="published" when="2025">2025. 2025</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<monogr>
+		<author>
+			<persName><forename type="first">Yu-Hao</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chang</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yang</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Weiqing</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wu-Jun</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiang</forename><surname>Bian</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2408.12991</idno>
+		<title level="m">Controllable Financial Market Generation with Diffusion Guided Meta Agent</title>
+				<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Stock price prediction methodology using random forest algorithm and support vector machine</title>
+		<author>
+			<persName><forename type="first">Pavan</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Illa</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Balakesavareddy</forename><surname>Parvathala</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Anand</forename><forename type="middle">Kumar</forename><surname>Sharma</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Materials Today: Proceedings</title>
+				<imprint>
+			<date type="published" when="2022">2022. 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Returns to Buying Winners and Selling Losers: Implications for Stock Market Efficiency</title>
+		<author>
+			<persName><forename type="first">Narasimhan</forename><surname>Jegadeesh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sheridan</forename><surname>Titman</surname></persName>
+		</author>
+		<ptr target="https://api.semanticscholar.org/CorpusID" />
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Finance</title>
+		<imprint>
+			<biblScope unit="volume">48</biblScope>
+			<biblScope unit="page">13713547</biblScope>
+			<date type="published" when="1993">1993. 1993</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">FreQuant: A Reinforcement-Learning based Adaptive Portfolio Optimization with Multifrequency Decomposition</title>
+		<author>
+			<persName><forename type="first">Jihyeong</forename><surname>Jeon</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiwon</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chanhee</forename><surname>Park</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Kang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD &apos;24)</title>
+				<meeting>the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD &apos;24)</meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">LightGBM: a highly efficient gradient boosting decision tree</title>
+		<author>
+			<persName><forename type="first">Guolin</forename><surname>Ke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qi</forename><surname>Meng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Thomas</forename><surname>Finley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Taifeng</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wei</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Weidong</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qiwei</forename><surname>Ye</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tie-Yan</forename><surname>Liu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 31st International Conference on Neural Information Processing Systems</title>
+				<meeting>the 31st International Conference on Neural Information Processing Systems<address><addrLine>Long Beach, California, USA; Red Hook, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Curran Associates Inc</publisher>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<monogr>
+		<title level="m" type="main">Semi-supervised classification with graph convolutional networks</title>
+		<author>
+			<persName><forename type="first">N</forename><surname>Thomas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Max</forename><surname>Kipf</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Welling</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1609.02907</idno>
+		<imprint>
+			<date type="published" when="2016">2016. 2016</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">FinMem: A Performance-Enhanced LLM Trading Agent with Layered Memory and Character Design</title>
+		<author>
+			<persName><forename type="first">Haohang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yangyang</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuechen</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Denghui</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rong</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jordan</forename><forename type="middle">W</forename><surname>Suchow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Khaldoun</forename><surname>Khashanah</surname></persName>
+		</author>
+		<ptr target="https://openreview.net/forum?id=sstfVOwbiG" />
+	</analytic>
+	<monogr>
+		<title level="m">ICLR 2024 Workshop on Large Language Model (LLM) Agents</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<analytic>
+		<title level="a" type="main">Causal-Stock: Deep End-to-end Causal Discovery for News-driven Multi-stock Movement Prediction</title>
+		<author>
+			<persName><forename type="first">Shuqi</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuebo</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuxin</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xin</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shuo</forename><surname>Shang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rui</forename><surname>Yan</surname></persName>
+		</author>
+		<ptr target="https://openreview.net/forum?id=5BXXoJh0Vr" />
+	</analytic>
+	<monogr>
+		<title level="m">The Thirty-eighth Annual Conference on Neural Information Processing Systems</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">MASTER: Market-Guided Stock Transformer for Stock Price Forecasting</title>
+		<author>
+			<persName><forename type="first">Tong</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhaoyang</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yanyan</forename><surname>Shen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xue</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haokun</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sen</forename><surname>Huang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the AAAI Conference on Artificial Intelligence</title>
+				<meeting>the AAAI Conference on Artificial Intelligence</meeting>
+		<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+			<biblScope unit="volume">38</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<monogr>
+		<title level="m" type="main">TradingGPT: Multi-Agent System with Layered Memory and Distinct Characters for Enhanced Financial Trading Performance</title>
+		<author>
+			<persName><forename type="first">Yang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yangyang</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haohang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Khaldoun</forename><surname>Khashanah</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2309.03736</idno>
+		<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<monogr>
+		<author>
+			<persName><forename type="first">Timothy</forename><forename type="middle">P</forename><surname>Lillicrap</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jonathan</forename><forename type="middle">J</forename><surname>Hunt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alexander</forename><surname>Pritzel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nicolas</forename><surname>Heess</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tom</forename><surname>Erez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuval</forename><surname>Tassa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">David</forename><surname>Silver</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Daan</forename><surname>Wierstra</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1509.02971</idno>
+		<title level="m">Continuous control with deep reinforcement learning</title>
+				<imprint>
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<monogr>
+		<title level="m" type="main">Segrnn: Segment recurrent neural network for long-term time series forecasting</title>
+		<author>
+			<persName><forename type="first">Shengsheng</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Weiwei</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wentai</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Feiyu</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ruichao</forename><surname>Mo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haotong</forename><surname>Zhang</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2308.11200</idno>
+		<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<monogr>
+		<author>
+			<persName><forename type="first">Tsung-Yi</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michael</forename><surname>Maire</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Serge</forename><surname>Belongie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lubomir</forename><surname>Bourdev</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ross</forename><surname>Girshick</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">James</forename><surname>Hays</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pietro</forename><surname>Perona</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Deva</forename><surname>Ramanan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">C</forename><forename type="middle">Lawrence</forename><surname>Zitnick</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Piotr</forename><surname>Dollár</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1405.0312</idno>
+		<title level="m">Microsoft COCO: Common Objects in Context</title>
+				<imprint>
+			<date type="published" when="2015">2015. 2015</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">An SVM-based approach for stock market trend prediction</title>
+		<author>
+			<persName><forename type="first">Yuling</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haixiang</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jinglu</forename><surname>Hu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">The 2013 International Joint Conference on Neural Networks (IJCNN)</title>
+				<imprint>
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<monogr>
+		<author>
+			<persName><forename type="first">Peiyuan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hang</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Dai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Naiqi</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jigang</forename><surname>Bao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xudong</forename><surname>Ren</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yong</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shu-Tao</forename><surname>Xia</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2403.07300</idno>
+		<title level="m">CALF: Aligning LLMs for Time Series Forecasting via Cross-modal Fine-Tuning</title>
+				<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<monogr>
+		<author>
+			<persName><forename type="first">Peiyuan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Beiliang</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yifan</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Naiqi</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Dai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jigang</forename><surname>Bao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shu-Tao</forename><surname>Xia</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2410.04442</idno>
+		<title level="m">TimeBridge: Non-Stationarity Matters for Long-term Time Series Forecasting</title>
+				<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">FinRL: Deep reinforcement learning framework to automate trading in quantitative finance</title>
+		<author>
+			<persName><forename type="first">Xiao-Yang</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hongyang</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiechao</forename><surname>Gao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christina</forename><forename type="middle">Dan</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ACM International Conference on AI in Finance (ICAIF)</title>
+				<imprint>
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">iTransformer: Inverted Transformers Are Effective for Time Series Forecasting</title>
+		<author>
+			<persName><forename type="first">Yong</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tengge</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haoran</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haixu</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shiyu</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lintao</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mingsheng</forename><surname>Long</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Timer: Generative Pre-trained Transformers Are Large Time Series Models</title>
+		<author>
+			<persName><forename type="first">Yong</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haoran</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chenyu</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiangdong</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jianmin</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mingsheng</forename><surname>Long</surname></persName>
+		</author>
+		<ptr target="https://openreview.net/forum?id=bYRYb7DMNo" />
+	</analytic>
+	<monogr>
+		<title level="m">Forty-first International Conference on Machine Learning</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<monogr>
+		<title level="m" type="main">Time series analysis</title>
+		<author>
+			<persName><forename type="first">Henrik</forename><surname>Madsen</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2007">2007</date>
+			<publisher>Chapman &amp; Hall</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<monogr>
+		<author>
+			<persName><forename type="first">Rizwan</forename><surname>Mushtaq</surname></persName>
+		</author>
+		<title level="m">Augmented dickey fuller test</title>
+				<imprint>
+			<date type="published" when="2011">2011. 2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<analytic>
+		<title level="a" type="main">A Time Series is Worth 64 Words: Long-term Forecasting with Transformers</title>
+		<author>
+			<persName><forename type="first">Yuqi</forename><surname>Nie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nam</forename><forename type="middle">H</forename><surname>Nguyen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Phanwadee</forename><surname>Sinthong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jayant</forename><surname>Kalagnanam</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">IMM: An Imitative Reinforcement Learning Approach with Predictive Representation Learning for Automatic Market Making</title>
+		<author>
+			<persName><forename type="first">Hui</forename><surname>Niu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Siyuan</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiahao</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhouchi</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bo</forename><surname>An</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jian</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jian</forename><surname>Guo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Thirty-Third International Joint Conference on Artificial Intelligence, IJCAI-24. International Joint Conferences on Artificial Intelligence Organization</title>
+				<meeting>the Thirty-Third International Joint Conference on Artificial Intelligence, IJCAI-24. International Joint Conferences on Artificial Intelligence Organization</meeting>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Cross-contextual Sequential Optimization via Deep Reinforcement Learning for Algorithmic Trading</title>
+		<author>
+			<persName><forename type="first">Kaiming</forename><surname>Pan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yifan</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Li</forename><surname>Han</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haoyu</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dawei</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuqi</forename><surname>Liang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 33rd ACM International Conference on Information and Knowledge Management</title>
+				<meeting>the 33rd ACM International Conference on Information and Knowledge Management<address><addrLine>Boise, ID, USA; New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2024">2024</date>
+			<biblScope unit="page" from="4811" to="4818" />
+		</imprint>
+	</monogr>
+	<note>CIKM &apos;24)</note>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Pytorch: An imperative style, high-performance deep learning library</title>
+		<author>
+			<persName><forename type="first">Adam</forename><surname>Paszke</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sam</forename><surname>Gross</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Francisco</forename><surname>Massa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Adam</forename><surname>Lerer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">James</forename><surname>Bradbury</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gregory</forename><surname>Chanan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Trevor</forename><surname>Killeen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zeming</forename><surname>Lin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Natalia</forename><surname>Gimelshein</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luca</forename><surname>Antiga</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Advances in neural information processing systems</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<date type="published" when="2019">2019. 2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b50">
+	<analytic>
+		<title level="a" type="main">Mean reversion in stock prices: Evidence and Implications</title>
+		<author>
+			<persName><forename type="first">James</forename><forename type="middle">M</forename><surname>Poterba</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lawrence</forename><forename type="middle">H</forename><surname>Summers</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of Financial Economics</title>
+		<imprint>
+			<date type="published" when="1988">1988. 1988</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b51">
+	<analytic>
+		<title level="a" type="main">A Dual-Stage Attention-Based Recurrent Neural Network for Time Series Prediction</title>
+		<author>
+			<persName><forename type="first">Dongjin</forename><surname>Yao Qin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haifeng</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wei</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Guofei</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Garrison</forename><forename type="middle">W</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Cottrell</surname></persName>
+		</author>
+		<idno type="DOI">10.24963/ijcai.2017/366</idno>
+		<ptr target="https://doi.org/10.24963/ijcai.2017/366" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Twenty-Sixth International Joint Conference on Artificial Intelligence, IJCAI-17. 2627-2633</title>
+				<meeting>the Twenty-Sixth International Joint Conference on Artificial Intelligence, IJCAI-17. 2627-2633</meeting>
+		<imprint>
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b52">
+	<monogr>
+		<author>
+			<persName><forename type="first">Xiangfei</forename><surname>Qiu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jilin</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lekui</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xingjian</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Junyang</forename><surname>Du</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Buang</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chenjuan</forename><surname>Guo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Aoying</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christian</forename><forename type="middle">S</forename><surname>Jensen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhenli</forename><surname>Sheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bin</forename><surname>Yang</surname></persName>
+		</author>
+		<title level="m">TFB: Towards Comprehensive and Fair Benchmarking of Time Series Forecasting Methods. Proc. VLDB Endow</title>
+				<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b53">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">John</forename><surname>Schulman</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Filip</forename><surname>Wolski</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Prafulla</forename><surname>Dhariwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alec</forename><surname>Radford</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Oleg</forename><surname>Klimov</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:1707.06347</idno>
+		<imprint>
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">Proximal Policy Optimization Algorithms. arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b54">
+	<analytic>
+		<title level="a" type="main">Time-MoE: Billion-Scale Time Series Foundation Models with Mixture of Experts</title>
+		<author>
+			<persName><forename type="first">Xiaoming</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shiyu</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuqi</forename><surname>Nie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dianqi</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhou</forename><surname>Ye</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qingsong</forename><surname>Wen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ming</forename><surname>Jin</surname></persName>
+		</author>
+		<ptr target="https://openreview.net/forum?id=e1wDDFmlVu" />
+	</analytic>
+	<monogr>
+		<title level="m">The Thirteenth International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2025">2025</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b55">
+	<analytic>
+		<title level="a" type="main">Deep graph convolutional reinforcement learning for financial portfolio management -DeepPocket</title>
+		<author>
+			<persName><forename type="first">Farzan</forename><surname>Soleymani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>Paquet</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Expert Syst. Appl</title>
+		<imprint>
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b56">
+	<monogr>
+		<author>
+			<persName><forename type="first">Jiaming</forename><surname>Song</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chenlin</forename><surname>Meng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stefano</forename><surname>Ermon</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2010.02502</idno>
+		<title level="m">Denoising diffusion implicit models</title>
+				<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b57">
+	<analytic>
+		<title level="a" type="main">Attention is all you need</title>
+		<author>
+			<persName><forename type="first">Ashish</forename><surname>Vaswani</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Noam</forename><surname>Shazeer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Niki</forename><surname>Parmar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jakob</forename><surname>Uszkoreit</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Llion</forename><surname>Jones</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Aidan</forename><forename type="middle">N</forename><surname>Gomez</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Łukasz</forename><surname>Kaiser</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Illia</forename><surname>Polosukhin</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Advances in neural information processing systems</title>
+				<imprint>
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b58">
+	<monogr>
+		<title level="m" type="main">Graph attention networks</title>
+		<author>
+			<persName><forename type="first">Petar</forename><surname>Velickovic</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Guillem</forename><surname>Cucurull</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Arantxa</forename><surname>Casanova</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Adriana</forename><surname>Romero</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pietro</forename><surname>Lio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yoshua</forename><surname>Bengio</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b59">
+	<analytic>
+		<title level="a" type="main">Adaptive Long-Short Pattern Transformer for Stock Investment Selection</title>
+		<author>
+			<persName><forename type="first">Heyuan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tengjiao</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shun</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiayi</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shijie</forename><surname>Guan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Wei</forename><surname>Chen</surname></persName>
+		</author>
+		<idno type="DOI">10.24963/ijcai.2022/551</idno>
+		<ptr target="https://doi.org/10.24963/ijcai.2022/551" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Thirty-First International Joint Conference on Artificial Intelligence, IJCAI-22</title>
+				<editor>
+			<persName><forename type="first">Lud</forename><surname>De</surname></persName>
+		</editor>
+		<editor>
+			<persName><forename type="first">Raedt</forename></persName>
+		</editor>
+		<meeting>the Thirty-First International Joint Conference on Artificial Intelligence, IJCAI-22</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="3970" to="3977" />
+		</imprint>
+	</monogr>
+	<note>International Joint Conferences on Artificial Intelligence Organization</note>
+</biblStruct>
+
+<biblStruct xml:id="b60">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Main</forename><surname>Track</surname></persName>
+		</author>
+		<imprint/>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b61">
+	<analytic>
+		<title level="a" type="main">Al-phaStock: A Buying-Winners-and-Selling-Losers Investment Strategy using Interpretable Deep Reinforcement Attention Networks</title>
+		<author>
+			<persName><forename type="first">Jingyuan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yang</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ke</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Junjie</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhang</forename><surname>Xiong</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining</title>
+				<meeting>the 25th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining</meeting>
+		<imprint>
+			<date type="published" when="2019">2019</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b62">
+	<analytic>
+		<title level="a" type="main">TimeMixer: Decomposable Multiscale Mixing for Time Series Forecasting</title>
+		<author>
+			<persName><forename type="first">Shiyu</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haixu</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiaoming</forename><surname>Shi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tengge</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Huakun</forename><surname>Luo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lintao</forename><surname>Ma</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">James</forename><forename type="middle">Y</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jun</forename><surname>Zhou</surname></persName>
+		</author>
+		<ptr target="https://openreview.net/forum?id=7oLshfEIC2" />
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b63">
+	<monogr>
+		<author>
+			<persName><forename type="first">Yuxuan</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haixu</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiaxiang</forename><surname>Dong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yong</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mingsheng</forename><surname>Long</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jianmin</forename><surname>Wang</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2407.13278</idno>
+		<title level="m">Deep Time Series Models: A Comprehensive Survey and Benchmark</title>
+				<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b64">
+	<analytic>
+		<title level="a" type="main">Deep-Trader: A Deep Reinforcement Learning Approach for Risk-Return Balanced Portfolio Management with Market Conditions Embedding</title>
+		<author>
+			<persName><forename type="first">Zhicheng</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Biwei</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shikui</forename><surname>Tu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kun</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lei</forename><surname>Xu</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the AAAI Conference on Artificial Intelligence</title>
+				<meeting>the AAAI Conference on Artificial Intelligence</meeting>
+		<imprint>
+			<date type="published" when="2021">2021. 2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b65">
+	<analytic>
+		<title level="a" type="main">CI-STHPAN: Pre-trained Attention Network for Stock Selection with Channel-Independent Spatio-Temporal Hypergraph</title>
+		<author>
+			<persName><forename type="first">Hongjie</forename><surname>Xia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Huijie</forename><surname>Ao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Long</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yu</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sen</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Guangnan</forename><surname>Ye</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hongfeng</forename><surname>Chai</surname></persName>
+		</author>
+		<idno type="DOI">10.1609/aaai.v38i8.28770</idno>
+		<ptr target="https://doi.org/10.1609/aaai.v38i8.28770" />
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the AAAI Conference on Artificial Intelligence</title>
+				<meeting>the AAAI Conference on Artificial Intelligence</meeting>
+		<imprint>
+			<date type="published" when="2024-03">2024. Mar. 2024</date>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="page" from="9187" to="9195" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b66">
+	<analytic>
+		<title level="a" type="main">Market-GAN: Adding Control to Financial Market Data Generation with Semantic Context</title>
+		<author>
+			<persName><forename type="first">Haochong</forename><surname>Xia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shuo</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xinrun</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bo</forename><surname>An</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the AAAI Conference on Artificial Intelligence</title>
+				<meeting>the AAAI Conference on Artificial Intelligence</meeting>
+		<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b67">
+	<analytic>
+		<title level="a" type="main">RSAP-DFM: Regime-Shifting Adaptive Posterior Dynamic Factor Model for Stock Returns Prediction</title>
+		<author>
+			<persName><forename type="first">Quanzhou</forename><surname>Xiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhan</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qi</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rujun</forename><surname>Jiang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Thirty-Third International Joint Conference on Artificial Intelligence, IJCAI-24. International Joint Conferences on Artificial Intelligence Organization</title>
+				<meeting>the Thirty-Third International Joint Conference on Artificial Intelligence, IJCAI-24. International Joint Conferences on Artificial Intelligence Organization</meeting>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b68">
+	<analytic>
+		<title level="a" type="main">Temporal and Heterogeneous Graph Neural Network for Financial Time Series Prediction</title>
+		<author>
+			<persName><forename type="first">Sheng</forename><surname>Xiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dawei</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chencheng</forename><surname>Shang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ying</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuqi</forename><surname>Liang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 31st ACM International Conference on Information &amp; Knowledge Management</title>
+				<meeting>the 31st ACM International Conference on Information &amp; Knowledge Management</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b69">
+	<analytic>
+		<title level="a" type="main">Learning to Understand the Vague Graph for Stock Prediction With Momentum Spillovers</title>
+		<author>
+			<persName><forename type="first">Rong</forename><surname>Xing</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rui</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiwen</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qing</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jingmei</forename><surname>Zhao</surname></persName>
+		</author>
+		<idno type="DOI">10.1109/TKDE.2023.3310592</idno>
+		<ptr target="https://doi.org/10.1109/TKDE.2023.3310592" />
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Trans. on Knowl. and Data Eng</title>
+		<imprint>
+			<biblScope unit="page" from="1698" to="1712" />
+			<date type="published" when="2024-04">2024. April 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b70">
+	<monogr>
+		<title level="m" type="main">TCGPN: Temporal-Correlation Graph Pre-trained Network for Stock Forecasting</title>
+		<author>
+			<persName><forename type="first">Wenbo</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ying</forename><surname>Tan</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2407.18519</idno>
+		<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b71">
+	<monogr>
+		<author>
+			<persName><forename type="first">Xiao</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Weiqing</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dong</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiang</forename><surname>Bian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tie-Yan</forename><surname>Liu</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2009.11189</idno>
+		<title level="m">Qlib: An AI-oriented Quantitative Investment Platform</title>
+				<imprint>
+			<date type="published" when="2020">2020. 2020</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b72">
+	<analytic>
+		<title level="a" type="main">FinCon: A Synthesized LLM Multi-Agent System with Conceptual Verbal Reinforcement for Enhanced Financial Decision Making</title>
+		<author>
+			<persName><forename type="first">Yangyang</forename><surname>Yu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhiyuan</forename><surname>Yao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haohang</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhiyang</forename><surname>Deng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuechen</forename><surname>Jiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yupeng</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jordan</forename><forename type="middle">W</forename><surname>Suchow</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhenyu</forename><surname>Cui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rong</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhaozhuo</forename><surname>Xu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Denghui</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Koduvayur</forename><surname>Subbalakshmi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Guojun</forename><surname>Xiong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yueru</forename><surname>He</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jimin</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dong</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qianqian</forename><surname>Xie</surname></persName>
+		</author>
+		<ptr target="https://openreview.net/forum?id=dG1HwKMYbC" />
+	</analytic>
+	<monogr>
+		<title level="m">The Thirty-eighth Annual Conference on Neural Information Processing Systems</title>
+				<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b73">
+	<analytic>
+		<title level="a" type="main">Trade When Opportunity Comes: Price Movement Forecasting via Locality-Aware Attention and Iterative Refinement Labeling</title>
+		<author>
+			<persName><forename type="first">Liang</forename><surname>Zeng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lei</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hui</forename><surname>Niu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ruchen</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ling</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jian</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Thirty-Third International Joint Conference on Artificial Intelligence, IJCAI-24. International Joint Conferences on Artificial Intelligence Organization</title>
+				<meeting>the Thirty-Third International Joint Conference on Artificial Intelligence, IJCAI-24. International Joint Conferences on Artificial Intelligence Organization</meeting>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b74">
+	<analytic>
+		<title level="a" type="main">DoubleEnsemble: A New Ensemble Method Based on Sample Reweighting and Feature Selection for Financial Data Analysis</title>
+		<author>
+			<persName><forename type="first">Chuheng</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuanqi</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xi</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yifei</forename><surname>Jin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pingzhong</forename><surname>Tang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jian</forename><surname>Li</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2020 IEEE International Conference on Data Mining (ICDM)</title>
+				<imprint>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b75">
+	<analytic>
+		<title level="a" type="main">A Multimodal Foundation Agent for Financial Trading: Tool-Augmented, Diversified, and Generalist</title>
+		<author>
+			<persName><forename type="first">Wentao</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lingxuan</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haochong</forename><surname>Xia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shuo</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jiaze</forename><surname>Sun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Molei</forename><surname>Qin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xinyi</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuqing</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yilei</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xinyu</forename><surname>Cai</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Longtao</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xinrun</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bo</forename><surname>An</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining</title>
+				<meeting>the 30th ACM SIGKDD Conference on Knowledge Discovery and Data Mining</meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b76">
+	<analytic>
+		<title level="a" type="main">Crossformer: Transformer Utilizing Cross-Dimension Dependency for Multivariate Time Series Forecasting</title>
+		<author>
+			<persName><forename type="first">Yunhao</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Junchi</forename><surname>Yan</surname></persName>
+		</author>
+		<ptr target="https://openreview.net/forum?id=vSVLM2j9eie" />
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Learning Representations</title>
+				<imprint>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b77">
+	<monogr>
+		<author>
+			<persName><forename type="first">Qingsong</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yi</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhipeng</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Duoqian</forename><surname>Miao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Limin</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yu</forename><surname>Qiao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Cairong</forename><surname>Zhao</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2202.10240</idno>
+		<title level="m">Rethinking the Zigzag Flattening for Image Reading</title>
+				<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b78">
+	<monogr>
+		<title level="m" type="main">The Random Forest Model for Analyzing and Forecasting the US Stock Market in the Context of Smart Finance</title>
+		<author>
+			<persName><forename type="first">Jiajian</forename><surname>Zheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Duan</forename><surname>Xin</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qishuo</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Miao</forename><surname>Tian</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Le</forename><surname>Yang</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2402.17194</idno>
+		<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b79">
+	<analytic>
+		<title level="a" type="main">LSR-IGRU: Stock Trend Prediction Based on Long Short-Term Relationships and Improved GRU</title>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuante</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yifan</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qinyuan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dawei</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuqi</forename><surname>Liang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">International Conference on Information and Knowledge Management</title>
+				<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b80">
+	<monogr>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Zhu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuante</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yifan</forename><surname>Hu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sheng</forename><surname>Xiang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qinyuan</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Dawei</forename><surname>Cheng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yuqi</forename><surname>Liang</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2410.20679</idno>
+		<title level="m">MCI-GRU: Stock Prediction Model Based on Multi-Head Cross-Attention and Improved GRU</title>
+				<imprint>
+			<date type="published" when="2024">2024. 2024</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+<biblStruct xml:id="b81">
+	<monogr>
+		<author>
+			<persName><forename type="first">Jinan</forename><surname>Zou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qingying</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yang</forename><surname>Jiao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haiyao</forename><surname>Cao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yanxi</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Qingsen</forename><surname>Yan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ehsan</forename><surname>Abbasnejad</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lingqiao</forename><surname>Liu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Javen Qinfeng</forename><surname>Shi</surname></persName>
+		</author>
+		<idno type="arXiv">arXiv:2212.12717</idno>
+		<title level="m">Stock Market Prediction via Deep Learning Techniques: A Survey</title>
+				<imprint>
+			<date type="published" when="2023">2023. 2023</date>
+		</imprint>
+	</monogr>
+	<note type="report_type">arXiv preprint</note>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

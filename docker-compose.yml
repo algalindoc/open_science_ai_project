@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  grobid:
+    image: lfoppiano/grobid:0.7.2  
+    container_name: grobid_service
+    ports:
+      - "8070:8070"
+    restart: unless-stopped
+
+  analysis:
+    build: .
+    container_name: open_science_analysis
+    depends_on:
+      - grobid
+    environment:
+      - GROBID_URL=http://grobid:8070/api/processFulltextDocument
+      - GROBID_ALIVE=http://grobid:8070/api/isalive
+    volumes:
+      - ./papers:/app/papers
+      - ./output:/app/output
+    command: /bin/sh -c "sleep 20 && python scripts/main.py"

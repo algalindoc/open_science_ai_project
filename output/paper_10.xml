@@ -1,0 +1,1386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">Approximate 2-hop neighborhoods on incremental graphs: An efficient lazy approach</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+				<date type="published" when="2025-02-26">26 Feb 2025</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author>
+							<persName><forename type="first">Luca</forename><surname>Becchetti</surname></persName>
+							<email>becchetti@diag.uniroma1.it</email>
+						</author>
+						<author>
+							<persName><forename type="first">Andrea</forename><surname>Clementi</surname></persName>
+							<email>clementi@mat.uniroma2.it</email>
+						</author>
+						<author>
+							<persName><forename type="first">Luciano</forename><surname>Gualà</surname></persName>
+							<email>guala@mat.uniroma2.it</email>
+						</author>
+						<author>
+							<persName><forename type="first">Luca</forename><forename type="middle">Pepé</forename><surname>Sciarria</surname></persName>
+							<email>luca.pepesciarria@gmail.com</email>
+						</author>
+						<author>
+							<persName><forename type="first">Alessandro</forename><surname>Straziota</surname></persName>
+							<email>alessandro.straziota@uniroma2.it</email>
+						</author>
+						<author>
+							<persName><forename type="first">Matteo</forename><surname>Stromieri</surname></persName>
+							<email>matteo.stromieri@students.uniroma2.eu</email>
+						</author>
+						<author>
+							<persName><forename type="first">Pepé</forename><surname>Luca</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Alessandro</forename><surname>Sciarria</surname></persName>
+						</author>
+						<author>
+							<persName><forename type="first">Matteo</forename><forename type="middle">Stromieri</forename><surname>Straziota</surname></persName>
+						</author>
+						<author>
+							<affiliation key="aff0">
+								<orgName type="institution">Sapienza University of Rome</orgName>
+								<address>
+									<country key="IT">Italy</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff1">
+								<orgName type="institution">Tor Vergata University of Rome</orgName>
+								<address>
+									<country key="IT">Italy</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff2">
+								<orgName type="institution">Tor Vergata University of Rome</orgName>
+								<address>
+									<country key="IT">Italy</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff3">
+								<orgName type="institution">Tor Vergata University of Rome</orgName>
+								<address>
+									<country key="IT">Italy</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff4">
+								<orgName type="institution">Tor Vergata University of Rome</orgName>
+								<address>
+									<country key="IT">Italy</country>
+								</address>
+							</affiliation>
+						</author>
+						<author>
+							<affiliation key="aff5">
+								<orgName type="institution">Tor Vergata University of Rome</orgName>
+								<address>
+									<country key="IT">Italy</country>
+								</address>
+							</affiliation>
+						</author>
+						<title level="a" type="main">Approximate 2-hop neighborhoods on incremental graphs: An efficient lazy approach</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2025-02-26">26 Feb 2025</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">3EE746E325641D406C73AD4575E1DB6F</idno>
+					<idno type="arXiv">arXiv:2502.19205v1[cs.DS]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-03-04T16:36+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>In this work, we propose, analyze and empirically validate a lazyupdate approach to maintain accurate approximations of the 2-hop neighborhoods of dynamic graphs resulting from sequences of edge insertions.</p><p>We first show that under random input sequences, our algorithm exhibits an optimal trade-off between accuracy and insertion cost: it only performs 𝑂 ( 1 𝜀 ) (amortized) updates per edge insertion, while the estimated size of any vertex's 2-hop neighborhood is at most a factor 𝜀 away from its true value in most cases, regardless of the underlying graph topology and for any 𝜀 &gt; 0.</p><p>As a further theoretical contribution, we explore adversarial scenarios that can force our approach into a worst-case behavior at any given time 𝑡 of interest. We show that while worst-case input sequences do exist, a necessary condition for them to occur is that the girth of the graph released up to time 𝑡 be at most 4.</p><p>Finally, we conduct extensive experiments on a collection of real, incremental social networks of different sizes, which typically have low girth. Empirical results are consistent with and typically better than our theoretical analysis anticipates. This further supports the robustness of our theoretical findings: forcing our algorithm into a worst-case behavior not only requires topologies characterized by a low girth, but also carefully crafted input sequences that are unlikely to occur in practice.</p><p>Combined with standard sketching techniques, our lazy approach proves an effective and efficient tool to support key neighborhood queries on large, incremental graphs, including neighborhood size, Jaccard similarity between neighborhoods and, in general, functions of the union and/or intersection of 2-hop neighborhoods.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">INTRODUCTION</head><p>In this paper, we consider the task of processing a possibly large, dynamic graph 𝐺 (𝑉 , 𝐸), incrementally provided as a stream of edge insertions, so that at any point of the stream it is possible to efficiently evaluate different queries that involve functions of the ℎ-hop neighborhoods of its vertices. For a vertex 𝑣 ∈ 𝑉 , its ℎ-hop neighborhood is simply the set of vertices that are within ℎ hops from 𝑣. In the remainder, ℎ-hop neighborhoods are called ℎ-balls for brevity. As concrete examples of query types we consider, one might want to estimate the size of the 2-ball at a given vertex, or the Jaccard similarity between the 2-balls centered at any given two vertices, or other indices of a similar flavor that depend on the intersection or union between 1-balls and/or 2-balls, just to mention a few.</p><p>Neighborhood-based indices are common in key mining tasks, such as link prediction in social <ref type="bibr" target="#b33">[33]</ref> and biological networks <ref type="bibr" target="#b43">[43]</ref> or to describe statistical properties of large social graphs <ref type="bibr" target="#b5">[6]</ref>. For example, 2-hop neighborhoods are important in social network analysis and similarity-based link prediction <ref type="bibr" target="#b3">[4,</ref><ref type="bibr" target="#b47">47,</ref><ref type="bibr" target="#b49">49]</ref>, while accurate approximations of ℎ-balls' sizes are used to estimate key statistical properties of (very) large social networks <ref type="bibr" target="#b2">[3,</ref><ref type="bibr" target="#b7">8]</ref>, or as link-based features in classifiers for Web spam detection <ref type="bibr" target="#b6">[7]</ref>.</p><p>When the graph is static, an effective approach to this general task is to treat ℎ-balls as subsets of the vertices of the graph, suitably represented using approximate summaries or sketches <ref type="bibr" target="#b0">[1]</ref>. This line of attack has proved successful, for example in the efficient and scalable evaluation of important neighborhood-based queries on massive graphs that in part or mostly reside on secondary storage <ref type="bibr" target="#b5">[6,</ref><ref type="bibr" target="#b7">8,</ref><ref type="bibr" target="#b24">24,</ref><ref type="bibr" target="#b34">34]</ref>.</p><p>Nowadays, standard applications in social network analysis often entail dynamic scenarios in which input graphs evolve over time, under a sequence of edge insertions and possibly deletions <ref type="bibr" target="#b1">[2]</ref>.</p><p>With respect to a static scenario, the dynamic case poses new and significant challenges even in the incremental setting, as soon as ℎ &gt; 1. 1 To see this, it may be useful to briefly sketch the cost of maintaining 1-and 2-balls exactly under a sequence of edge insertions, as we discuss in more detail in Section 2. When ℎ = 2, each Insert(𝑢, 𝑣) operation entails (see Algorithm 1 and Figure <ref type="figure" target="#fig_1">1</ref>): i) updating the 2-ball of 𝑢 to its union with the 1-ball of 𝑣 and viceversa (what we call a heavy update); ii) adding 𝑣 to the 2-ball of each neighbor of 𝑢 and viceversa (what we call a light update). Both heavy and light updates can result in high computational costs per edge insertion: a heavy update can be expensive if at least one of the neighborhoods to merge is large; on the other hand, light updates are relatively inexpensive, but they can be numerous when large neighborhoods are involved, again resulting in a high overall cost per edge insertion. Unfortunately, ℎ-balls can grow extremely fast with ℎ in many social networks, already as one switches from ℎ = 1 to ℎ = 2 <ref type="bibr" target="#b2">[3,</ref><ref type="bibr" target="#b6">7]</ref>. For the same reason, maintaining lossless representations of 2-balls for each vertex of such networks might require considerable memory resources and might negatively impact the cost of serving neighborhood-based queries that involve moderately or highly central vertices.</p><p>To address the aforementioned issues for graphs that reside in main memory, one might want to trade some degree of accuracy for the following broad goals: 1) designing algorithms with low update costs, possibly 𝑂 (1) amortized per edge insertion; 2) minimizing memory footprint beyond what is needed to store the graph; 3) maintaining 1-and 2-balls using data structures that afford efficient, real-time computation of queries as the ones mentioned earlier with minimal memory footprint.</p><p>Heavy updates are natural and well-known candidates for efficient (albeit approximate) implementation using compact, sketchbased data structures <ref type="bibr" target="#b0">[1,</ref><ref type="bibr" target="#b4">5,</ref><ref type="bibr" target="#b9">10,</ref><ref type="bibr" target="#b10">11,</ref><ref type="bibr" target="#b26">26]</ref>. However, sketches alone are of no avail in handling light updates, whose sheer potential number requires a novel approach. The literature on efficient data structures that handle insertions and often deletions over dynamic graphs is rich. However, efficient solutions to implement neighborhoodbased queries on dynamic edge streams are only known for 1-balls <ref type="bibr" target="#b12">[13,</ref><ref type="bibr" target="#b16">17,</ref><ref type="bibr" target="#b29">29,</ref><ref type="bibr" target="#b45">45]</ref>, nor do approaches devised for other dynamic problems adapt to our setting in any obvious way, something we elaborate more upon in Section 1.2.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.1">Our Contribution</head><p>In this paper, we propose an approach that trades some degree of accuracy for a substantial improvement in the average number of light updates. In a nutshell, upon an edge insertion, our algorithm performs the (two) corresponding heavy updates, but in general only a subset of the required light updates, according to a scheme that combines a threshold-based mechanism and a randomized, batch-update policy. Hence, for every vertex 𝑢, we only keep an approximation (a subset to be specific) of 𝑢's 2-ball. If 1-and 2-balls are represented with suitable data sketches, our approach affords constant average update cost per edge insertion. 2 While the behavior and accuracy guarantees of most sketching techniques are well understood, the estimation error induced by lazy updates can be i.e., updating two corresponding set sketches by adding or removing one item. This has been the focus of extensive work in the recent past that we discuss in Section 1.2. 2 The particular sketch used depends on the neighborhood queries we want to be able to serve. When sketches are used, the cost of merging two neighborhoods corresponds to the cost of combining the corresponding sketches, which is typically a constant that depends on the desired approximation guarantees. For example, if we are interested in the Jaccard similarity between pairs of 1and/or 2-balls, this cost will be proportional to the (constant) number of minhash values we use to represent each neighborhood. arbitrarily high in some cases. The main focus of this paper is on the latter aspect, which is absent in the static case but critical in the dynamic setting. Accordingly, we assume lossless representations of 1-balls and approximate 2-balls in our theoretical analyses in Sections 2 and 4, while we use standard sketching techniques to represent 1-and 2-balls in the actual implementations of the algorithms and baselines we consider in the experimental analysis discussed in Section 5.</p><p>Almost-optimal performance on random sequences. We prove in Section 3 that even a simplified, deterministic variant of our lazyupdate Algorithm 3 achieves asymptotically optimal expected performance when the sequence of edge insertions is a random, uniform permutation over an arbitrary set of edges. In other words, our lazy approach is robust to adversarial topologies as long as the edge sequence follows a random order. Formally, we prove that, for any desired 0 &lt; 𝜀 &lt; 1, our algorithm only performs 𝑂 ( 1 𝜀 ) (amortized) updates per edge insertion, while at any time 𝑡 and for every vertex 𝑣, the estimated size of 𝑣's 2-ball is, in expectation, at most a factor 𝜀 away from its true value. We further prove that this approximation result holds with a probability that exponentially increases with the true size of the 2-ball itself (Theorem 1). Thanks to this analysis in concentration, our results can be extended to other functions of 2-balls, including union, intersection and Jaccard similarity (see Corollary 2 for this less obvious case).</p><p>As positive as this result may sound, it begs the following questions from a careful reader: 1) Are the results above robust to adversarial sequences? 2) Is a performance analysis under random sequences representative of practical scenarios? More generally, does our lazy scheme offer significant practical advantages? Performance analysis on adversarial inputs. While our results for random sequences are optimal regardless of the underlying graph's topology, one might wonder about the ability of an adversary to design worst-case, adaptive sequences that force our approach to behave poorly and, in this case, whether any conditions on the graph topology are necessary for this to happen. We investigate this issues in Section 4, where we first show that it is possible to design worst-case sequences of edge insertions that force our algorithm to perform arbitrarily worse than the random setting (Theorem 3). However, as a further contribution, we also prove that worst-case input sequences exist only if the girth <ref type="bibr" target="#b18">[19]</ref> of the final graph is at most 4. More precisely, we show that a randomized, special case of Algorithm 3 achieves asymptotically optimal performance on a class of graphs that contains all graphs with girth at least 5,<ref type="foot" target="#foot_0">3</ref> even when the input sequence is chosen by an adaptive adversary.</p><p>Experimental analysis. As for the second question above, an analysis under random permutation sequences as the one in Section 3 is relatively common in the literature on dynamic edge streams and data streams <ref type="bibr" target="#b11">[12,</ref><ref type="bibr" target="#b28">28,</ref><ref type="bibr" target="#b30">30,</ref><ref type="bibr" target="#b36">36</ref>]. Yet, one might rightly wonder about its practical significance for the task considered in this paper. We investigate this question in Section 5, where we conduct experiments on small, medium and large-sized, incremental graphs (whose main properties are summarized in Table <ref type="table" target="#tab_1">1</ref>). At least on the diverse sample of real networks we consider, experimental results on the estimation of key queries such as size and Jaccard similarity are consistent with the theoretical findings from Section 3. The main take-away is that, when using sketches to represent the 1and 2-balls, the errors obtained with our lazy update policy are similar and fully comparable to those of the baseline, which performs all necessary light updates. At the same time, our algorithm proves to be significantly faster than the baseline, sometimes achieving a speedup of up to 90×.</p><p>We finally remark that the datasets we consider are samples of real social networks. As such, they have relatively large local and global clustering coefficients <ref type="foot" target="#foot_2">4</ref> and thus low girth. Hence, our experimental analysis further supports the robustness of our theoretical findings: forcing our algorithm(s) into a worst-case behavior not only requires topologies characterized by a low girth, but also carefully crafted input sequences that are unlikely to occur in practice.</p><p>Remark. We finally stress that although we present them for the undirected case for ease of presentation and for the sake of brevity, our algorithms apply to directed graphs as well, <ref type="foot" target="#foot_3">5</ref> while our analysis extends to the directed case with minor modifications.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1.2">Further related work</head><p>Efficient data structures for queries that involve ℎ-balls of a dynamic graph turn out to be useful in different network applications. Besides those we mentioned earlier <ref type="bibr" target="#b3">[4,</ref><ref type="bibr" target="#b6">7,</ref><ref type="bibr" target="#b47">47]</ref>, we cite here the work <ref type="bibr" target="#b13">[14]</ref>, where the notion of 2-hop Neighbor Class Similarity (2NCS) is proposed: this is a new quantitative graph structural property that correlates with Graph Neural Networks (GNN) <ref type="bibr" target="#b40">[40,</ref><ref type="bibr" target="#b44">44]</ref> performance more strongly and consistently than alternative metrics. 2NCS considers two-hop neighborhoods as a theoretically derived consequence of the two-step label propagation process governing GCN's training-inference process.</p><p>As remarked in the introduction, efficient solutions for Jaccard similarity queries on 1-balls have been proposed for different dynamic graph models: all of them share the use of suitable data sketches to manage insertion and deletion of elements from sets. In particular, <ref type="bibr" target="#b12">[13,</ref><ref type="bibr" target="#b29">29,</ref><ref type="bibr" target="#b45">45]</ref> proposes and compares different approaches that work in the fully-dynamic streaming model, while an efficient solution, based on a buffered version of the 𝑘-min-hashing scheme is proposed in <ref type="bibr" target="#b16">[17]</ref>. This works in the fully-dynamic streaming model and allows recovery actions when certain "worst-case" edge deletion events occur. A further algorithm is presented in <ref type="bibr" target="#b48">[48]</ref>, where bottom-𝑘 sketches <ref type="bibr" target="#b17">[18]</ref> are used to perform dynamic graph clustering based on Jaccard similarity among vertices' neighborhoods. We remark that none of these previous approaches include ideas or tools that can be adapted to efficiently manage the 2-ball update-operations we need to implement in this work.</p><p>As for other queries that might be "related" or "useful" in our setting, a considerable amount of work on data structures that support edge insertions and deletions exists for several queries, such as connectivity or reachability, (exact or approximate) distances, minimum spanning tree, (approximate) betweenness centrality, and so on. We refer the reader to <ref type="bibr" target="#b27">[27]</ref> for a nice survey on experimental and theoretical results on the topic. To the best of our knowledge however, none of these approaches can be obviously adapted to handle the types of queries we consider in this work. For example, a natural idea would be using an incremental data structure to dynamically maintain the first ℎ levels of a BFS tree, such as <ref type="bibr" target="#b23">[23,</ref><ref type="bibr" target="#b38">38]</ref>, that achieve 𝑂 (ℎ) amortized update time. However, let alone effectiveness in efficiently serving queries as the ones we consider here, the data structure uses Ω(𝑛) space per BFS. This is prohibitive in our setting, where we would need to instantiate one such data structure for each vertex, with total space Ω(𝑛 2 ). Moreover, since in a degree-Δ graph Θ(Δ) BFS trees can change following a single edge insertion, the corresponding amortized time per edge insertion could be as high as Θ(Δ), which is basically the same cost of the baseline solution we discuss at the beginning of Section 2.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">LAZY-UPDATE ALGORITHMS</head><p>After giving some preliminaries we will use through all this paper, in Section 2.1 we describe the lazy-update algorithmic scheme, while in Section 2.2, we provide a general bound on its amortized update cost that holds for arbitrary sequences of edge insertions.</p><p>Preliminaries and notations. The dynamic (incremental) graph model we study can be defined as a sequence G = {𝐺 (0) (𝑉 , 𝐸 (0) ), . . . , 𝐺 (𝑡 ) (𝑉 , 𝐸 (𝑡 ) ), . . . 𝐺 (𝑇 ) (𝑉 , 𝐸 (𝑇 ) )}, where: (i) the set of vertices 𝑉 = {1, . . . , 𝑛} is fixed, (ii) 𝑇 ≤ 𝑛 2 is the final graph, while (iii) 𝐸 (𝑡 ) is the subset of edges at time 𝑡. Note that this changes in every time step 𝑡 ≥ 1, as a new edge 𝑒 (𝑡 ) is inserted, so that 𝐸 (𝑡 +1) = 𝐸 (𝑡 ) ∪ {𝑒 (𝑡 ) }. We remark that our analysis and all our results can be easily adapted to a more general model that includes any combination of the following variants: (i) growing vertex sets, (ii) multiple insertions of the same edge, and (iii) directed edges (thus yielding directed graphs). However, the corresponding adaptations of our analysis would require significantly heavier notation and some technicalities that we decided to avoid for the sake of clarity and space.</p><p>Our goal is to design algorithms that, at every time step 𝑡 ≥ 1, are able to efficiently compute queries over the current 2-balls of 𝐺 (𝑡 ) . As mentioned in the introduction, our focus is on queries that are typical in graph mining such as: (i) given a vertex 𝑢, estimate the size of 𝐵 2 (𝑢), and (ii) given two vertices 𝑢, 𝑣 ∈ 𝑉 , estimate the Jaccard similarity of the corresponding 2-balls:</p><formula xml:id="formula_0">J(𝐵 2 (𝑢), 𝐵 2 (𝑣)) = |𝐵 2 (𝑢) ∩ 𝐵 2 (𝑢)| |𝐵 2 (𝑢) ∪ 𝐵 2 (𝑢)| .</formula><p>Both the theoretical and experimental analysis of our lazy-update algorithms consider the following key performance measures: the amortized update time per edge insertion and the approximation ratio of our algorithms on the quantities |𝐵 2 (𝑢)| and J(𝐵 2 (𝑢), 𝐵 2 (𝑣)), for any choice of the input vertices. Intuitively, the amortized update time is the average time it takes to process a new edge, a more formal definition is deferred to Section 2, after a detailed description of the algorithms we consider. We next summarize notation that is extensively used in the remainder of the paper. For a vertex 𝑣 ∈ 𝑉 of a graph 𝐺 (𝑉 , 𝐸), we define:</p><p>N (𝑣): the set of neighborhoods of the vertex 𝑣. 𝐵 ℎ (𝑣): set of vertices at distance at most ℎ from 𝑣. The reader may have noticed that, in our notation above, the term 𝑡 does not appear: this is due to the fact that our analysis holds at any (arbitrarily-fixed) time step, which is always clear from context.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">Algorithm description</head><p>Consider the addition of a new edge (𝑢, 𝑣) to 𝐺. Clearly, the only 2-balls that are affected are those centered at 𝑢, 𝑣, and at every vertex 𝑤 ∈ N (𝑢) ∪ N (𝑣). A baseline strategy, given as Algorithm 1 for the sake of reference, tracks changes exactly and thus updates all 2-balls that are affected by an edge insertion.</p><p>Algorithm 1: Baseline algorithm.</p><p>1 Function Insert(𝑢, 𝑣):</p><formula xml:id="formula_1">2 foreach 𝑥 ∈ N (𝑢) ∪ {𝑢} do 3 𝐵 2 (𝑣) ← 𝐵 2 (𝑣) ∪ {𝑥 } 4 𝐵 2 (𝑥) ← 𝐵 2 (𝑥) ∪ {𝑣 } 5 end 6 foreach 𝑥 ∈ N (𝑣) ∪ {𝑣 } do 7 𝐵 2 (𝑢) ← 𝐵 2 (𝑢) ∪ {𝑥 } 8 𝐵 2 (𝑥) ← 𝐵 2 (𝑥) ∪ {𝑢} 9 end 10 end</formula><p>The magnitude of the changes (and the associated computational costs) induced by Insert(𝑢, 𝑣) vary. In particular, 𝐵 2 (𝑢) can change significantly, as all vertices in 𝐵 1 (𝑣) will be included in 𝐵 2 (𝑢) (we refer to this as a heavy update). Instead, for any vertex 𝑤 ∈ N (𝑢) \ {𝑣 }, 𝐵 2 (𝑤) will grow by at most one element, namely 𝑣 (this is referred to as a light update). Symmetrically, the same holds for 𝑣 and for every 𝑤 ∈ N (𝑣) \ {𝑢}.</p><p>A key observation at this point is that, while heavy updates can be addressed using (possibly, approximate) data structures that allow efficient merging of 1-and 2-balls, this line of attack fails with light updates, whose cost derives from their potential number, which can be large in many real cases, as we noted in the introduction.</p><p>A first idea to reduce the average number of updates per edge insertion is to perform heavy updates immediately, instead processing light updates in batches that are performed occasionally. More precisely, when a new edge (𝑢, 𝑣) arrives, it is initially marked as a red edge. Whenever the number of red edges incident to a vertex 𝑢 exceeds a certain threshold, all the corresponding light updates are processed, and the state of red edges is updated to black. See Figure <ref type="figure" target="#fig_1">1</ref> for an example.</p><p>The idea behind the threshold-based approach is to maintain a balance between the number of black and red edges for every vertex. While useful when edge insertions appear in a random order, this approach may fail when red edges considerably expand the original size of the 2-ball of some vertex 𝑢. In order to mitigate this problem, our algorithm uses a second ingredient: upon each edge insertion (𝑢, 𝑣), the algorithm selects 𝑘 vertices from N (𝑢) and 𝑘 from N (𝑣) uniformly at random and performs a batch of light updates for the selected vertices, even if the threshold has not been reached yet. These ideas are formalized in Algorithm 3. For each vertex 𝑣, our algorithm maintains two sets B1 (𝑣) and B2 (𝑣), as well as the black degree Δ 𝑣 and red degree 𝛿 𝑣 of 𝑣. Our algorithm guarantees that B1 (𝑣) is exactly 𝐵 1 (𝑣), while B2 (𝑣) is in general a subset of 𝐵 2 (𝑣). The algorithm uses two global parameters, namely a threshold 𝜑 ∈ [0, 1], and an integer 𝑘. The role of the parameter 𝜑 can be understood as follows: when 𝜑 is set to 0, the algorithm performs all heavy and light updates for every edge insertion, ensuring that B2 (𝑣) always matches 𝐵 2 (𝑣). As 𝜑 increases, the update function becomes lazier: light updates are not always executed, and B2 (𝑣) is typically a proper subset of 𝐵 2 (𝑣). For instance, when 𝜑 = 1, light updates are performed in batches every time the degree of a vertex doubles. Parameter 𝑘 specifies the number of neighbors of 𝑣 that are randomly selected for update of their 2-balls whenever an edge insertion involving 𝑣 occurs. This mechanism corresponds to Lines 14 to 16 of Algorithm 3.</p><p>We call Lazy-Alg(𝜑, 𝑘) the algorithm that runs Algorithm 2 on an initial graph 𝐺 (0) and then processes a sequence 𝑆 of edge insertions by running Algorithm 3 on each edge of 𝑆.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Algorithm 2: Init operation</head><p>Data: An undirected graph 𝐺 = (𝑉 , 𝐸), a threshold parameter 0 ≤ 𝜑 ≤ 1, and an integer 𝑘 ≥ 0. 1 set 𝜑 and 𝑘 as global parameters</p><formula xml:id="formula_2">2 foreach vertex 𝑢 ∈ 𝑉 do 3 𝛿 𝑢 ← 0 4 Δ 𝑢 ← deg 𝑢 5 B1 (𝑢) ← 𝐵 1 (𝑢) 6 B2 (𝑢) ← 𝐵 2 (𝑢) 7 end</formula><p>A note on neighborhood representation. As we mentioned in the introduction, we treat B1 (𝑣) and B2 (𝑣) as sets of vertices in this section and in Section 4. We remark that this only serves the purpose of analyzing the error introduced by our lazy update policies: lossless representations of 1-and 2-balls may be unfeasible for medium or large graphs and compact data sketches are typically used to represent them in such cases. The choice of the actual sketch strongly depends on the type of query (or queries) one wants to support, such as 1-or 2-ball sizes <ref type="bibr" target="#b7">[8,</ref><ref type="bibr" target="#b25">25]</ref> or Jaccard similarity between 2-balls <ref type="bibr" target="#b5">[6,</ref><ref type="bibr" target="#b9">10,</ref><ref type="bibr" target="#b17">18]</ref>. All sketches used for typical neighborhood queries are well-understood and come with strong accuracy guarantees. Moreover, they allow to perform the union of 1-and 2-balls we are interested in time proportional to the sketch size, which is independent of the sizes of the balls to merge <ref type="bibr" target="#b0">[1]</ref>.</p><formula xml:id="formula_3">Algorithm 3: Insert 1 Function Insert((𝑢, 𝑣)): 2 for 𝑥 ∈ {𝑢, 𝑣 } do 3 let 𝑦 ∈ {𝑢, 𝑣 } \ {𝑥 } 4 B1 (𝑥) ← B1 (𝑥) ∪ {𝑦} // heavy update 5 B2 (𝑥) ← B2 (𝑥) ∪ B1 (𝑦) 6 𝛿 𝑥 ← 𝛿 𝑥 + 1 7 if 𝛿 𝑥 ≥ 𝜑 • Δ 𝑥 then 8 Δ 𝑥 ← Δ 𝑥 + 𝛿 𝑥 9 𝛿 𝑥 ← 0 10 foreach 𝑧 ∈ N (𝑥) do // batch of light updates 11 B2 (𝑧) ← B2 (𝑧) ∪ B1 (𝑥)</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Cost analysis for arbitrary sequences</head><p>Consistently to what we remarked above, our cost analysis focuses on the number of set-union operations: This performance measure in fact dominates the computational cost of Algorithm 3. More in detail, given any sequence 𝑆 of edge insertions, starting from an initial graph 𝐺 (0) , we denote by 𝑇 (𝑆) the overall number of union operations performed in Lines 4, 5, 11 and 16 of Algorithm 3 on the input sequence 𝑆.</p><p>We observe that a trivial upper bound to 𝑇 (𝑆) is 𝑂 (Δ|𝑆 |), since each insertion can cost 𝑂 (Δ) union operations where Δ is the maximum degree of the current graph. However, this trivial argument turns out to be too pessimistic: in what follows, we provide a more refined analysis of the amortized cost<ref type="foot" target="#foot_4">6</ref> per edge insertion. We say that an algorithm has amortized cost ĉ per edge insertion if, for any sequence 𝑆 of edge insertions, we have 𝑇 (𝑆) ≤ ĉ |𝑆 |. Lemma 1. Given any initial graph 𝐺 (0) and any sequence 𝑆 of edge insertions, the amortized update cost of Algorithm 3 is 𝑂 ( 1 𝜑 + 𝑘) per edge insertion.</p><p>Proof. Let us first consider the case 𝑘 = 0, i.e., when the random selection and the consequent instructions in Lines 14 to 16 are never performed. Our amortized analysis makes use of the accounting method <ref type="bibr" target="#b41">[41]</ref>. The idea is paying the cost of any batch of light updates by charging it to previous edge insertions. More precisely, we assign credits to each edge insertion that we will use to pay the cost of subsequent batches of light updates. Formally, the amortized cost of an edge insertion is defined as the actual cost of the operation, plus the credits we assign to it, minus the credits (accumulated from previous operations) we spend for it. We need to carefully define such credits in order to guarantee that the sum of the amortized costs is an upper bound to the sum of the actual costs, i.e. we always have enough credits to pay for costly batch light updates.</p><p>We proceed as follows. When we insert the edge (𝑢, 𝑣), we put 2/𝜑 credits on 𝑢 and 2/𝜑 credits on 𝑣. Now we bound the actual and amortized cost of each insertion.</p><p>First, consider an edge insertion (𝑢, 𝑣) that does not trigger a batch of light updates. Its actual cost is 4 union operations (those in Lines 4 and 5, 2 for each endpoint of (𝑢, 𝑣)). Then its amortized cost is upper-bounded by 4 + 4/𝜑 = 𝑂 (1/𝜑). Now consider the case in which the insertion causes a batch of light updates for 𝑢, or 𝑣, or both. We show that the credits accumulated by previous insertions are sufficient to pay for its cost. To see this, consider a batch of light updates involving vertex 𝑥 ∈ {𝑢, 𝑣 }. And let Δ 𝑥 and 𝛿 𝑥 be the current black and red degrees of 𝑥 at that time (just before Line 7 is evaluated). It is clear that for vertex 𝑥 we have accumulated 𝛿 𝑥 • 2/𝜑 credits that now we use to pay for the cost of Lines 10 and 11. This cost equals to deg 𝑥 union operations, where deg 𝑥 is the current degree of vertex 𝑥. Since the batch of light updates has just been triggered, we have that 𝛿 𝑥 ≥ 𝜑Δ 𝑥 , and hence we have at least 𝛿 𝑥 • 2/𝜑 ≥ 𝜑Δ 𝑥 • 2/𝜑 = 2Δ 𝑥 credits to pay for the deg 𝑥 = Δ 𝑥 + 𝛿 𝑥 = Δ 𝑥 + 𝜑Δ 𝑥 ≤ 2Δ 𝑥 union operations. This concludes the proof.</p><p>Finally, to obtain the claim when 𝑘 &gt; 0, we notice that, in this case, every edge insertion causes 𝑂 (𝑘) additional union operations. □</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">RANDOM EDGE SEQUENCES</head><p>In this section, we analyze the accuracy of our lazy-update algorithm(s) over an arbitrary dynamic graph, whose edges are given in input as a uniformly sampled, random permutation over its edge set. Dynamic graphs resulting from random sequences of edge insertions have been an effective tool to provide theoretical insights that have often proved robust to empirical validation in various dynamic scenarios <ref type="bibr" target="#b14">[15,</ref><ref type="bibr" target="#b30">30,</ref><ref type="bibr" target="#b34">[34]</ref><ref type="bibr" target="#b35">[35]</ref><ref type="bibr" target="#b36">[36]</ref>. In more detail, assume 𝐺 = (𝑉 , 𝐸), with |𝐸| = 𝑡, is the graph observed up to some time 𝑡 of interest. Following <ref type="bibr" target="#b35">[35,</ref><ref type="bibr" target="#b36">36]</ref>, we assume that the sequence of edges up to time 𝑡 is chosen uniformly at random from the set of all permutations over 𝐸. <ref type="foot" target="#foot_5">7</ref> The following fact is an immediate consequence of wellknown and intuitive properties of random permutations. We state it informally for the sake of completeness, avoiding any further, unnecessary notation.</p><p>Fact 1. Consider a dynamic graph 𝐺 = (𝑉 , 𝐸), whose edges are observed sequentially according to a permutation over 𝐸 chosen uniformly at random. Then, for every 𝐸 ′ ⊆ 𝐸, the sequence in which edges in 𝐸 ′ are observed is itself a uniformly chosen, random permutation over 𝐸 ′ .</p><p>In the remainder, for an arbitrary vertex 𝑣, we analyze how well the output B2 (𝑣) of Algorithm 3 approximates 𝐵 2 (𝑣) at any round 𝑡 in terms of its coverage: Definition 3.1. We say that the output B2 (𝑣) of Lazy-Alg(𝜑, 𝑘)</p><formula xml:id="formula_4">is a (1 − 𝜀)-covering of 𝐵 2 (𝑣) if the following holds: i) B2 (𝑣) ⊆ 𝐵 2 (𝑣); ii) E | B2 (𝑣)| ≥ (1 − 𝜀)|𝐵 2 (𝑣)|,</formula><p>where expectation is taken over the randomness of the algorithm and/or the input sequence. When the algorithm produces a (1 − 𝜀)-covering B2 (𝑣) of 𝐵 2 (𝑣) for every 𝑣, we say it has approximation ratio 1  (1−𝜀 ) .</p><p>Our main result in this section is formalized in the following Theorem 1. Let 𝜀 ∈ (0, 1), and fix parameters 𝑘 = 0 and 𝜑 = 𝜀 1−𝜀 . Consider any graph 𝐺 (𝑉 , 𝐸) submitted as a uniform random permutation of its edge set 𝐸 to Lazy-Alg(𝜑, 𝑘). Then, at every time step 𝑡 ≤ |𝐸|, the algorithm has approximation ratio 1 1−𝜀 . Moreover, for every 𝛼 &gt; 0 and every vertex 𝑣 ∈ 𝑉 , we have:</p><formula xml:id="formula_5">P | B2 (𝑣)| &lt; 1 − 𝛼 1 + 𝜑 |𝐿 2 (𝑣)| ≤ 𝑒 − 2𝛼 2 |𝐿 2 (𝑣) | (1+𝜑 ) 2 .</formula><p>Proof. Fix a vertex 𝑣 ∈ 𝑉 and a round 𝑡 ≥ 1. In the remainder of this proof, all quantities are taken at time 𝑡. We are interested in how close | B2 (𝑣)| is to |𝐵 2 (𝑣)|. To begin, we note that the following relationship holds deterministically:</p><formula xml:id="formula_6">| B2 (𝑣)| = 1 + |𝐿 1 (𝑣)| + | B2 (𝑣) ∩ 𝐿 2 (𝑣)|,<label>(1)</label></formula><p>where the only random variable on the right hand side is the last term. We next define a partition = 0 otherwise. Following the argument above, the event (𝑋 𝑒 = 1) implies the event "𝑒 is black", whence:</p><formula xml:id="formula_7">C = {𝐶 𝑢 : 𝑢 ∈ 𝐿 1 (𝑣)} of 𝐿 2 (𝑣) as v L 2 (v) L 1 (v) C 1 C 2 C 3 Figure 2:</formula><formula xml:id="formula_8">| B2 (𝑣) ∩ 𝐿 2 (𝑣)| ≥ |{𝑒 ∈ 𝐸 𝑣 : 𝑒 is black}| ≥ ∑︁ 𝑒 ∈𝐸 𝑣 𝑋 𝑒 .<label>(2)</label></formula><p>Next, we are interested in bounds on P (𝑋 𝑒 = 1). Assume 𝑒 is incident in 𝑢 and let 𝑆 be the set of edges incident in 𝑢 observed up to time 𝑡. Then, from Fact 1, the sequence in which these edges are observed is just a random permutation of 𝑆. This immediately implies that, if 𝑒 is incident to vertex 𝑢 ∈ 𝐿 1 (𝑣), then</p><formula xml:id="formula_9">P (𝑋 𝑒 = 1) = deg 𝑢 − 𝜑 1+𝜑 deg 𝑢 deg 𝑢 ≥ 1 1 + 𝜑 .</formula><p>Together with (2) this yields:</p><formula xml:id="formula_10">E | B2 (𝑣)| ≥ 1 + |𝐿 1 (𝑣)| + 1 1 + 𝜑 |𝐿 2 (𝑣)| ≥ 1 1 + 𝜑 |𝐵 2 (𝑣)|.</formula><p>We next show that 𝑒 ∈𝐸 𝑣 𝑋 𝑒 is concentrated around its expectation when |𝐿 2 (𝑣)| is large enough, which implies that | B2 (𝑣)| is concentrated around a value close to |𝐵 2 (𝑣)| in this case. The main technical hurdle here is that the 𝑋 𝑒 's are correlated (albeit mildly, as we shall see). To prove concentration, we resort to Martingale properties of random edge sequences to apply the method of (Average) Bounded Differences <ref type="bibr" target="#b20">[20]</ref>. In order to do this, we need bounds on P 𝑋 𝑒 = 1|𝑋 𝑓 = 1 and P 𝑋 𝑒 = 1|𝑋 𝑓 = 0 , for 𝑒, 𝑓 ∈ 𝐸 𝑣 . Assume again that 𝑒 is incident in 𝑢 ∈ 𝐿 1 (𝑣) and that 𝑆 is the set of edges incident in 𝑢 observed up to time 𝑡. Assume first that 𝑓 is also incident in 𝑢 and that, without loss of generality, 𝑓 is the 𝑖-th edge to appear among those in 𝑆.</p><formula xml:id="formula_11">𝑋 𝑓 = 1 implies 𝑖 ≤ deg 𝑢 − 𝜑 1+𝜑 deg 𝑢 .</formula><p>On the other hand, for any such choice for 𝑓 's position in the sequence, Fact 1 implies that 𝑒 will appear in a position 𝑗 that is sampled uniformly at random from the remaining ones, so that</p><formula xml:id="formula_12">P 𝑋 𝑒 = 1|𝑋 𝑓 = 1 = deg 𝑢 − 𝜑 1+𝜑 deg 𝑢 −1 deg 𝑢 −1 in this case. With a similar argument, it can be seen that P 𝑋 𝑒 = 1|𝑋 𝑓 = 0 = deg 𝑢 − 𝜑 1+𝜑 deg 𝑢 deg 𝑢 −1 .</formula><p>Intuitively and unsurprisingly, the events (𝑋 𝑒 = 1) and (𝑋 𝑓 = 1) are negatively correlated, while (𝑋 𝑒 = 1) and (𝑋 𝑓 = 0) are positively correlated. This allows us to conclude that P 𝑋 𝑒 = 1|𝑋 𝑓 = 1 ≤ P 𝑋 𝑒 = 1|𝑋 𝑓 = 0 and</p><formula xml:id="formula_13">P 𝑋 𝑒 = 1|𝑋 𝑓 = 0 − P 𝑋 𝑒 = 1|𝑋 𝑓 = 1 ≤ 1 deg 𝑢 −1 .</formula><p>Assume next that 𝑓 is not incident in 𝑢. Again from Fact 1, in this case 𝑓 has no bearing on the relative order in which edges incident in 𝑢 appear, so that P 𝑋 𝑒 = 1|𝑋 𝑓 = 0 = P 𝑋 𝑒 = 1|𝑋 𝑓 = 1 = P (𝑋 𝑒 = 1). Now, without loss of generality, suppose that 𝑓 = (𝑧, 𝑤), with 𝑧 ∈ 𝐿 1 (𝑣), so that 𝑤 ∈ 𝐶 𝑧 . Denote by 𝐸 𝑣 (𝑧) the subset of edges in 𝐸 𝑣 with one end point in 𝐶 𝑧 . Moving to conditional expectations we have</p><formula xml:id="formula_14">E       ∑︁ 𝑒 ∈𝐸 𝑣 𝑋 𝑒 | 𝑋 𝑓 = 0       − E       ∑︁ 𝑒 ∈𝐸 𝑣 𝑋 𝑒 | 𝑋 𝑓 = 1       = ∑︁ 𝑒 ∈𝐸 𝑣 P 𝑋 𝑒 = 1 | 𝑋 𝑓 = 0 − P 𝑋 𝑒 = 1 | 𝑋 𝑓 = 1 = ∑︁ 𝑒 ∈𝐸 𝑣 \𝐸 𝑣 (𝑧 ) P 𝑋 𝑒 = 1 | 𝑋 𝑓 = 0 − P 𝑋 𝑒 = 1 | 𝑋 𝑓 = 1 + ∑︁ 𝑒 ∈𝐸 𝑣 (𝑧 ) P 𝑋 𝑒 = 1 | 𝑋 𝑓 = 0 − P 𝑋 𝑒 = 1 | 𝑋 𝑓 = 1 ≤ |𝐶 𝑧 | deg 𝑧 −1 ≤ 1,</formula><p>where the third inequality follows from the definition of 𝐶 𝑧 , since 𝑓 is incident in 𝑧, while the last inequality follows since |𝐶 𝑧 | ≤ deg 𝑧 −1 for every 𝑧 ∈ 𝐿 1 (𝑣), because one of the edges incident in 𝑧 is by definition the one shared with 𝑣.</p><p>We can therefore apply [20, Definition 5.5 and Corollary 5.1], with 𝑐 ≤ |𝐿 2 (𝑣)| to obtain, for every 𝛼 &gt; 0:</p><formula xml:id="formula_15">P E       ∑︁ 𝑒 ∈𝐸 𝑣 𝑋 𝑒       − ∑︁ 𝑒 ∈𝐸 𝑣 𝑋 𝑒 &gt; 𝛼E       ∑︁ 𝑒 ∈𝐸 𝑣 𝑋 𝑒       ≤ 𝑒 − 2𝛼 2 |𝐿 2 (𝑣) | (1+𝜑 ) 2 ,</formula><p>where in the right hand side we also used the bound E 𝑒 ∈𝐸 𝑣 𝑋 𝑒 ≥ □ Theorem 1 easily implies approximation bounds on indices that depend on the union and/or intersection of 2-balls. For example, we immediately have the following approximation bound on the Jaccard similarity between any pair of 2-balls. Corollary 2. Under the same assumptions as Theorem 1, at any time step 𝑡 ≥ 1 and for any pair of vertices 𝑢, 𝑣 ∈ 𝑉 , Lazy-Alg(𝜑, 𝑘) guarantees the following approximation of the Jaccard similarity between 𝐵 2 (𝑢) and 𝐵 2 (𝑣) with probability at least 1 − 𝑒 </p><formula xml:id="formula_16">− 2𝛼 2 |𝐿 2 (𝑢) | (1+𝜑 ) 2 − 𝑒 − 2𝛼 2 |𝐿 2 (𝑣) | (1+𝜑 ) 2 : J(𝐵 2 (𝑢), 𝐵 2 (𝑣)) 1 − 2𝜀 ′ ≥ J( B2 (𝑢), B2 (𝑣)) ≥ (1 − 𝜀 ′ )J(𝐵 2 (𝑢), 𝐵 2 (𝑣)) − 𝜀 ′ ,<label>(3</label></formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">ADVERSARIAL EDGE SEQUENCES</head><p>We next study our lazy-update algorithm in an adversarial framework. We show in Section 4.1 that if the adversary can both: i) choose a worst-case graph 𝐺 and ii) submit 𝐺 according to an adaptive sequence of edge insertions, then it is possible to prove a strong lower bound on the achievable update-time/approximation trade-off of the whole parameterized scheme Lazy-Alg(𝜑, 𝑘).</p><p>On the other hand, in Section 4.2 we provide a necessary condition for the adversarial, worst-case framework above: the girth <ref type="bibr" target="#b18">[19]</ref> of 𝐺 must be smaller than 5. More precisely, 𝐺 must contain an unbounded number of triangles and cycles of length 4. We do this by showing that for a suitable parameter setting, algorithm Lazy-Alg(𝜑, 𝑘) achieves almost-optimal trade-offs even on adversarial edge insertion sequences, for every graph that has a bounded number of such small cycles (see Definition 4.1 for a formal definition of this class of graphs).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">A lower bound for adversarial sequences</head><p>The lower bound for the adversarial framework described above is formalized in the following result on the approximation ratio (see Def.  Proof. Fix 𝜌 ≥ 1, and assume that Lazy-Alg(𝜑, 𝑘) has an approximation ratio of at most 𝜌. We will show that there exist an initial graph 𝐺 (0) with degree Δ and a sequence of edge insertions against which Lazy-Alg(𝜑, 𝑘) must incur an amortized update time of Ω(Δ/𝜌 3 ).</p><p>Note that for 𝑘 &gt; 0, the algorithm is randomized. In order to address this, we prove our lower bound for every possible realization of the randomness used by the algorithm. Therefore, we assume the values of the random bits used by Lazy-Alg(𝜑, 𝑘) are fixed arbitrarily (and optimally) and we assume henceforth that the behavior of the algorithm is completely deterministic.</p><p>The initial graph 𝐺 (0) consists on 2Δ vertices forming a complete bipartite graph with sides 𝑆 0 = {𝑢 01 , . . . , 𝑢 0Δ } and 𝑆 1 = {𝑢 11 , . . . , 𝑢 1Δ }, along with an additional set 𝑆 2 of Δ𝜌 2 isolated vertices (see Figure <ref type="figure">3</ref>). The sequence of edge insertions is defined as follows: for each vertex in 𝑆 1 , we insert 𝜌 2 new edges. Each of these Δ𝜌 2 edges connects a vertex in 𝑆 1 to a previously isolated vertex in</p><formula xml:id="formula_17">𝑆 2 .</formula><p>Consider the time instant right after all edge insertions. Since we assumed that the algorithm guarantees an approximation ratio of 𝜌, it holds that for every vertex</p><formula xml:id="formula_18">𝑢 ∈ 𝑆 0 , | B2 (𝑢)| ≥ 1 𝜌 |𝐵 2 (𝑢)| = 1 𝜌 (2Δ+Δ𝜌 2 ) = Δ𝜌 +2Δ/𝜌.</formula><p>This implies that after all edge insertions, 𝑢 must be aware of at least Δ𝜌</p><formula xml:id="formula_19">+ 2Δ/𝜌 − 2Δ = Δ𝜌 − 2Δ(1 − 1/𝜌) vertices from 𝑆 2 .</formula><p>We say that there is a message from 𝑣 to 𝑢 if vertex 𝑣 performs a union operation of the form B2 (𝑢) ← B2 (𝑢) ∪ B1 (𝑣).</p><p>Since, at any time, every vertex 𝑣 ∈ 𝑆 1 is adjacent to at most 𝜌 2 vertices in 𝑆 2 , it must be that each 𝑢 ∈ 𝑆 0 must have received at least</p><formula xml:id="formula_20">Δ𝜌 −2Δ(1−1/𝜌 ) 𝜌 2</formula><p>= Ω(Δ/𝜌) messages from vertices in 𝑆 1 . As a consequence, the total number of messages are at least Ω(Δ 2 /𝜌). As the number of insertions is Δ𝜌 2 , the amortized update cost per insertion is at least</p><formula xml:id="formula_21">Ω (Δ 2 /𝜌 ) Δ𝜌 2</formula><p>= Ω(Δ/𝜌 3 ). □</p><p>We have special cases as corollaries. We need amortized update cost Ω(Δ) if we want 𝜌 = 𝑂 (1), Ω( </p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Locally 𝛾-sparse graphs</head><p>In this section, we provide the characterization of a class of graphs for which our lazy-update approach always guarantees good amortized cost/approximation trade-offs, even under the assumption of adversarial edge insertion sequences.</p><p>Given a graph 𝐺 (𝑉 , 𝐸) and a subset 𝑉 ′ ⊆ 𝑉 , we denote by 𝐺 [𝑉 ′ ] the subgraph induced by 𝑉 ′ . Informally, a graph is locally 𝛾-sparse if every node in 𝐵 2 (𝑢) \ {𝑢} has roughly at most 𝛾 neighbors in 𝐿 1 (𝑢). This notion can be formalized as follows. Definition 4.1 (locally 𝛾-sparse graphs). Let 𝛾 ∈ {0, 1 . . . , 𝑛 − 1}. A graph 𝐺 (𝑉 , 𝐸) is said locally 𝛾-sparse if for each vertex 𝑢 ∈ 𝑉 : (i) ∀𝑣 ∈ 𝐿 1 (𝑢) the degree of 𝑣 in 𝐺 [𝐿 1 (𝑢)] is at most 𝛾, and (ii)</p><formula xml:id="formula_22">∀𝑤 ∈ 𝐿 2 (𝑢) the degree of 𝑤 in 𝐺 [𝐿 1 (𝑣) ∪ {𝑤 }] is at most 𝛾 + 1.</formula><p>Observe that the class of locally 𝛾-sparse graphs grows monotonically with 𝛾, including all possible graphs for 𝛾 = 𝑛 − 1, while the most restricted class is obtained for 𝛾 = 0. It is interesting to note that locally 𝛾-sparse graphs are not necessarily sparse in absolute terms. For example, for 𝛾 = 0, the class coincides with the well-known class of graphs with girth at least 5: these graphs can have up to Θ(𝑛 3 2 ) edges assuming Erdös' Girth Conjecture <ref type="bibr" target="#b22">[22]</ref> (the proof of such equivalence is given in Appendix A.2).</p><p>A first, preliminary analysis of our lazy-update approach considers the deterministic version of Algorithm 3, i.e., when 𝑘 = 0. It turns out that this version achieves an approximation ratio of 𝛾 +1 1−𝜀 and amortized cost 𝑂 (1/𝜀) (see Appendix A.2). So, the approximation accuracy decreases linearly in the parameter 𝛾. Interestingly enough, we instead show that a suitable number of random light updates allows Algorithm 3 to perform much better than its deterministic version. This is the main result of this section and it is formalized in the next Theorem 4. Let 𝜀 ∈ (0, 1), and let 𝐺 (0) be an initial graph. Consider any sequence of edge insertions that yields a final graph 𝐺. If 𝐺 is locally 𝛾-sparse Lazy-Alg 𝜑 = 1, 𝑛𝑘 = Proof of Theorem 4. For the remainder of this proof, we define the notion of quasi-black edge. A red edge (𝑣, 𝑤), with 𝑣 ∈ 𝐿 1 (𝑢) and 𝑤 ∈ 𝐿 2 (𝑢), is said to be quasi-black for 𝑢 if 𝑢 has been randomly selected by 𝑣 at Line 14 of Algorithm 3 at least once during or after the insertion of (𝑣, 𝑤), ensuring that 𝑤 ∈ B2 (𝑢).</p><p>In this section, we use l𝑣 and ℓ 𝑣 to denote the number of quasiblack and red edges, respectively, that connect 𝑣 to vertices in 𝐿 2 (𝑢). Similarly, we use 𝑏 𝑣 to represent the number of black edges of 𝑣 having the other endpoint in 𝐿 2 (𝑢). Notice that l𝑣 is a random variable that counts how many vertices out of ℓ 𝑣 are in B2 (𝑢). We now proceed by first stating a property whose proof can be found in Appendix A.3.</p><formula xml:id="formula_23">Lemma 2. For each 𝑣 ∈ 𝐿 1 (𝑢), we have E l𝑣 ≥ ℓ 𝑣 − 2(𝑏 𝑣 +𝛾 +1) 𝑘</formula><p>. Now, let 𝛽 denote the number of vertices in 𝐿 2 (𝑢) that have at least one black edge from 𝐿 1 (𝑢). Consequently, these vertices are included in B2 (𝑢). We have the following: Lemma 3. Let 𝐺 = (𝑉 , 𝐸) be locally 𝛾-sparse, and 𝑢 ∈ 𝑉 . Then</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>𝛽 ≥ ∑︁</head><p>𝑣 ∈𝐿 1 (𝑢 )</p><formula xml:id="formula_24">𝑏 𝑣 𝛾 + 1 .</formula><p>Proof. The inequality follows from the fact that every node in 𝐿 2 (𝑢) can have at most 𝛾 + 1 neighbors in 𝐿 1 (𝑢). □</p><p>We are now ready to prove Theorem 4. The amortized update cost follows directly from Lemma 1.</p><p>For the approximation quality, let us consider any vertex 𝑢 ∈ 𝑉 . For technical convenience, we will define a subgraph 𝐺 of 𝐺 by removing suitable edges from 𝐺, and we establish the following two properties: (i) if 𝑘 ≥</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>2(𝛾 +1)</head><p>𝜀 , the Lazy-Alg guarantees a (1 − 𝜀)covering of 𝐵 2 (𝑢) when the sequence of edge insertion is restricted to edges in 𝐺; (ii) property (i) implies that the Lazy-Alg also guarantees a (1 − 𝜀)-covering of 𝐵 2 (𝑢) for 𝐺, provided that 𝑘 ≥</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>4(𝛾 +1)</head><p>𝜀 . The subgraph 𝐺 is obtained from 𝐺 through the following process. For each vertex 𝑤 ∈ 𝐿 2 (𝑢), if there exists a black edge (𝑣, 𝑤) with 𝑣 ∈ 𝐿 1 (𝑢), then we remove all the red edges incident to 𝑤 that originate from 𝐿 1 (𝑢). Otherwise, if all edges from 𝐿 1 (𝑢) to 𝑤 are red, we retain only one and remove the rest (see Figure <ref type="figure">4</ref>). We now prove property (i). We analyze the process at a generic time 𝑡 &gt; 0. We want to prove that</p><formula xml:id="formula_25">E | B2 (𝑢)| ≥ (1 − 𝜀)|𝐵 2 (𝑢)|, for any vertex 𝑢 ∈ 𝑉 . Since 𝐿 1 (𝑢) is always included in B2 (𝑢), it is sufficient to prove that | B2 (𝑢) ∩ 𝐿 2 (𝑢)| ≥ (1 − 𝜀)|𝐿 2 (𝑢)| in expectation.</formula><p>By construction of 𝐺, we have that | B2 (𝑢) ∩ 𝐿 show that ∑︁</p><formula xml:id="formula_26">𝑣 ∈𝐿 1 (𝑣) l𝑣 ≥ (1 − 𝜀) ∑︁ 𝑣 ∈𝐿 1 (𝑣) ℓ 𝑣 − 𝜀𝛽.<label>(4)</label></formula><p>By Lemma 3, ( <ref type="formula" target="#formula_26">4</ref>) is true when</p><formula xml:id="formula_27">∑︁ 𝑣 ∈𝐿 1 (𝑢 ) l𝑣 ≥ (1 − 𝜀) ∑︁ 𝑣 ∈𝐿 1 (𝑢 ) ℓ 𝑣 − 𝜀 𝛾 + 1 ∑︁ 𝑣 ∈𝐿 1 (𝑢 ) 𝑏 𝑣 = ∑︁ 𝑣 ∈𝐿 1 (𝑢 ) (1 − 𝜀)ℓ 𝑣 − 𝜀 𝛾 + 1 𝑏 𝑣 .<label>(5)</label></formula><p>In turn, the inequality in <ref type="bibr" target="#b4">(5)</ref> holds in expectation if it holds termby-term, i.e., when</p><formula xml:id="formula_28">E l𝑣 ≥ (1 − 𝜀)ℓ 𝑣 − 𝜀 1 + 𝛾 𝑏 𝑣 , ∀𝑣 ∈ 𝐿 1 (𝑢).</formula><p>Clearly, if ℓ 𝑣 = 0 then l𝑣 = 0 and the inequality holds; thus we focus on the case ℓ 𝑣 &gt; 0. From Lemma 2 we know that E l𝑣 ≥</p><formula xml:id="formula_29">ℓ 𝑣 − 2(𝑏 𝑣 +𝛾 +1) 𝑘</formula><p>. By setting 𝑘 ≥</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>2(𝛾 +1) 𝜀</head><p>we have</p><formula xml:id="formula_30">ℓ 𝑣 − 2(𝑏 𝑣 + 𝛾 + 1) 𝑘 ≥ ℓ 𝑣 − 𝜀 𝛾 + 1 𝑏 𝑣 ≥ (1 − 𝜀)ℓ 𝑣 − 𝜀 𝛾 + 1 𝑏 𝑣 ,</formula><p>therefore proving property (i).</p><p>Finally, we prove (ii). Notice that we build 𝐺 by removing only red edges from 𝐺. Since 𝜑 = 1, the degrees of the vertices 𝑣 ∈ 𝐿 1 (𝑢) in 𝐺 are at most halved compared to 𝐺. As a consequence, the probability that 𝑣 selects 𝑢 at Line 14 of Algorithm 3 in 𝐺 is at most half of the probability we have in 𝐺. Therefore, doubling the value of 𝑘 to 4(𝛾 +1) 𝜀</p><p>ensures that the analysis we conducted on 𝐺 also holds on 𝐺, guaranteeing a (1 − 𝜀)-covering of 𝐵 2 (𝑢) in expectation on 𝐺 as well.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5">EXPERIMENTAL ANALYSIS</head><p>The purpose of this experimental analysis, conducted on real datasets, is the validation of our lazy approach along three main axes: i) the qualitative consistency between the theoretical findings from Sections 2 to 4 and the actual behavior of our lazy approach on real, incremental datasets; ii) the accuracy of our approach on two key neighborhood-based queries, namely, size and Jaccard similarity; iii) its computational savings with respect to non-lazy baselines on medium and large incremental graphs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Experimental setup</head><p>Platform. Our experiments were performed on a machine with 2.3 GHz Intel Xeon Gold 5118 CPU with 24 cores, 192 GB of RAM, cache L1 32KB, shared L3 of 16MB and UMA architecture. The whole code is written in C++, compiled with GCC 10 and with the following compilation flags: -DARCH_X86_64 -Wall -Wextra -g -pg -O3 -lm.</p><p>Algorithms. We compared Lazy-Alg(𝜑, 𝑘) with various combinations (𝜑, 𝑘) with the following baselines: i) the exact algorithm 1, which is not scalable and is only used in the first round of experiments on smaller datasets, in order to isolate the error introduced by lazy updates; ii) the naive sketch-based baseline, which adopts sketch-based representations of 1-and 2-balls, but performs all necessary updates. It corresponds to Algorithm 3 with 𝜑 = 0 and 𝑘 = 0, but where 1-and/or 2-ball unions correspond to merging the corresponding sketches. <ref type="foot" target="#foot_6">8</ref>With the exception of the first set of experiments (i.e. item (i) above), we compared our algorithm to the sketch-based baseline. For some results, we needed to compute the true value of the parameter of interest for 2-balls (e.g., size) by executing a suitably optimized BFS. For our Lazy-Alg, we used combinations of the following values: 𝜑 = 0.1, 0.25, 0.5, 0.75, 1 and 𝑘 = 0, 2, 4, 8.</p><p>Implementation details. To best assess the performance of algorithms, it would be ideal to minimize the overhead deriving from the management of edge insertions in the graph. We observe that this overhead is the same for all algorithms we tested. Hence, we represented graphs using the compressed sparse row format <ref type="bibr" target="#b21">[21]</ref> and, since we knew the edge insertion sequence in advance, we pre-allocated the memory needed to accommodate them, so as to minimize overhead. For experiments that required hash functions, we used tabulation hashing <ref type="bibr" target="#b37">[37]</ref>.</p><p>Datasets. We considered real incremental graphs of different sizes, both directed and undirected, available from NetworkRepository <ref type="bibr" target="#b39">[39]</ref>. In our time analysis, we also extracted a large incremental dataset from a large static graph, namely soc-friendster <ref type="bibr" target="#b46">[46]</ref>, available from SNAP <ref type="bibr" target="#b32">[32]</ref>. Following previous work on dynamic graphs <ref type="bibr" target="#b15">[16,</ref><ref type="bibr" target="#b28">28]</ref>, we generated an incremental graph by adding edges sequentially and in random order, starting from an empty graph. The main features of our datasets are summarized in Table <ref type="table" target="#tab_1">1</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Results</head><p>As we remarked in the introduction, we focused on the case of undirected graphs for ease of exposition and for the sake of space, but our approach extends seamlessly to directed graphs, such as some of the real examples we consider in this section. In such cases, the only caveat to keep in mind is that we define the ℎ-ball of a vertex 𝑢 as the subset of vertices that are reachable from 𝑢 over a directed path traversing at most ℎ edges. <ref type="foot" target="#foot_7">9</ref>Impact of lazy updates. The goal of our first experiment is twofold: i) assessing the impact of lazy updates on the estimation of 2-balls; ii) assessing the degree of consistency between the theoretical findings of Sections 3 and 4 and the actual behavior of our algorithms on real datasets. In order to isolate the specific contribution of lazy updates in the estimation error, we implemented <ref type="bibr">(</ref> approximate) 1-balls and 2-balls losslessly, as dictionaries. This way, the error in 2-ball size estimation is only determined by our lazy update policy. Since, as we argued elsewhere in the paper, lossless representations of 2-balls quickly becomes unfeasible for larger datasets, this first experiment was run on 3 small-medium datasets, namely, comm-linux-kernel-reply, fb-wosn-friends and ia-enron-email-all (results for comm-linux-kernel-reply are reported in Figure <ref type="figure">8c</ref> in Appendix B).</p><p>For each of the above graphs, we selected as a sample 5000 vertices whose 2-balls are the largest at the end of the edge insertion sequence. For every pair (𝜑, 𝑘) of parameter values for Lazy-Alg(𝜑, 𝑘), we performed 10 independent runs. Each run is organized into the following steps: 1) the initial graph 𝐺 (0) (𝑉 , 𝐸 (0) ) corresponds to the first 20% edge insertions; 2) we measure the coverage (see Definition 3.1) of each of the 5000 2-balls above by Lazy-Alg(𝜑, 𝑘) at each of the 100 equally spaced timestamps, the same in each run. For the generic timestamp 𝑡, we measure the average coverage</p><formula xml:id="formula_31">𝐶 𝑡 = 1 5000 5000 ∑︁ 𝑖=1 B𝑖 𝐵 𝑖 ,</formula><p>where 𝐵 𝑖 and B𝑖 respectively denote the true and estimated sizes of the 𝑖-th 2-ball from the sample. Finally, for each timestamp 𝑡, we plot the average of the 10 values of 𝐶 𝑡 computed in every run. The results, summarized in Figure <ref type="figure" target="#fig_12">5</ref>, are fully consistent with our theoretical findings from Section 3. At least for the diverse dataset sample considered here, uniform random permutations are a reasonable theoretical proxy of real sequences. More in general, real sequences seem to be rather far from the pathological worst-cases analyzed in Section 4.1, so that the actual behavior of our algorithm is not only in line, but better than our analysis predicts. We also have an initial insight into the effects of the parameters 𝜑 and 𝑘, which will be examined more thoroughly in the subsequent subsections.</p><p>Ball size estimation via sketches. The goal of the next round of experiments was assessing the accuracy of our algorithms in 2-ball size estimation, in the realistic setting in which approximate 1-and 2balls are represented via state-of-art sketches that are based on probabilistic counters <ref type="bibr" target="#b4">[5]</ref>. In this case, we have a compound estimation error, arising from both our lazy update policy and the use of probabilistic counters. We ran experiments on the three small-medium sized datasets considered previously, plus two large ones, namely, soc-youtube-growth and soc-flickr-growth. Again, we considered the top-5000 largest 2-balls as sample. The experiments were executed as in the previous case, with the following differences: i) we considered 3 timestamps, respectively corresponding to 50%,   75% and 100% of all edge insertions of each dataset; ii) in this case, 1-and 2-balls are not explicitly represented as sets (not even by the baseline). As a result, ball sizes might be overestimated and coverage has no clear meaning. We therefore use Mean Absolute Percentage Error (MAPE) to measure accuracy, defined as follows:</p><formula xml:id="formula_32">k = 0 2 0 % 5 0 % 1 0 0 % k = 2 2 0 % 5 0 % 1 0 0 % k = 4 2 0 % 5 0 % 1 0 0 % k = 8 1 − ϕ 1+ϕ ϕ = 0.1 ϕ = 0.5 ϕ = 1.0<label>(</label></formula><formula xml:id="formula_33">k = 0 2 0 % 5 0 % 1 0 0 % k = 2 2 0 % 5 0 % 1 0 0 % k = 4 2 0 % 5 0 % 1 0 0 % k = 8 1 − ϕ 1+ϕ ϕ = 0.1 ϕ = 0.5 ϕ = 1.0 (b) ia-enron-email-all</formula><formula xml:id="formula_34">MAPE = 1 5000 5000 ∑︁ 𝑖=1 |𝐵 𝑖 − B𝑖 | 𝐵 𝑖 ,</formula><p>where 𝑖 refers to the 2-ball size of the 𝑖-th sampled vertex. For each dataset, this index is computed for each of 10 independent runs at each of the 3 timestamps we consider. Results are summarized for all datasets and combinations (𝜑, 𝑘) we consider in Table <ref type="table">2</ref> for the last timestamp (100% of edge insertions). Results for other timestamps (50% and 75%) are similar and are omitted for the sake of space (see Appendix B for complete results). The main takeaways here are that i) the additional error introduced by the use of sketches (which can be controlled by varying the size of the sketch) is relatively modest; ii) even relatively large values of 𝜑 and/or small values of 𝑘 result in performances that are close to those of the baseline that uses sketches to represent balls, but naively performs all light updates. The effect of 𝑘 is more pronounced when 𝜑 is large, contributing to a reduction in both error and, to a lesser extent, variance. Finally, we note that although the effect of increasing 𝑘 can be achieved by decreasing 𝜑, our analysis in Section 4 suggests that the parameter 𝑘 provides robustness against worst-case scenarios. Even though the analysis of the impact of sketches on error is out of the scope of this paper, the results in the previous paragraph and the small difference with the baseline (Table <ref type="table">2</ref>) when using the sketches further suggest that the analysis of random sequences may also apply to real sequences.</p><p>Table <ref type="table">2</ref>: Mean and standard deviation of absolute percentage errors for 2-hop neighborhood size estimation. Size estimates were made using the KMV probabilistic counter <ref type="bibr" target="#b4">[5]</ref>, with size 32. Queries were made at the end of the insertion sequence.</p><p>𝑘 𝜑 = 0.1 𝜑 = 0.5 𝜑 = 1 baseline linux 0 0.14 ± 0.12 0.19 ± 0.14 0.17 ± 0.11 0.12 ± 0.10 2 0.13 ± 0.11 0.14 ± 0.10 0.16 ± 0.11 4 0.14 ± 0.09 0.17 ± 0.12 0.14 ± 0.10 8 0.14 ± 0.11 0.14 ± 0.09 0.13 ± 0.10 fb-wosn 0 0.16 ± 0.12 0.15 ± 0.11 0.21 ± 0.12 0.14 ± 0.11 2 0.13 ± 0.09 0.15 ± 0.10 0.17 ± 0.11 4 0.14 ± 0.11 0.15 ± 0.10 0.16 ± 0.11 8 0.16 ± 0.13 0.14 ± 0.10 0.15 ± 0.11 enron 0 0.13 ± 0.10 0.16 ± 0.11 0.20 ± 0.14 0.13 ± 0.11 2 0.14 ± 0.11 0.16 ± 0.12 0.16 ± 0.12 4 0.13 ± 0.12 0.15 ± 0.12 0.15 ± 0.12 8 0.13 ± 0.11 0.14 ± 0.10 0.16 ± 0.13 flickr 0 0.17 ± 0.14 0.18 ± 0.12 0.17 ± 0.11 0.17 ± 0.14 2 0.16 ± 0.12 0.12 ± 0.09 0.14 ± 0.10 4 0.14 ± 0.09 0.13 ± 0.10 0.16 ± 0.10 8 0.14 ± 0.11 0.13 ± 0.10 0.14 ± 0.09 youtube 0 0.15 ± 0.11 0.15 ± 0.10 0.24 ± 0.11 0.14 ± 0.11 2 0.16 ± 0.13 0.14 ± 0.10 0.19 ± 0.11 4 0.13 ± 0.11 0.13 ± 0.10 0.15 ± 0.11 8 0.13 ± 0.10 0.12 ± 0.09 0.15 ± 0.11</p><p>Accuracy in Jaccard similarity estimation. With the same goal as in the previous experiment, we now evaluate the quality of our lazy approach policy combined with the use of sketches in another graph mining task: the Jaccard similarity estimation for 2-hop neighborhoods. The sketch used to represent the 1-and 2balls is the well-known ℎ-minhash signature <ref type="bibr" target="#b8">[9]</ref>, with ℎ = 100 hash functions.</p><p>As before, 10 independent runs were performed for each combination of parameters 𝜑, 𝑘, and the baseline, on each of the previously used datasets. Errors were measured at 3 different timestamps, corresponding to 50%, 75%, and 100% of the edge insertion sequence.</p><p>Considering all vertex pairs in the entire graph would be computationally prohibitive, as their number is too large. Moreover, many of these pairs would have an extremely low Jaccard similarity, making it difficult to estimate them with a reasonably small error <ref type="bibr" target="#b9">[10,</ref><ref type="bibr" target="#b10">11]</ref>. Therefore, to better evaluate our algorithm's and baseline's quality, we need vertex pairs with a sufficiently high similarity in their 2-hop neighborhoods. To address this, we adopted a similar sampling process as before: we selected the 5000 vertices with the largest 2-hop neighborhoods at the end of the edge insertion sequence and randomly chose 1000 pairs whose similarity is at least 0.2. On that sample, we evaluated the MAPE of the Jaccard similarity estimate computed using the ℎ-minhash signatures. Table <ref type="table" target="#tab_2">3</ref> reports the results at the end of the insertion sequence, while results for the other timestamps (50% and 75%) are similar and are omitted for sake of space (see Appendix B for complete results).</p><p>This experiment further confirms the observations from the previous one: when using sketches to represent the 2-balls, the errors obtained with our lazy update policy (with appropriate choices of parameters 𝜑, 𝑘) are similar and fully comparable to those of the baseline, which performs all necessary updates. Run time analysis. Finally, we measured the running times of our algorithm and the corresponding speed-up with respect to the baseline. In the following, we report and discuss the results for the task of size estimation, using probabilistic counters. The results for the task of Jaccard similarity estimation are analogous, and thus reported in Table <ref type="table" target="#tab_11">12</ref> in Appendix B.</p><p>Table <ref type="table" target="#tab_3">4</ref> reports the average speed-up of our algorithm with respect to the naive baseline for the same combinations (𝜑, 𝑘) considered previously, for all datasets except com-friendster. Speed-ups are computed in terms of total update time, i.e., the total time it takes to process the whole insertion sequence. In Table <ref type="table" target="#tab_4">5</ref> reports the overall processing times on com-friendster, for a subset of the combinations of 𝜑 and 𝑘. It should be noted that the baseline did not complete within a reasonable amount of time in this case. Finally, Figure <ref type="figure">6</ref> illustrates the average time cost per operation for the baseline, as well as the slowest and fastest parameter settings of 𝜑 and 𝑘 in our algorithm. These experiments clearly highlight that the number of lazy updates is the crucial factor affecting performance and that our approach is very effective at addressing this problem, resulting in considerable speed-ups that grow with the size of the graph. These results regarding processing times, in conjunction with previous findings, underscore the significant advantage in terms of speed at the expense of a modest and acceptable reduction in query quality which, due to the necessary use of sketches, is never totally accurate.  The baseline time for soc-friendster dataset is not reported, since it exceed a time limit of 36 hrs.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">DISCUSSION AND OUTLOOK</head><p>In this work, we showed that relatively simple, lazy update algorithms can play a key role to efficiently support queries over multi-hop vertex neighborhoods on large, incremental graphs. At the same time, this work leaves a number of open questions that might deserve further investigation. A first, obvious direction is extending our approach to handle edge deletions. While our approach is potentially useful in the general case, the main problem here is handling deletions when compact, sketch-based data structures are used to represent 1-and 2-balls. Some recent contributions address similar issues in dynamic data streams <ref type="bibr" target="#b12">[13,</ref><ref type="bibr" target="#b16">17]</ref>, but extending our analyses to this general case does not seem straightforward. Another interesting direction is investigating strategies to handle queries over ℎ-balls when ℎ &gt; 2, for example maintaining their sizes under dynamic updates. In this case, each edge addition/deletion potentially has cascading effects over ℎ-hops. Optimizing (amortized) update costs in this general setting does not seem trivial and we conjecture that a dependence on ℎ might be necessary. Finally, we remark that our algorithms are inherently local, i.e., whether or not to perform updates involving any vertex 𝑣 only depends on 𝑣's immediate neighborhood. As a consequence, a potentially interesting avenue for further research is to investigate distributed variants of our approach, possibly with massive parallel architectures in mind <ref type="bibr" target="#b31">[31]</ref>.</p><p>A PROOFS FROM SECTION 4 A.1 On the girth of locally 𝛾-sparse graphs Lemma 4. Let 𝐺 = (𝑉 , 𝐸) be an undirected graph with girth 𝑔(𝐺). Then 𝐺 is locally 0-sparse if and only if 𝑔(𝐺) ≥ 5.</p><p>Proof. We first prove that if 𝐺 is locally 0-sparse then 𝑔(𝐺) must be at least 5. In order to prove that, we simply negate the statement and prove that if 𝐺 has girth &lt; 5 then 𝐺 can not be locally 0-sparse. Without loss of generality, assume that 𝑔(𝐺) = 4 (the case 𝑔(𝐺) = 3 is similar). Then there must exist a cycle 𝐶 = (𝑢 1 , 𝑢 2 , 𝑢 3 , 𝑢 4 ) of 4 vertices. It is simple to see that 𝑢 2 , 𝑢 4 ∈ 𝐿 1 (𝑢 1 ) and 𝑢 3 ∈ 𝐿 2 (𝑢 1 ). Since 𝑢 3 is a neighbor of both 𝑢 2 and 𝑢 4 , the degree of 𝑢 3 in the subgraph 𝐺 [𝐿 1 (𝑢 1 ) ∪ {𝑢 4 }] is at least 2, hence 𝐺 is not locally 0-sparse (see Figure <ref type="figure">7a</ref>).</p><p>We now prove that if 𝑔(𝐺) ≥ 5 then 𝐺 must be locally 0-sparse. Again, we negate this statement and prove that if 𝐺 is not locally 0-sparse then the girth of 𝐺 must be less then 5. Let us assume that 𝐺 is locally 𝛾-sparse, for any 𝛾 &gt; 0, thus it is not locally 0-sparse. Since 𝐺 is not locally 0-sparse there exists a vertex 𝑣 ∈ 𝑉 such that at least one of the following properties holds (see Figure <ref type="figure">7b</ref>):</p><p>(1) ∃𝑢 ∈ 𝐿 1 (𝑣) such that the degree of 𝑢 in 𝐺 [𝐿 1 (𝑣)] is greater then 0, or; (2) ∃𝑤 ∈ 𝐿 2 (𝑣) such that the degree of 𝑤 in 𝐺 [𝐿 1 (𝑣) ∪ {𝑤 }] is greater then 1.</p><p>In the first case, we have a cycle of 3 vertices, then 𝑔(𝐺) = 3. In the second case, we have a cycle of 4 vertices, then 𝑔(𝐺) = 4. In both cases 𝑔(𝐺) &lt; 5.</p><formula xml:id="formula_35">□ u 1 u 2 u 3 u 4 L 1 (u 1 ) L 2 (u 1 ) (a) v u v w L 1 (v) L 2 (v)<label>(b) Figure 7</label></formula><p>A.2 Deterministic lazy-update on 𝛾-sparse graphs Theorem 5. Let 𝜀 ∈ (0, 1), and let 𝐺 (0) be an initial graph. Consider any sequence of edge insertions that yields a final graph 𝐺. If 𝐺 is locally 𝛾-sparse, Lazy-Alg(𝜑 = 𝜀 1−𝜀 , 𝑘 = 0) has an approximation ratio of 𝛾 +1</p><p>1−𝜀 and amortized update cost 𝑂 (1/𝜀).</p><p>Proof. Recall that Δ 𝑢 denotes the black degree of 𝑢, and that Algorithm 3 guarantees that deg 𝑢 is at most (1 + 𝜑)Δ 𝑢 . Then, it is simple to give an upper bound to the size of 𝐵 2 (𝑢), that is |𝐵 2 (𝑢)| ≤ 1+ 𝑣 ∈𝐿 1 (𝑢 ) (1+𝜑)Δ 𝑣 .Consider a vertex 𝑣 ∈ 𝐿 1 (𝑢). Since 𝐺 is locally 𝛾-sparse, the number of neighbors of 𝑣 belonging to 𝐿 2 (𝑢) is at lest deg 𝑣 −(𝛾 + 1) of which Δ 𝑣 − (𝛾 + 1) must belong to B2 (𝑢). Moreover, a vertex in 𝐿 2 (𝑢) has at most 𝛾 + 1 neighbors in 𝐿 1 (𝑢). Therefore: Proof. Let 𝑒 1 , . . . , 𝑒 ℓ 𝑣 be the red edges between 𝑣 and 𝐿 2 (𝑢), and define the binary random variable l𝑣 (𝑖) that is equal to 1 if 𝑒 𝑖 is a quasi-black edge for 𝑢, 0 otherwise, for 𝑖 = 1, . . . , ℓ 𝑣 . Thus we can express l𝑣 = ℓ 𝑣 𝑖=1 l𝑣 (𝑖), with expectation</p><formula xml:id="formula_36">| B2 (𝑢)| ≥ Δ 𝑢 + 1 + 1 𝛾 + 1 ∑︁ 𝑣 ∈𝐿 1 (𝑢 ) (Δ 𝑣 − (𝛾 + 1)) = Δ 𝑢 + 1 + 1 𝛾 + 1 ∑︁ 𝑣 ∈𝐿 1 (𝑢 ) Δ 𝑣 − 1 𝛾 + 1 ∑︁ 𝑣 ∈𝐿 1 (𝑢 ) (𝛾 + 1) =Δ 𝑢 = 1 + 1 𝛾 + 1 ∑︁ 𝑣 ∈𝐿 1 (𝑢 ) Δ 𝑣 . As a consequence, | B2 (𝑢)|/|𝐵 2 (𝑢)| ≥</formula><formula xml:id="formula_37">E l𝑣 = ℓ 𝑣 ∑︁ 𝑖=1 P l𝑣 (𝑖) = 1 = ℓ 𝑣 − ℓ 𝑣 ∑︁ 𝑖=1 P l𝑣 (𝑖) = 0 .<label>(6)</label></formula><p>Without loss of generality, assume that the edges 𝑒 1 , . . . , 𝑒 ℓ 𝑣 have been inserted at times 𝑡 1 &lt; • • • &lt; 𝑡 ℓ 𝑣 , respectively. If 𝑒 𝑖 is not a quasi-black edge for 𝑢, then it must be that 𝑢 is not selected by 𝑣 at Line 14 of Algorithm 3, at times 𝑡 𝑖 , 𝑡 𝑖+1 , . . . , 𝑡 ℓ 𝑣 . This holds with probability</p><formula xml:id="formula_38">P l𝑣 (𝑖) = 0 ≤ ℓ 𝑣 𝑗=𝑖 1 − 𝑘 deg (𝑡 𝑗 ) 𝑣 ≤ ℓ 𝑣 𝑗=𝑖 1 − 𝑘 deg (𝑡 ℓ𝑣 ) 𝑣 ≤ 1 − 𝑘 𝑏 𝑣 + ℓ 𝑣 + 𝛾 + 1 ℓ 𝑣 −𝑖+1 ≤ 1 − 𝑘 2(𝑏 𝑣 + 𝛾 + 1) ℓ 𝑣 −𝑖 .<label>(7)</label></formula><p>The third inequality holds since the edges incident to 𝑣 having endpoints in 𝐿 1 (𝑢) are at most 𝛾, while those having endpoints in 𝐿 2 (𝑢) are exactly 𝑏 𝑣 + ℓ 𝑣 . Moreover, the last inequality holds because ℓ 𝑣 ≤ 𝛿 𝑣 ≤ Δ 𝑣 ≤ 𝑏 𝑣 + 𝛾 + 1, given the assumption 𝜑 = 1.</p><p>By plugging in ( <ref type="formula" target="#formula_35">7</ref>) into (6) and we obtain</p><formula xml:id="formula_39">E l𝑣 ≥ ℓ 𝑣 − ℓ 𝑣 ∑︁ 𝑖=1 1 − 𝑘 2(𝑏 𝑣 + 𝛾 + 1) ℓ 𝑣 −𝑖 = ℓ 𝑣 − ℓ 𝑣 −1 ∑︁ 𝑖=0 1 − 𝑘 2(𝑏 𝑣 + 𝛾 + 1) 𝑖 ≤ ℓ 𝑣 − 1 − 1 − 𝑘 2(𝑏 𝑣 +𝛾 +1) ℓ 𝑣 1 − 1 − 𝑘 2(𝑏 𝑣 +𝛾 +1) ≥ ℓ 𝑣 − 1 1 − 1 − 𝑘 2(𝑏 𝑣 +𝛾 +1) ≥ ℓ 𝑣 − 2(𝑏 𝑣 + 𝛾 + 1) 𝑘 . □</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>B FURTHER EXPERIMENTAL RESULTS</head><p>In this section, we present the comprehensive set of results, providing an exhaustive overview and offering a detailed picture that enriches the information already illustrated in Section 5.  enron 0 0.13 ± 0.10 0.15 ± 0.12 0.16 ± 0.11 0.18 ± 0.12 0.20 ± 0.14 0.13 ± 0.11 2 0.14 ± 0.11 0.14 ± 0.10 0.16 ± 0.12 0.15 ± 0.10 0.16 ± 0.12 4 0.13 ± 0.12 0.14 ± 0.10 0.15 ± 0.12 0.16 ± 0.12 0.15 ± 0.12 8 0.13 ± 0.11 0.15 ± 0.11 0.14 ± 0.10 0.14 ± 0.11 0.16 ± 0.13 flickr 0 0.17 ± 0.14 0.15 ± 0.11 0.18 ± 0.12 0.17 ± 0.11 0.17 ± 0.11 0.17 ± 0.14 2 0.16 ± 0.12 0.17 ± 0.12 0.12 ± 0.09 0.16 ± 0.11 0.14 ± 0.10 4 0.14 ± 0.09 0.16 ± 0.13 0.13 ± 0.10 0.14 ± 0.11 0.16 ± 0.10 8 0.14 ± 0.11 0.16 ± 0.12 0.13 ± 0.10 0.13 ± 0.10 0.14 ± 0.09 youtube 0 0.15 ± 0.11 0.13 ± 0.10 0.15 ± 0.10 0.23 ± 0.13 0.24 ± 0.11 0.14 ± 0.11 2 0.16 ± 0.13 0.14 ± 0.10 0.14 ± 0.10 0.15 ± 0.11 0.19 ± 0.11 4 0.13 ± 0.11 0.16 ± 0.10 0.13 ± 0.10 0.15 ± 0.09 0.15 ± 0.11 8 0.13 ± 0.10 0.15 ± 0.11 0.12 ± 0.09 0.14 ± 0.10 0.15 ± 0.11 </p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head></head><label></label><figDesc>deg 𝑣 : the degree of 𝑣. Notice that deg 𝑣 = |N (𝑣)|; 𝐿 ℎ (𝑣): set of vertices at distance exactly ℎ from 𝑣;</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: Example of insertion of a new edge (𝑢, 𝑣). The algorithm merges the 1-ball of 𝑣 with the 2-ball of 𝑢 (heavy update), while it does not immediately add vertex 𝑣 to the 2-ball of vertex 𝑤 or any other of 𝑢's neighbors.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_2"><head>14 select</head><label>14</label><figDesc>𝑘 vertices 𝑤 1 , . . . , 𝑤 𝑘 ∈ N (𝑥) u.a.r. 15 for 𝑖 = 1, . . . , 𝑘 do // batch of light updates 16 B2 (𝑤 𝑖 ) ← B2 (𝑤 𝑖 ) ∪ B1 (𝑥)</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>1 1+𝜑 |𝐿 2 (</head><label>12</label><figDesc>𝑣)| we showed earlier. Finally, we recall (1) and (2) to conclude that | B2 (𝑣)| ≥ 1−𝛼 1+𝜑 |𝐿 2 (𝑣)| with (at least) the same probability.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head></head><label></label><figDesc>) where 𝜀 ′ = 𝜑+𝛼 1+𝜑 . Proof. It is easy to see that | B2 (𝑢)| ≥ (1 − 𝜀 ′ )|𝐵 2 (𝑢)| and | B2 (𝑣)| ≥ (1 − 𝜀 ′ )|𝐵 2 (𝑣)| together imply (3) deterministically. The result then immediately follows from Theorem 1 and a union bound on the events (| B2 (𝑢)| &lt; (1 − 𝜀 ′ )|𝐿 2 (𝑢)|) and (| B2 (𝑣)| &lt; (1 − 𝜀 ′ )|𝐿 2 (𝑣)|).□</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>3 . 1 )Theorem 3 .</head><label>313</label><figDesc>For every 𝜑 ∈ [0, 1], and integer 𝑘 ≥ 0, if Lazy-Alg(𝜑, 𝑘) has approximation ratio 𝜌 ≥ 1, then it must have an amortized update cost of Ω(Δ/𝜌 3 ), where Δ is the maximum degree of the graph.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>2 Figure 3 :</head><label>23</label><figDesc>Figure3: Black edges are present at 𝑡 = 0, while red ones are inserted in the interval {1, 2, . . . , Δ𝜌 2 }. At time 𝑡 &gt; 0, an edge with one endpoint in 𝑢 1𝑡 mod Δ and the other in a distinct 0-degree vertex in 𝑆 2 is added.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>4 √Remark 1 .</head><label>41</label><figDesc>Δ) if we want 𝜌 = 𝑂 ( The lower bound in Section 4.1 in fact holds for a wider class of algorithms. Informally speaking, this class includes any local algorithm that limits its online updates to the 2-hop neighbors of 𝑢 and 𝑣 only. Making this claim more formal requires addressing several technical issues that are outside the scope of the present work.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><head>L 1 Figure 4 :</head><label>14</label><figDesc>Figure 4: The 2-hop neighborhood of a vertex 𝑢 (left), and its corresponding structure in the subgraph 𝐺 (right).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_12"><head>Figure 5 :</head><label>5</label><figDesc>Figure 5: Average coverage 𝐶 𝑡 from a network with 20% of its edges to the end of the insertion sequence. Dashed lines show the theoretical expected coverage for random sequences (see Theorem 1).</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_13"><head>l i n u x e n r o n f b -w o s n y o u t u b e fl i c k r f r i e n d s t e r 10 − 6 10 − 5 Figure 6 :</head><label>10656</label><figDesc>Figure 6: Average time per insertion operation (in seconds).The baseline time for soc-friendster dataset is not reported, since it exceed a time limit of 36 hrs.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_14"><head>1 (</head><label>1</label><figDesc>1+𝜑 ) (𝛾 +1) . By setting 𝜑 = 𝜀 1−𝜀 , and by using Lemma 1, the claim follows. □ A.3 Proof of Lemma 2</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head></head><label></label><figDesc>Example of a partition of 𝐿 2 (𝑣) into three sets 𝐶 1 , 𝐶 2 , 𝐶 3 . Edges connecting vertices 𝑤 ∈ 𝐿 2 (𝑣) to their respective partitions are thicker.follows: for each 𝑤 ∈ 𝐿 2 (𝑣), we choose a vertex 𝑢 ∈ 𝐿 1 (𝑣) ∩ N (𝑤) and assign 𝑤 to 𝐶 𝑢 . This way, each vertex 𝑤 ∈ 𝐿 2 (𝑣) is associated to exactly one edge connecting one vertex in 𝐿 1 (𝑣) to 𝑤 (see Figure2, where the edges in question are thick in the picture). Let 𝐸 𝑣 denote the set of such edges and note that i) 𝐸 𝑣 is a subset of the edges connecting vertices in 𝐿 𝐸 𝑣 that are black. These considerations allow us to conclude that | B2 (𝑣) ∩ 𝐿 2 (𝑣)| ≥ |{𝑒 ∈ 𝐸 𝑣 : 𝑒 is black}|.A key observation at this point is that Algorithm 3 implies that for every 𝑥 ∈ 𝑉 , 𝛿 𝑥 ≤ 𝐸 𝑣 was not among the last 𝜑 1+𝜑 deg 𝑢 edges incident in 𝑢 that were released within time 𝑡, it is necessarily black. For 𝑒 = (𝑢, 𝑤) ∈ 𝐸 𝑣 , with 𝑢 ∈ 𝐿 1 (𝑣) and 𝑤 ∈ 𝐿 2 (𝑣), let 𝑋 𝑒 = 1 if 𝑒 was among the first deg 𝑢 − 𝜑 1+𝜑 deg 𝑢 edges incident in 𝑢 that were released up to time 𝑡 and let 𝑋 𝑒</figDesc><table /><note>1 (𝑣) to those in 𝐿 2 (𝑣), ii) |𝐸 𝑣 | = |𝐿 2 (𝑣)| by definition and iii) |𝐶 𝑢 | ≤ deg 𝑢 −1 for every 𝑢 ∈ 𝐿 1 (𝑣), given that 𝐶 𝑢 contains a subset of 𝑢's neighbors and (𝑣, 𝑢) is always present. Moreover, Algorithm 3 guarantees that | B2 (𝑣) ∩𝐿 2 (𝑣)| is at least the number of edges in 𝜑 1+𝜑 deg 𝑥 . As a consequence, if some 𝑒 = (𝑢, 𝑤) ∈</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_1"><head>Table 1 :</head><label>1</label><figDesc>Summary table of real networks used in the experiments.</figDesc><table><row><cell>true and</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_2"><head>Table 3 :</head><label>3</label><figDesc>Mean and standard deviation of absolute percentage errors for Jaccard similarity estimation, with 100 hash functions. Queries were made at the end of the insertion sequence.</figDesc><table><row><cell></cell><cell>𝑘</cell><cell>𝜑 = 0.1</cell><cell>𝜑 = 0.5</cell><cell>𝜑 = 1</cell><cell>baseline</cell></row><row><cell></cell><cell cols="4">0 0.11 ± 0.09 0.13 ± 0.09 0.11 ± 0.09</cell></row><row><cell>linux</cell><cell cols="4">2 0.09 ± 0.07 0.12 ± 0.09 0.11 ± 0.09 4 0.10 ± 0.08 0.12 ± 0.09 0.10 ± 0.08</cell><cell>0.10 ± 0.08</cell></row><row><cell></cell><cell cols="4">8 0.09 ± 0.07 0.12 ± 0.09 0.10 ± 0.08</cell></row><row><cell>fb-wosn</cell><cell cols="4">0 0.70 ± 0.25 0.72 ± 0.24 0.74 ± 0.23 2 0.70 ± 0.24 0.70 ± 0.25 0.72 ± 0.24 4 0.70 ± 0.24 0.70 ± 0.24 0.72 ± 0.24 8 0.70 ± 0.24 0.70 ± 0.24 0.71 ± 0.25</cell><cell>0.70 ± 0.24</cell></row><row><cell></cell><cell cols="4">0 0.09 ± 0.09 0.14 ± 0.12 0.15 ± 0.12</cell></row><row><cell>enron</cell><cell cols="4">2 0.10 ± 0.09 0.12 ± 0.10 0.14 ± 0.12 4 0.09 ± 0.09 0.11 ± 0.10 0.13 ± 0.11</cell><cell>0.09 ± 0.09</cell></row><row><cell></cell><cell cols="4">8 0.10 ± 0.09 0.10 ± 0.09 0.11 ± 0.10</cell></row><row><cell>flickr</cell><cell cols="4">0 0.12 ± 0.09 0.11 ± 0.09 0.11 ± 0.09 2 0.11 ± 0.08 0.10 ± 0.08 0.11 ± 0.09 4 0.11 ± 0.08 0.10 ± 0.08 0.10 ± 0.08 8 0.11 ± 0.08 0.10 ± 0.08 0.11 ± 0.08</cell><cell>0.11 ± 0.09</cell></row><row><cell>youtube</cell><cell cols="4">0 0.12 ± 0.09 0.11 ± 0.09 0.17 ± 0.13 2 0.11 ± 0.09 0.11 ± 0.09 0.15 ± 0.11 4 0.11 ± 0.09 0.13 ± 0.10 0.16 ± 0.11 8 0.11 ± 0.09 0.12 ± 0.09 0.14 ± 0.10</cell><cell>0.11 ± 0.09</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_3"><head>Table 4 :</head><label>4</label><figDesc>Speed up with respect to the baseline, using KMV probabilistic counters<ref type="bibr" target="#b4">[5]</ref>, with size 32.</figDesc><table><row><cell></cell><cell></cell><cell></cell><cell>𝜑</cell><cell></cell><cell></cell></row><row><cell></cell><cell>𝑘</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell></cell><cell>0.1</cell><cell>0.25</cell><cell>0.5</cell><cell>0.75</cell><cell>1</cell></row><row><cell></cell><cell cols="5">0 14.39x 22.73x 30.27x 32.36x 35.65x</cell></row><row><cell>linux</cell><cell cols="5">2 12.00x 18.22x 22.03x 21.49x 23.18x 4 11.52x 15.34x 17.63x 16.93x 17.54x</cell></row><row><cell></cell><cell cols="5">8 9.57x 11.86x 12.80x 12.03x 12.22x</cell></row><row><cell>fb-wosn</cell><cell>0 5.48x 2 5.22x 4 4.32x 8 3.79x</cell><cell cols="4">9.40x 11.15x 15.23x 16.22x 7.35x 7.16x 9.21x 9.67x 6.14x 6.05x 7.18x 7.23x 4.38x 4.91x 5.31x 5.22x</cell></row><row><cell></cell><cell>0 4.17x</cell><cell>5.38x</cell><cell>6.64x</cell><cell>7.12x</cell><cell>7.70x</cell></row><row><cell>enron</cell><cell>2 3.61x 4 3.05x</cell><cell>4.11x 3.42x</cell><cell>4.68x 3.78x</cell><cell>4.82x 3.96x</cell><cell>5.27x 4.21x</cell></row><row><cell></cell><cell>8 2.51x</cell><cell>2.73x</cell><cell>2.85x</cell><cell>3.01x</cell><cell>3.12x</cell></row><row><cell></cell><cell cols="5">0 13.52x 19.97x 26.54x 31.51x 34.20x</cell></row><row><cell>flickr</cell><cell cols="5">2 12.16x 16.41x 19.52x 21.93x 22.61x 4 10.76x 13.96x 16.35x 17.17x 17.79x</cell></row><row><cell></cell><cell cols="5">8 9.10x 11.19x 12.36x 12.99x 13.28x</cell></row><row><cell>youtube</cell><cell cols="5">0 41.61x 61.80x 77.08x 86.50x 93.73x 2 38.16x 51.64x 60.39x 64.93x 65.51x 4 36.08x 47.43x 52.26x 55.06x 55.90x 8 33.33x 39.60x 42.73x 43.61x 43.82x</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_4"><head>Table 5 :</head><label>5</label><figDesc>Total running time for ball size estimation using probabilistic counters, for com-friendster dataset. The time for the baseline algorithm is not reported since it exceed a time limit of 36 hrs. ′ 2ℎ 55 ′ 1ℎ 53 ′ 1ℎ 27 ′ 1ℎ 18 ′ 2 6ℎ 3 ′ 3ℎ 48 ′ 2ℎ 59 ′ 2ℎ 42 ′ 2ℎ 34 ′ 4 6ℎ 50 ′ 4ℎ 42 ′ 3ℎ 56 ′ 3ℎ 39 ′ 3ℎ 32 ′ 8 8ℎ 23 ′ 6ℎ 53 ′ 5ℎ 54 ′ 5ℎ 30 ′ 5ℎ 19 ′</figDesc><table><row><cell></cell><cell></cell><cell>𝜑</cell><cell></cell><cell></cell></row><row><cell>𝑘</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>0.1</cell><cell>0.25</cell><cell>0.5</cell><cell>0.75</cell><cell>1</cell></row><row><cell>0 5ℎ 2</cell><cell></cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_5"><head>Table 6 :</head><label>6</label><figDesc>Mean and standard deviation of absolute percentage errors for 2-hop neighborhood size estimation. Size estimates were made using the KMV counter<ref type="bibr" target="#b4">[5]</ref>, with size 32. Each result is done on 10 independent runs, over a sample of the first 5000 vertices with the largest 2-hop neighborhood, after the insertion of 50% of the edges.</figDesc><table><row><cell></cell><cell>𝑘</cell><cell>𝜑 = 0.1</cell><cell>𝜑 = 0.25</cell><cell>𝜑 = 0.5</cell><cell>𝜑 = 0.75</cell><cell>𝜑 = 1</cell><cell>baseline</cell></row><row><cell></cell><cell cols="6">0 0.14 ± 0.12 0.13 ± 0.09 0.16 ± 0.11 0.21 ± 0.13 0.23 ± 0.13</cell></row><row><cell>linux</cell><cell cols="6">2 0.13 ± 0.09 0.15 ± 0.11 0.14 ± 0.10 0.17 ± 0.11 0.20 ± 0.12 4 0.13 ± 0.09 0.15 ± 0.11 0.15 ± 0.10 0.15 ± 0.11 0.17 ± 0.11</cell><cell>0.12 ± 0.10</cell></row><row><cell></cell><cell cols="6">8 0.14 ± 0.11 0.13 ± 0.10 0.12 ± 0.09 0.20 ± 0.13 0.17 ± 0.11</cell></row><row><cell>fb-wosn</cell><cell cols="6">0 0.15 ± 0.12 0.16 ± 0.10 0.19 ± 0.11 0.21 ± 0.11 0.27 ± 0.13 2 0.14 ± 0.10 0.14 ± 0.10 0.16 ± 0.11 0.20 ± 0.12 0.20 ± 0.11 4 0.14 ± 0.11 0.14 ± 0.10 0.15 ± 0.10 0.17 ± 0.12 0.17 ± 0.11 8 0.14 ± 0.12 0.14 ± 0.11 0.15 ± 0.11 0.15 ± 0.11 0.15 ± 0.10</cell><cell>0.13 ± 0.11</cell></row><row><cell></cell><cell cols="6">0 0.13 ± 0.10 0.16 ± 0.11 0.15 ± 0.10 0.18 ± 0.12 0.19 ± 0.13</cell></row><row><cell>enron</cell><cell cols="6">2 0.14 ± 0.11 0.14 ± 0.11 0.16 ± 0.12 0.15 ± 0.11 0.16 ± 0.11 4 0.14 ± 0.12 0.14 ± 0.11 0.15 ± 0.10 0.15 ± 0.12 0.15 ± 0.12</cell><cell>0.14 ± 0.12</cell></row><row><cell></cell><cell cols="6">8 0.13 ± 0.10 0.13 ± 0.11 0.14 ± 0.10 0.15 ± 0.13 0.16 ± 0.13</cell></row><row><cell>flickr</cell><cell cols="6">0 0.19 ± 0.15 0.16 ± 0.12 0.18 ± 0.12 0.16 ± 0.12 0.17 ± 0.12 2 0.15 ± 0.11 0.15 ± 0.11 0.12 ± 0.10 0.16 ± 0.13 0.12 ± 0.09 4 0.13 ± 0.09 0.15 ± 0.12 0.14 ± 0.11 0.15 ± 0.11 0.15 ± 0.11 8 0.13 ± 0.11 0.19 ± 0.15 0.14 ± 0.12 0.13 ± 0.11 0.13 ± 0.09</cell><cell>0.14 ± 0.12</cell></row></table><note>youtube 0 0.14 ± 0.11 0.16 ± 0.12 0.17 ± 0.11 0.22 ± 0.12 0.24 ± 0.13 0.15 ± 0.12 2 0.14 ± 0.10 0.15 ± 0.11 0.15 ± 0.11 0.18 ± 0.12 0.18 ± 0.11 4 0.15 ± 0.12 0.15 ± 0.11 0.15 ± 0.11 0.16 ± 0.11 0.17 ± 0.12 8 0.15 ± 0.13 0.14 ± 0.12 0.14 ± 0.11 0.16 ± 0.11 0.16 ± 0.11</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_6"><head>Table 7 :</head><label>7</label><figDesc>Mean and standard deviation of absolute percentage errors for 2-hop neighborhood size estimation. Size estimates were made using the KMV counter<ref type="bibr" target="#b4">[5]</ref>, with size 32. Each result is done on 10 independent runs, over a sample of the first 5000 vertices with the largest 2-hop neighborhood, after the insertion of 75% of the edges.</figDesc><table><row><cell></cell><cell>𝑘</cell><cell>𝜑 = 0.1</cell><cell>𝜑 = 0.25</cell><cell>𝜑 = 0.5</cell><cell>𝜑 = 0.75</cell><cell>𝜑 = 1</cell><cell>baseline</cell></row><row><cell></cell><cell cols="6">0 0.13 ± 0.11 0.14 ± 0.10 0.19 ± 0.15 0.18 ± 0.12 0.18 ± 0.12</cell></row><row><cell>linux</cell><cell cols="6">2 0.14 ± 0.11 0.15 ± 0.10 0.14 ± 0.10 0.16 ± 0.11 0.17 ± 0.11 4 0.14 ± 0.09 0.16 ± 0.11 0.16 ± 0.12 0.14 ± 0.11 0.15 ± 0.10</cell><cell>0.11 ± 0.09</cell></row><row><cell></cell><cell cols="6">8 0.15 ± 0.13 0.14 ± 0.10 0.13 ± 0.09 0.19 ± 0.15 0.14 ± 0.10</cell></row><row><cell>fb-wosn</cell><cell cols="6">0 0.16 ± 0.12 0.15 ± 0.10 0.16 ± 0.11 0.17 ± 0.11 0.22 ± 0.12 2 0.13 ± 0.10 0.14 ± 0.10 0.15 ± 0.10 0.17 ± 0.11 0.18 ± 0.11 4 0.14 ± 0.11 0.14 ± 0.11 0.15 ± 0.10 0.16 ± 0.13 0.16 ± 0.11 8 0.15 ± 0.13 0.13 ± 0.11 0.14 ± 0.11 0.14 ± 0.10 0.15 ± 0.11</cell><cell>0.14 ± 0.11</cell></row><row><cell></cell><cell cols="6">0 0.13 ± 0.10 0.16 ± 0.12 0.15 ± 0.11 0.18 ± 0.12 0.20 ± 0.13</cell></row><row><cell>enron</cell><cell cols="6">2 0.14 ± 0.11 0.14 ± 0.10 0.17 ± 0.12 0.15 ± 0.11 0.16 ± 0.12 4 0.14 ± 0.12 0.14 ± 0.10 0.15 ± 0.11 0.16 ± 0.12 0.16 ± 0.12</cell><cell>0.13 ± 0.11</cell></row><row><cell></cell><cell cols="6">8 0.13 ± 0.10 0.15 ± 0.11 0.14 ± 0.10 0.14 ± 0.11 0.16 ± 0.13</cell></row><row><cell>flickr</cell><cell cols="6">0 0.18 ± 0.15 0.16 ± 0.11 0.19 ± 0.12 0.16 ± 0.11 0.18 ± 0.11 2 0.14 ± 0.11 0.16 ± 0.12 0.12 ± 0.09 0.16 ± 0.11 0.14 ± 0.09 4 0.14 ± 0.09 0.17 ± 0.13 0.13 ± 0.10 0.15 ± 0.11 0.16 ± 0.10 8 0.13 ± 0.10 0.17 ± 0.13 0.13 ± 0.10 0.13 ± 0.10 0.14 ± 0.10</cell><cell>0.17 ± 0.14</cell></row><row><cell>youtube</cell><cell cols="6">0 0.14 ± 0.11 0.15 ± 0.10 0.19 ± 0.11 0.21 ± 0.11 0.24 ± 0.12</cell><cell>0.13 ± 0.10</cell></row></table><note>2 0.15 ± 0.13 0.14 ± 0.09 0.15 ± 0.11 0.15 ± 0.11 0.17 ± 0.10 4 0.14 ± 0.11 0.15 ± 0.10 0.16 ± 0.12 0.14 ± 0.09 0.16 ± 0.11 8 0.15 ± 0.12 0.14 ± 0.11 0.13 ± 0.09 0.14 ± 0.10 0.16 ± 0.10</note></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_7"><head>Table 8 :</head><label>8</label><figDesc>Mean and standard deviation of absolute percentage errors for 2-hop neighborhood size estimation. Size estimates were made using the KMV probabilistic counter<ref type="bibr" target="#b4">[5]</ref>, with size 32. Each result is done on 10 independent runs, over a sample of the first 5000 vertices with the largest 2-hop neighborhood, after the insertion of 100% of the edges. ± 0.11 0.14 ± 0.11 0.15 ± 0.10 0.16 ± 0.12 0.16 ± 0.11 8 0.16 ± 0.13 0.13 ± 0.11 0.14 ± 0.10 0.14 ± 0.10 0.15 ± 0.11</figDesc><table><row><cell></cell><cell>𝑘</cell><cell>𝜑 = 0.1</cell><cell>𝜑 = 0.25</cell><cell>𝜑 = 0.5</cell><cell>𝜑 = 0.75</cell><cell>𝜑 = 1</cell><cell>baseline</cell></row><row><cell></cell><cell cols="6">0 0.14 ± 0.12 0.14 ± 0.10 0.19 ± 0.14 0.16 ± 0.11 0.17 ± 0.11</cell></row><row><cell>linux</cell><cell cols="6">2 0.13 ± 0.11 0.16 ± 0.10 0.14 ± 0.10 0.15 ± 0.11 0.16 ± 0.11 4 0.14 ± 0.09 0.16 ± 0.11 0.17 ± 0.12 0.15 ± 0.14 0.14 ± 0.10</cell><cell>0.12 ± 0.10</cell></row><row><cell></cell><cell cols="6">8 0.14 ± 0.11 0.13 ± 0.10 0.14 ± 0.09 0.21 ± 0.16 0.13 ± 0.10</cell></row><row><cell>fb-wosn</cell><cell cols="6">0 0.16 ± 0.12 0.15 ± 0.10 0.15 ± 0.11 0.17 ± 0.11 0.21 ± 0.12 2 0.13 ± 0.09 0.14 ± 0.10 0.15 ± 0.10 0.17 ± 0.11 0.17 ± 0.11 4 0.14</cell><cell>0.14 ± 0.11</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_8"><head>Table 9 :</head><label>9</label><figDesc>Mean and standard deviation of absolute percentage errors for Jaccard similarity estimation, with 100 hash functions. Queries were made after inserting the first 50% of the edges. ± 0.07 0.11 ± 0.09 0.10 ± 0.08 0.11 ± 0.08 0.15 ± 0.11 4 0.09 ± 0.08 0.11 ± 0.08 0.11 ± 0.09 0.11 ± 0.09 0.11 ± 0.09 8 0.09 ± 0.07 0.11 ± 0.08 0.10 ± 0.08 0.11 ± 0.08 0.11 ± 0.09 fb-wosn 0 0.80 ± 0.25 0.80 ± 0.25 0.80 ± 0.24 0.81 ± 0.24 0.81 ± 0.24 0.80 ± 0.24 2 0.80 ± 0.24 0.79 ± 0.25 0.79 ± 0.25 0.80 ± 0.24 0.81 ± 0.24 4 0.79 ± 0.25 0.79 ± 0.25 0.80 ± 0.24 0.80 ± 0.24 0.80 ± 0.24 8 0.80 ± 0.24 0.79 ± 0.25 0.79 ± 0.25 0.80 ± 0.24 0.80 ± 0.24 enron 0 0.09 ± 0.09 0.11 ± 0.10 0.12 ± 0.10 0.13 ± 0.11 0.14 ± 0.11 0.09 ± 0.09 2 0.09 ± 0.09 0.11 ± 0.10 0.11 ± 0.10 0.12 ± 0.10 0.13 ± 0.11 4 0.09 ± 0.08 0.10 ± 0.09 0.11 ± 0.10 0.12 ± 0.10 0.12 ± 0.10 8 0.09 ± 0.09 0.10 ± 0.09 0.10 ± 0.09 0.11 ± 0.09 0.10 ± 0.09 flickr 0 0.10 ± 0.08 0.10 ± 0.08 0.11 ± 0.09 0.11 ± 0.09 0.12 ± 0.10 0.11 ± 0.09 2 0.10 ± 0.08 0.11 ± 0.09 0.10 ± 0.08 0.12 ± 0.09 0.11 ± 0.09 4 0.11 ± 0.08 0.11 ± 0.09 0.10 ± 0.08 0.11 ± 0.08 0.11 ± 0.08 8 0.11 ± 0.08 0.11 ± 0.09 0.10 ± 0.08 0.12 ± 0.09 0.11 ± 0.09 youtube 0 0.10 ± 0.09 0.10 ± 0.09 0.10 ± 0.08 0.11 ± 0.09 0.13 ± 0.11 0.12 ± 0.10 2 0.11 ± 0.09 0.11 ± 0.10 0.11 ± 0.09 0.16 ± 0.12 0.12 ± 0.09 4 0.10 ± 0.08 0.10 ± 0.08 0.13 ± 0.11 0.18 ± 0.13 0.13 ± 0.09 8 0.10 ± 0.08 0.10 ± 0.08 0.11 ± 0.09 0.15 ± 0.11 0.16 ± 0.11</figDesc><table><row><cell></cell><cell>𝑘</cell><cell>𝜑 = 0.1</cell><cell>𝜑 = 0.25</cell><cell>𝜑 = 0.5</cell><cell>𝜑 = 0.75</cell><cell>𝜑 = 1</cell><cell>baseline</cell></row><row><cell></cell><cell cols="6">0 0.11 ± 0.09 0.11 ± 0.09 0.09 ± 0.08 0.12 ± 0.09 0.14 ± 0.10</cell></row><row><cell>linux</cell><cell cols="2">2 0.09</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell>0.08 ± 0.07</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_9"><head>Table 10 :</head><label>10</label><figDesc>Mean and standard deviation of absolute percentage errors for Jaccard similarity estimation, with 100 hash functions. Queries were made after inserting the first 75% of the edges. ± 0.09 0.11 ± 0.09 0.09 ± 0.08 0.12 ± 0.09 0.14 ± 0.10 0.08 ± 0.07 2 0.09 ± 0.07 0.11 ± 0.09 0.10 ± 0.08 0.11 ± 0.08 0.15 ± 0.11 4 0.09 ± 0.08 0.11 ± 0.08 0.11 ± 0.09 0.11 ± 0.09 0.11 ± 0.09 8 0.09 ± 0.07 0.11 ± 0.08 0.10 ± 0.08 0.11 ± 0.08 0.11 ± 0.09 fb-wosn 0 0.80 ± 0.25 0.80 ± 0.25 0.80 ± 0.24 0.81 ± 0.24 0.81 ± 0.24 0.80 ± 0.24 2 0.80 ± 0.24 0.79 ± 0.25 0.79 ± 0.25 0.80 ± 0.24 0.81 ± 0.24 4 0.79 ± 0.25 0.79 ± 0.25 0.80 ± 0.24 0.80 ± 0.24 0.80 ± 0.24 8 0.80 ± 0.24 0.79 ± 0.25 0.79 ± 0.25 0.80 ± 0.24 0.80 ± 0.24 enron 0 0.09 ± 0.09 0.11 ± 0.10 0.12 ± 0.10 0.13 ± 0.11 0.14 ± 0.11 0.09 ± 0.09 2 0.09 ± 0.09 0.11 ± 0.10 0.11 ± 0.10 0.12 ± 0.10 0.13 ± 0.11 4 0.09 ± 0.08 0.10 ± 0.09 0.11 ± 0.10 0.12 ± 0.10 0.12 ± 0.10 8 0.09 ± 0.09 0.10 ± 0.09 0.10 ± 0.09 0.11 ± 0.09 0.10 ± 0.09 flickr 0 0.10 ± 0.08 0.10 ± 0.08 0.11 ± 0.09 0.11 ± 0.09 0.12 ± 0.10 0.11 ± 0.09 2 0.10 ± 0.08 0.11 ± 0.09 0.10 ± 0.08 0.12 ± 0.09 0.11 ± 0.09 4 0.11 ± 0.08 0.11 ± 0.09 0.10 ± 0.08 0.11 ± 0.08 0.11 ± 0.08 8 0.11 ± 0.08 0.11 ± 0.09 0.10 ± 0.08 0.12 ± 0.09 0.11 ± 0.09 youtube 0 0.10 ± 0.09 0.10 ± 0.09 0.10 ± 0.08 0.11 ± 0.09 0.13 ± 0.11 0.12 ± 0.10 2 0.11 ± 0.09 0.11 ± 0.10 0.11 ± 0.09 0.16 ± 0.12 0.12 ± 0.09 4 0.10 ± 0.08 0.10 ± 0.08 0.13 ± 0.11 0.18 ± 0.13 0.13 ± 0.09 8 0.10 ± 0.08 0.10 ± 0.08 0.11 ± 0.09 0.15 ± 0.11 0.16 ± 0.11</figDesc><table><row><cell>𝑘</cell><cell>𝜑 = 0.1</cell><cell>𝜑 = 0.25</cell><cell>𝜑 = 0.5</cell><cell>𝜑 = 0.75</cell><cell>𝜑 = 1</cell><cell>baseline</cell></row><row><cell cols="2">0 0.11</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell>linux</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_10"><head>Table 11 :</head><label>11</label><figDesc>Mean and standard deviation of absolute percentage errors for Jaccard similarity estimation, with 100 hash functions. Queries were made after inserting the first 100% of the edges. ± 0.07 0.11 ± 0.09 0.10 ± 0.08 0.11 ± 0.08 0.15 ± 0.11 4 0.09 ± 0.08 0.11 ± 0.08 0.11 ± 0.09 0.11 ± 0.09 0.11 ± 0.09 8 0.09 ± 0.07 0.11 ± 0.08 0.10 ± 0.08 0.11 ± 0.08 0.11 ± 0.09 fb-wosn 0 0.80 ± 0.25 0.80 ± 0.25 0.80 ± 0.24 0.81 ± 0.24 0.81 ± 0.24 0.80 ± 0.24 2 0.80 ± 0.24 0.79 ± 0.25 0.79 ± 0.25 0.80 ± 0.24 0.81 ± 0.24 4 0.79 ± 0.25 0.79 ± 0.25 0.80 ± 0.24 0.80 ± 0.24 0.80 ± 0.24 8 0.80 ± 0.24 0.79 ± 0.25 0.79 ± 0.25 0.80 ± 0.24 0.80 ± 0.24 enron 0 0.09 ± 0.09 0.11 ± 0.10 0.12 ± 0.10 0.13 ± 0.11 0.14 ± 0.11 0.09 ± 0.09 2 0.09 ± 0.09 0.11 ± 0.10 0.11 ± 0.10 0.12 ± 0.10 0.13 ± 0.11 4 0.09 ± 0.08 0.10 ± 0.09 0.11 ± 0.10 0.12 ± 0.10 0.12 ± 0.10 8 0.09 ± 0.09 0.10 ± 0.09 0.10 ± 0.09 0.11 ± 0.09 0.10 ± 0.09 flickr 0 0.10 ± 0.08 0.10 ± 0.08 0.11 ± 0.09 0.11 ± 0.09 0.12 ± 0.10 0.11 ± 0.09 2 0.10 ± 0.08 0.11 ± 0.09 0.10 ± 0.08 0.12 ± 0.09 0.11 ± 0.09 4 0.11 ± 0.08 0.11 ± 0.09 0.10 ± 0.08 0.11 ± 0.08 0.11 ± 0.08 8 0.11 ± 0.08 0.11 ± 0.09 0.10 ± 0.08 0.12 ± 0.09 0.11 ± 0.09 youtube 0 0.10 ± 0.09 0.10 ± 0.09 0.10 ± 0.08 0.11 ± 0.09 0.13 ± 0.11 0.12 ± 0.10 2 0.11 ± 0.09 0.11 ± 0.10 0.11 ± 0.09 0.16 ± 0.12 0.12 ± 0.09 4 0.10 ± 0.08 0.10 ± 0.08 0.13 ± 0.11 0.18 ± 0.13 0.13 ± 0.09 8 0.10 ± 0.08 0.10 ± 0.08 0.11 ± 0.09 0.15 ± 0.11 0.16 ± 0.11</figDesc><table><row><cell></cell><cell>𝑘</cell><cell>𝜑 = 0.1</cell><cell>𝜑 = 0.25</cell><cell>𝜑 = 0.5</cell><cell>𝜑 = 0.75</cell><cell>𝜑 = 1</cell><cell>baseline</cell></row><row><cell></cell><cell cols="6">0 0.11 ± 0.09 0.11 ± 0.09 0.09 ± 0.08 0.12 ± 0.09 0.14 ± 0.10</cell></row><row><cell>linux</cell><cell cols="2">2 0.09</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell>0.08 ± 0.07</cell></row></table></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_11"><head>Table 12 :</head><label>12</label><figDesc>Speed up with respect to the baseline, using minhash sketches, with 100 hash functions. .15x 20.52x 22.13x 23.10x 2 11.18x 14.69x 16.81x 17.66x 18.19x 4 10.36x 13.11x 14.63x 15.22x 15.59x 8 9.08x 10.90x 11.76x 12.10x 12.32x youtube 0 41.70x 53.71x 62.06x 66.81x 69.02x 2 38.74x 47.56x 52.71x 55.24x 56.28x 4 36.69x 43.71x 47.37x 49.06x 49.79x 8 33.38x 38.10x 40.17x 40.92x 41.30x</figDesc><table><row><cell></cell><cell></cell><cell></cell><cell>𝜑</cell><cell></cell><cell></cell></row><row><cell></cell><cell>𝑘</cell><cell></cell><cell></cell><cell></cell><cell></cell></row><row><cell></cell><cell>0.1</cell><cell>0.25</cell><cell>0.5</cell><cell>0.75</cell><cell>1</cell></row><row><cell></cell><cell>0 6.73x</cell><cell>8.01x</cell><cell>8.67x</cell><cell>8.96x</cell><cell>9.08x</cell></row><row><cell>linux</cell><cell>2 6.35x 4 6.04x</cell><cell>7.36x 6.90x</cell><cell>7.85x 7.26x</cell><cell>8.03x 7.38x</cell><cell>8.11x 7.45x</cell></row><row><cell></cell><cell>8 5.52x</cell><cell>6.13x</cell><cell>6.35x</cell><cell>6.40x</cell><cell>6.45x</cell></row><row><cell>fb-wosn</cell><cell>0 2.55x 2 2.38x 4 2.27x 8 2.07x</cell><cell>3.13x 2.80x 2.60x 2.28x</cell><cell>3.47x 3.04x 2.76x 2.37x</cell><cell>3.63x 3.13x 2.81x 2.38x</cell><cell>3.70x 3.18x 2.86x 2.41x</cell></row><row><cell></cell><cell>0 1.85x</cell><cell>1.99x</cell><cell>2.07x</cell><cell>2.10x</cell><cell>2.12x</cell></row><row><cell>enron</cell><cell>2 1.77x 4 1.70x</cell><cell>1.88x 1.80x</cell><cell>1.94x 1.84x</cell><cell>1.96x 1.86x</cell><cell>1.97x 1.86x</cell></row><row><cell></cell><cell>8 1.59x</cell><cell>1.65x</cell><cell>1.67x</cell><cell>1.68x</cell><cell>1.68x</cell></row><row><cell></cell><cell cols="2">0 12.36x 17</cell><cell></cell><cell></cell><cell></cell></row><row><cell>flickr</cell><cell></cell><cell></cell><cell></cell><cell></cell><cell></cell></row></table></figure>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="3" xml:id="foot_0">The class is in fact more general since it also includes graphs with a "bounded" number of cycles of length at most</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_1">. See Definition 4.1, for a formal definition of this class.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="4" xml:id="foot_2">At least the undirected ones.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="5" xml:id="foot_3">Of course, in this case we have directed ℎ-balls, i.e., sets of a vertices that can be reached in at most ℎ hops from a given vertex, or from which it is possible to reach the vertex under consideration in at most ℎ hops.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="6" xml:id="foot_4">The amortized analysis is a well-known method originally introduced in<ref type="bibr" target="#b41">[41]</ref> that allows to compute tight bounds on the cost of a sequence of operations, rather than the worst-case cost of an individual operation. In more detail, we average the cost of a worst case sequence of operations to obtain a more meaningful cost per operation.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="7" xml:id="foot_5">It should be noted that this includes the general case in which 𝑡 is any intermediate point of a longer stream that possibly extends well beyond 𝑡 . In this case, it is wellknown and easy to see that, conditioned on the subset 𝐸 of the edges released up to time 𝑡 , their sequence is just a permutation of 𝐸.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="8" xml:id="foot_6">Again, the specific sketch (or sketches) used depends on the neighborhood queries one wants to support.</note>
+			<note xmlns="http://www.tei-c.org/ns/1.0" place="foot" n="9" xml:id="foot_7">One could alternatively define the ℎ-ball of 𝑢 as the subset of vertices from which it is possible to reach 𝑢 traversing at most ℎ directed edges. We stick to the former definition, which is more frequent in social network analysis.</note>
+		</body>
+		<back>
+			<div type="annex">
+<div xmlns="http://www.tei-c.org/ns/1.0" />			</div>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<analytic>
+		<title level="a" type="main">Mergeable summaries</title>
+		<author>
+			<persName><forename type="first">Graham</forename><surname>Pankaj K Agarwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zengfeng</forename><surname>Cormode</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jeff</forename><forename type="middle">M</forename><surname>Huang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Zhewei</forename><surname>Phillips</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ke</forename><surname>Wei</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Yi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Database Systems (TODS)</title>
+		<imprint>
+			<biblScope unit="volume">38</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="1" to="28" />
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<analytic>
+		<title level="a" type="main">Evolutionary network analysis: A survey</title>
+		<author>
+			<persName><forename type="first">Charu</forename><surname>Aggarwal</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Karthik</forename><surname>Subbian</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Computing Surveys (CSUR)</title>
+		<imprint>
+			<biblScope unit="volume">47</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="36" />
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Four degrees of separation</title>
+		<author>
+			<persName><forename type="first">Lars</forename><surname>Backstrom</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paolo</forename><surname>Boldi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marco</forename><surname>Rosa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Johan</forename><surname>Ugander</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sebastiano</forename><surname>Vigna</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 4th annual ACM Web science conference</title>
+				<meeting>the 4th annual ACM Web science conference</meeting>
+		<imprint>
+			<date type="published" when="2012">2012</date>
+			<biblScope unit="page" from="33" to="42" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<analytic>
+		<title level="a" type="main">An overview of similarity-based methods in predicting social network links: A comparative analysis</title>
+		<author>
+			<persName><forename type="first">U</forename><surname>Sachin</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Balvir</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Mukesh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Purushottam</forename><forename type="middle">D</forename><surname>Raghuwanshi</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Shobhane</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Access</title>
+		<imprint>
+			<biblScope unit="volume">12</biblScope>
+			<biblScope unit="page" from="120913" to="120934" />
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">Counting distinct elements in a data stream</title>
+		<author>
+			<persName><forename type="first">Ziv</forename><surname>Bar-Yossef</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">T</forename><forename type="middle">S</forename><surname>Jayram</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ravi</forename><surname>Kumar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">D</forename><surname>Sivakumar</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luca</forename><surname>Trevisan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 6th International Workshop on Randomization and Approximation Techniques, RANDOM &apos;02</title>
+				<meeting>the 6th International Workshop on Randomization and Approximation Techniques, RANDOM &apos;02<address><addrLine>Berlin, Heidelberg</addrLine></address></meeting>
+		<imprint>
+			<publisher>Springer-Verlag</publisher>
+			<date type="published" when="2002">2002</date>
+			<biblScope unit="page" from="1" to="10" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Efficient semistreaming algorithms for local triangle counting in massive graphs</title>
+		<author>
+			<persName><forename type="first">Luca</forename><surname>Becchetti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paolo</forename><surname>Boldi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Carlos</forename><surname>Castillo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Aristides</forename><surname>Gionis</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 14th ACM SIGKDD international conference on Knowledge discovery and data mining</title>
+				<meeting>the 14th ACM SIGKDD international conference on Knowledge discovery and data mining</meeting>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="page" from="16" to="24" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Link analysis for web spam detection</title>
+		<author>
+			<persName><forename type="first">Luca</forename><surname>Becchetti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Carlos</forename><surname>Castillo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Debora</forename><surname>Donato</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ricardo</forename><surname>Baeza-Yates</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stefano</forename><surname>Leonardi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on the Web (TWEB)</title>
+		<imprint>
+			<biblScope unit="volume">2</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="42" />
+			<date type="published" when="2008">2008</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Hyperanf: Approximating the neighbourhood function of very large graphs on a budget</title>
+		<author>
+			<persName><forename type="first">Paolo</forename><surname>Boldi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marco</forename><surname>Rosa</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sebastiano</forename><surname>Vigna</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 20th international conference on World Wide Web</title>
+				<meeting>the 20th international conference on World Wide Web</meeting>
+		<imprint>
+			<date type="published" when="2011">2011</date>
+			<biblScope unit="page" from="625" to="634" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">On the resemblance and containment of documents</title>
+		<author>
+			<persName><forename type="first">Andrei</forename><forename type="middle">Z</forename><surname>Broder</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings. Compression and Complexity of SEQUENCES 1997 (Cat. No. 97TB100171)</title>
+				<meeting>Compression and Complexity of SEQUENCES 1997 (Cat. No. 97TB100171)</meeting>
+		<imprint>
+			<publisher>IEEE</publisher>
+			<date type="published" when="1997">1997</date>
+			<biblScope unit="page" from="21" to="29" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Identifying and filtering near-duplicate documents</title>
+		<author>
+			<persName><forename type="first">Andrei</forename><forename type="middle">Z</forename><surname>Broder</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Annual symposium on combinatorial pattern matching</title>
+				<imprint>
+			<publisher>Springer</publisher>
+			<date type="published" when="2000">2000</date>
+			<biblScope unit="page" from="1" to="10" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<analytic>
+		<title level="a" type="main">Completeness and robustness properties of min-wise independent permutations</title>
+		<author>
+			<persName><forename type="first">Z</forename><surname>Andrei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michael</forename><surname>Broder</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Mitzenmacher</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Random Structures &amp; Algorithms</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="18" to="30" />
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Counting triangles in data streams</title>
+		<author>
+			<persName><forename type="first">Luciana</forename><forename type="middle">S</forename><surname>Buriol</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gereon</forename><surname>Frahling</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Stefano</forename><surname>Leonardi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alberto</forename><surname>Marchetti-Spaccamela</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christian</forename><surname>Sohler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the twenty-fifth ACM SIGMOD-SIGACT-SIGART symposium on Principles of database systems</title>
+				<meeting>the twenty-fifth ACM SIGMOD-SIGACT-SIGART symposium on Principles of database systems</meeting>
+		<imprint>
+			<date type="published" when="2006">2006</date>
+			<biblScope unit="page" from="253" to="262" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Similarity search for dynamic data streams</title>
+		<author>
+			<persName><forename type="first">Marc</forename><surname>Bury</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chris</forename><surname>Schwiegelshohn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mara</forename><surname>Sorella</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Knowledge and Data Engineering</title>
+		<imprint>
+			<biblScope unit="volume">32</biblScope>
+			<biblScope unit="page" from="2241" to="2253" />
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">2-hop neighbor class similarity (2ncs): A graph structural metric indicative of graph neural network performance</title>
+		<author>
+			<persName><forename type="first">Andrea</forename><surname>Cavallo</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Grohnfeldt</forename><surname>Claas</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Russo</forename><surname>Michele</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lovisotto</forename><surname>Giulio</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luca</forename><surname>Vassio</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">3rd Workshop on Graphs and more Complex structures for Learning and Reasoning (GCLR) at AAAI 2023</title>
+				<imprint>
+			<publisher>Arxiv</publisher>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Robust lower bounds for communication and stream computation</title>
+		<author>
+			<persName><forename type="first">Amit</forename><surname>Chakrabarti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Graham</forename><surname>Cormode</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><surname>Mcgregor</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the fortieth annual ACM symposium on Theory of computing</title>
+				<meeting>the fortieth annual ACM symposium on Theory of computing</meeting>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="page" from="641" to="650" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<analytic>
+		<title level="a" type="main">Dynamic spanning trees for connectivity queries on fully-dynamic undirected graphs</title>
+		<author>
+			<persName><forename type="first">Qing</forename><surname>Chen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Oded</forename><surname>Lachish</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sven</forename><surname>Helmer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Michael</forename><forename type="middle">H</forename><surname>Böhlen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proc. VLDB Endow</title>
+				<meeting>VLDB Endow</meeting>
+		<imprint>
+			<date type="published" when="2022-07">July 2022</date>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page" from="3263" to="3276" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b16">
+	<monogr>
+		<title level="m" type="main">Maintaining k-minhash signatures over fully-dynamic data streams with recovery</title>
+		<author>
+			<persName><forename type="first">Andrea</forename><surname>Clementi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luciano</forename><surname>Gualà</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luca</forename><surname>Pepè Sciarria</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alessandro</forename><surname>Straziota</surname></persName>
+		</author>
+		<idno>CoRR, abs/2407.21614</idno>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+		</imprint>
+	</monogr>
+	<note>to appear on ACM WSDM&apos;25</note>
+</biblStruct>
+
+<biblStruct xml:id="b17">
+	<analytic>
+		<title level="a" type="main">Summarizing data using bottom-k sketches</title>
+		<author>
+			<persName><forename type="first">Edith</forename><surname>Cohen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Haim</forename><surname>Kaplan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the twenty-sixth annual ACM symposium on Principles of distributed computing</title>
+				<meeting>the twenty-sixth annual ACM symposium on Principles of distributed computing</meeting>
+		<imprint>
+			<date type="published" when="2007">2007</date>
+			<biblScope unit="page" from="225" to="234" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b18">
+	<monogr>
+		<title level="m" type="main">Graph theory</title>
+		<author>
+			<persName><forename type="first">Reinhard</forename><surname>Diestel</surname></persName>
+		</author>
+		<imprint>
+			<publisher>Springer</publisher>
+		</imprint>
+	</monogr>
+	<note>print edition</note>
+</biblStruct>
+
+<biblStruct xml:id="b19">
+	<monogr>
+		<title/>
+		<author>
+			<persName><forename type="first">Reinhard</forename><surname>Diestel</surname></persName>
+		</author>
+		<imprint>
+			<biblScope unit="page">2024</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b20">
+	<monogr>
+		<title level="m" type="main">Concentration of measure for the analysis of randomized algorithms</title>
+		<author>
+			<persName><forename type="first">P</forename><surname>Devdatt</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alessandro</forename><surname>Dubhashi</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Panconesi</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2009">2009</date>
+			<publisher>Cambridge University Press</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b21">
+	<analytic>
+		<title level="a" type="main">Yale sparse matrix package i: The symmetric codes</title>
+		<author>
+			<persName><forename type="first">C</forename><surname>Stanley</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><forename type="middle">C</forename><surname>Eisenstat</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Martin</forename><forename type="middle">H</forename><surname>Gursky</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><forename type="middle">H</forename><surname>Schultz</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Sherman</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">International Journal for Numerical Methods in Engineering</title>
+		<imprint>
+			<biblScope unit="volume">18</biblScope>
+			<biblScope unit="page" from="1145" to="1151" />
+			<date type="published" when="1982">1982</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b22">
+	<analytic>
+		<title level="a" type="main">On some extremal problems in graph theory</title>
+		<author>
+			<persName><forename type="first">Paul</forename><surname>Erdös</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Israel Journal of Mathematics</title>
+		<imprint>
+			<biblScope unit="volume">3</biblScope>
+			<biblScope unit="page" from="113" to="116" />
+			<date type="published" when="1965">1965</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b23">
+	<analytic>
+		<title level="a" type="main">An on-line edge-deletion problem</title>
+		<author>
+			<persName><forename type="first">Shimon</forename><surname>Even</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yossi</forename><surname>Shiloach</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. ACM</title>
+		<imprint>
+			<biblScope unit="volume">28</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="4" />
+			<date type="published" when="1981">1981</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b24">
+	<analytic>
+		<title level="a" type="main">On graph problems in a semi-streaming model</title>
+		<author>
+			<persName><forename type="first">Joan</forename><surname>Feigenbaum</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sampath</forename><surname>Kannan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><surname>Mcgregor</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Siddharth</forename><surname>Suri</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jian</forename><surname>Zhang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Theoretical Computer Science</title>
+		<imprint>
+			<biblScope unit="volume">348</biblScope>
+			<biblScope unit="issue">2-3</biblScope>
+			<biblScope unit="page" from="207" to="216" />
+			<date type="published" when="2005">2005</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b25">
+	<analytic>
+		<title level="a" type="main">Probabilistic counting algorithms for data base applications</title>
+		<author>
+			<persName><forename type="first">Philippe</forename><surname>Flajolet</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">G</forename><surname>Nigel</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Martin</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Journal of computer and system sciences</title>
+		<imprint>
+			<biblScope unit="volume">31</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="182" to="209" />
+			<date type="published" when="1985">1985</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b26">
+	<analytic>
+		<title level="a" type="main">Estimating simple functions on the union of data streams</title>
+		<author>
+			<persName><forename type="first">B</forename><surname>Phillip</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Srikanta</forename><surname>Gibbons</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Tirthapura</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the thirteenth annual ACM symposium on Parallel algorithms and architectures</title>
+				<meeting>the thirteenth annual ACM symposium on Parallel algorithms and architectures</meeting>
+		<imprint>
+			<date type="published" when="2001">2001</date>
+			<biblScope unit="page" from="281" to="291" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b27">
+	<analytic>
+		<title level="a" type="main">Recent advances in fully dynamic graph algorithms -A quick reference guide</title>
+		<author>
+			<persName><forename type="first">Kathrin</forename><surname>Hanauer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Monika</forename><surname>Henzinger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christian</forename><surname>Schulz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM J. Exp. Algorithmics</title>
+		<imprint>
+			<biblScope unit="volume">27</biblScope>
+			<biblScope unit="page">45</biblScope>
+			<date type="published" when="2022">2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b28">
+	<analytic>
+		<title level="a" type="main">Recent advances in fully dynamic graph algorithms -a quick reference guide</title>
+		<author>
+			<persName><forename type="first">Kathrin</forename><surname>Hanauer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Monika</forename><surname>Henzinger</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christian</forename><surname>Schulz</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM J. Exp. Algorithmics</title>
+		<imprint>
+			<biblScope unit="page">27</biblScope>
+			<date type="published" when="2022-12">December 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b29">
+	<analytic>
+		<title level="a" type="main">A fast sketch method for mining user similarities over fully dynamic graph streams</title>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Jia</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pinghui</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jing</forename><surname>Tao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiaohong</forename><surname>Guan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2019 IEEE 35th International Conference on Data Engineering (ICDE)</title>
+				<imprint>
+			<date type="published" when="2019">2019</date>
+			<biblScope unit="page" from="1682" to="1685" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b30">
+	<analytic>
+		<title level="a" type="main">Approximating matching size from random streams</title>
+		<author>
+			<persName><forename type="first">Michael</forename><surname>Kapralov</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sanjeev</forename><surname>Khanna</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Madhu</forename><surname>Sudan</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the twenty-fifth annual ACM-SIAM symposium on Discrete algorithms</title>
+				<meeting>the twenty-fifth annual ACM-SIAM symposium on Discrete algorithms</meeting>
+		<imprint>
+			<publisher>SIAM</publisher>
+			<date type="published" when="2014">2014</date>
+			<biblScope unit="page" from="734" to="751" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b31">
+	<analytic>
+		<title level="a" type="main">Parallel data processing with mapreduce: a survey</title>
+		<author>
+			<persName><forename type="first">Kyong-Ha</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yoon-Joon</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hyunsik</forename><surname>Choi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yon</forename><forename type="middle">Dohn</forename><surname>Chung</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bongki</forename><surname>Moon</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">AcM sIGMoD record</title>
+		<imprint>
+			<biblScope unit="volume">40</biblScope>
+			<biblScope unit="issue">4</biblScope>
+			<biblScope unit="page" from="11" to="20" />
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b32">
+	<monogr>
+		<author>
+			<persName><forename type="first">Jure</forename><surname>Leskovec</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrej</forename><surname>Krevl</surname></persName>
+		</author>
+		<ptr target="http://snap.stanford.edu/data" />
+		<title level="m">SNAP Datasets: Stanford large network dataset collection</title>
+				<imprint>
+			<date type="published" when="2014-06">June 2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b33">
+	<analytic>
+		<title level="a" type="main">The link prediction problem for social networks</title>
+		<author>
+			<persName><forename type="first">David</forename><surname>Liben</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">-</forename><surname>Nowell</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jon</forename><surname>Kleinberg</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the twelfth international conference on Information and knowledge management</title>
+				<meeting>the twelfth international conference on Information and knowledge management</meeting>
+		<imprint>
+			<date type="published" when="2003">2003</date>
+			<biblScope unit="page" from="556" to="559" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b34">
+	<analytic>
+		<title level="a" type="main">Graph stream algorithms: a survey</title>
+		<author>
+			<persName><forename type="first">Andrew</forename><surname>Mcgregor</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM SIGMOD Record</title>
+		<imprint>
+			<biblScope unit="volume">43</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="9" to="20" />
+			<date type="published" when="2014">2014</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b35">
+	<analytic>
+		<title level="a" type="main">Testable bounded degree graph properties are random order streamable</title>
+		<author>
+			<persName><forename type="first">Morteza</forename><surname>Monemizadeh</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pan</forename><surname>Muthukrishnan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christian</forename><surname>Peng</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Sohler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">44th International Colloquium on Automata, Languages, and Programming</title>
+				<imprint>
+			<date type="published" when="2017">2017. 2017</date>
+		</imprint>
+	</monogr>
+	<note>Schloss-Dagstuhl-Leibniz Zentrum für Informatik</note>
+</biblStruct>
+
+<biblStruct xml:id="b36">
+	<analytic>
+		<title level="a" type="main">Estimating graph parameters from random order streams</title>
+		<author>
+			<persName><forename type="first">Pan</forename><surname>Peng</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christian</forename><surname>Sohler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the Twenty-Ninth Annual ACM-SIAM Symposium on Discrete Algorithms</title>
+				<meeting>the Twenty-Ninth Annual ACM-SIAM Symposium on Discrete Algorithms</meeting>
+		<imprint>
+			<publisher>SIAM</publisher>
+			<date type="published" when="2018">2018</date>
+			<biblScope unit="page" from="2449" to="2466" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b37">
+	<analytic>
+		<title level="a" type="main">The power of simple tabulation hashing</title>
+		<author>
+			<persName><forename type="first">Mihai</forename><surname>Pătraşcu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Mikkel</forename><surname>Thorup</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">J. ACM</title>
+		<imprint>
+			<biblScope unit="volume">59</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<date type="published" when="2012-06">June 2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b38">
+	<analytic>
+		<title level="a" type="main">On dynamic shortest paths problems</title>
+		<author>
+			<persName><forename type="first">Liam</forename><surname>Roditty</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Uri</forename><surname>Zwick</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Algorithmica</title>
+		<imprint>
+			<biblScope unit="volume">61</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="389" to="401" />
+			<date type="published" when="2011">2011</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b39">
+	<analytic>
+		<title level="a" type="main">The network data repository with interactive graph analytics and visualization</title>
+		<author>
+			<persName><forename type="first">Ryan</forename><forename type="middle">A</forename><surname>Rossi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nesreen</forename><forename type="middle">K</forename><surname>Ahmed</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">AAAI</title>
+				<imprint>
+			<date type="published" when="2015">2015</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b40">
+	<monogr>
+		<title level="m" type="main">The graph neural network model</title>
+		<author>
+			<persName><forename type="first">Franco</forename><surname>Scarselli</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Marco</forename><surname>Gori</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Chung</forename><surname>Ah</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Markus</forename><surname>Tsoi</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Gabriele</forename><surname>Hagenbuchner</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Monfardini</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="volume">20</biblScope>
+			<biblScope unit="page" from="61" to="80" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b41">
+	<analytic>
+		<title level="a" type="main">Amortized computational complexity</title>
+		<author>
+			<persName><forename type="first">Robert</forename><surname>Endre</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tarjan</forename></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on Algebraic Discrete Methods</title>
+		<imprint>
+			<biblScope unit="volume">6</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="306" to="318" />
+			<date type="published" when="1985">1985</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b42">
+	<analytic>
+		<title level="a" type="main">On the evolution of user interaction in facebook</title>
+		<author>
+			<persName><forename type="first">Bimal</forename><surname>Viswanath</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Alan</forename><surname>Mislove</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Meeyoung</forename><surname>Cha</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Krishna</forename><forename type="middle">P</forename><surname>Gummadi</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">WOSN</title>
+				<imprint>
+			<date type="published" when="2009">2009</date>
+			<biblScope unit="page" from="37" to="42" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b43">
+	<analytic>
+		<title level="a" type="main">Assessment of community efforts to advance network-based prediction of protein-protein interactions</title>
+		<author>
+			<persName><surname>Xu-Wen</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lorenzo</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kerstin</forename><surname>Madeddu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Leonardo</forename><surname>Spirohn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Adriano</forename><surname>Martini</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Luca</forename><surname>Fazzone</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Becchetti</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">István</forename><forename type="middle">A</forename><surname>Thomas P Wytock</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Kovács</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">M</forename><surname>Olivér</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bettina</forename><surname>Balogh</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Benczik</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Nature communications</title>
+		<imprint>
+			<biblScope unit="volume">14</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">1582</biblScope>
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b44">
+	<analytic>
+		<title level="a" type="main">Graph neural networks: foundation, frontiers and applications</title>
+		<author>
+			<persName><forename type="first">Lingfei</forename><surname>Wu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peng</forename><surname>Cui</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jian</forename><surname>Pei</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Liang</forename><surname>Zhao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Xiaojie</forename><surname>Guo</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining</title>
+				<meeting>the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="page" from="4840" to="4841" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b45">
+	<analytic>
+		<title level="a" type="main">Multiresolution odd sketch for mining extended jaccard similarity of dynamic streaming sets</title>
+		<author>
+			<persName><forename type="first">Qingjun</forename><surname>Xiao</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shiwei</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Panpan</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kangying</forename><surname>Li</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Lin</forename><surname>Wen</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE Transactions on Network Science and Engineering</title>
+		<imprint>
+			<biblScope unit="page" from="1" to="15" />
+			<date type="published" when="2023">2023</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b46">
+	<analytic>
+		<title level="a" type="main">Defining and evaluating network communities based on ground-truth</title>
+		<author>
+			<persName><forename type="first">Jaewon</forename><surname>Yang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jure</forename><surname>Leskovec</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the ACM SIGKDD Workshop on Mining Data Semantics, MDS &apos;12</title>
+				<meeting>the ACM SIGKDD Workshop on Mining Data Semantics, MDS &apos;12<address><addrLine>New York, NY, USA</addrLine></address></meeting>
+		<imprint>
+			<publisher>Association for Computing Machinery</publisher>
+			<date type="published" when="2012">2012</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b47">
+	<analytic>
+		<title level="a" type="main">Similarity-based link prediction in social networks using latent relationships between the users</title>
+		<author>
+			<persName><forename type="first">Ahmad</forename><surname>Zareie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Rizos</forename><surname>Sakellariou</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Scientific reports</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page">20137</biblScope>
+			<date type="published" when="2020">2020</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b48">
+	<analytic>
+		<title level="a" type="main">Effective indexing for dynamic structural graph clustering</title>
+		<author>
+			<persName><forename type="first">Fangyuan</forename><surname>Zhang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Sibo</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Proceedings of the VLDB Endowment</title>
+				<meeting>the VLDB Endowment</meeting>
+		<imprint>
+			<date type="published" when="2022">2022</date>
+			<biblScope unit="volume">15</biblScope>
+			<biblScope unit="page" from="2908" to="2920" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b49">
+	<analytic>
+		<title level="a" type="main">Experimental analyses on 2-hopbased and 3-hop-based link prediction algorithms</title>
+		<author>
+			<persName><forename type="first">Tao</forename><surname>Zhou</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yan-Li</forename><surname>Lee</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Guannan</forename><surname>Wang</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Physica A: Statistical Mechanics and its Applications</title>
+		<imprint>
+			<biblScope unit="volume">564</biblScope>
+			<biblScope unit="page">125532</biblScope>
+			<date type="published" when="2021">2021</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>

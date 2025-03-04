@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="es" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Rationale - Open Science AI Project &#8212; documentación de Open Science AI Project - 0.1.0</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=ba61de6b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=f85f4cfb"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="prev" title="Open Science AI Project" href="readme.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="rationale-open-science-ai-project">
+<h1>Rationale - Open Science AI Project<a class="headerlink" href="#rationale-open-science-ai-project" title="Link to this heading">¶</a></h1>
+<section id="introduccion">
+<h2>📌 Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">¶</a></h2>
+<p>Este documento explica las decisiones técnicas detrás del <strong>Open Science AI Project</strong>, detallando por qué se eligieron ciertas herramientas y cómo se estructuró el código. También se incluyen los métodos utilizados para validar cada paso del proceso.</p>
+<p>—</p>
+<section id="eleccion-de-tecnologias">
+<h3>🔹 Elección de Tecnologías<a class="headerlink" href="#eleccion-de-tecnologias" title="Link to this heading">¶</a></h3>
+</section>
+</section>
+<section id="grobid-procesamiento-de-documentos-cientificos">
+<h2>1️⃣ <strong>Grobid - Procesamiento de Documentos Científicos</strong><a class="headerlink" href="#grobid-procesamiento-de-documentos-cientificos" title="Link to this heading">¶</a></h2>
+<p>Grobid (GeneRation Of BIbliographic Data) es una de las herramientas más avanzadas para la extracción estructurada de datos a partir de PDFs científicos. Se eligió porque:</p>
+<ul class="simple">
+<li><p>✅ Proporciona una API accesible para extraer metadatos, resúmenes y figuras.</p></li>
+<li><p>✅ Es altamente configurable y extensible para futuras mejoras.</p></li>
+<li><p>✅ Es compatible con procesamiento en lote, ideal para análisis masivos.</p></li>
+</ul>
+</section>
+<section id="python-lenguaje-de-programacion">
+<h2>2️⃣ <strong>Python - Lenguaje de Programación</strong><a class="headerlink" href="#python-lenguaje-de-programacion" title="Link to this heading">¶</a></h2>
+<p>Python es el lenguaje ideal para este proyecto debido a:</p>
+<ul class="simple">
+<li><p>✅ Su extensa comunidad científica y ecosistema de bibliotecas (<cite>pandas</cite>, <cite>matplotlib</cite>, <cite>requests</cite>, <cite>pytest</cite>, etc.).</p></li>
+<li><p>✅ Su facilidad de integración con Grobid mediante solicitudes HTTP.</p></li>
+<li><p>✅ Su compatibilidad con herramientas de análisis de datos y aprendizaje automático para futuras mejoras.</p></li>
+</ul>
+</section>
+<section id="docker-reproducibilidad-y-entorno-controlado">
+<h2>3️⃣ <strong>Docker - Reproducibilidad y Entorno Controlado</strong><a class="headerlink" href="#docker-reproducibilidad-y-entorno-controlado" title="Link to this heading">¶</a></h2>
+<p>El uso de <strong>Docker</strong> asegura que el código pueda ejecutarse en cualquier máquina sin problemas de dependencias:</p>
+<ul class="simple">
+<li><p>✅ Asegura que Grobid y el código de análisis corran en un ambiente aislado.</p></li>
+<li><p>✅ Permite compartir el proyecto sin necesidad de instalar paquetes manualmente.</p></li>
+<li><p>✅ Facilita la implementación en servidores o en la nube sin cambios en la configuración.</p></li>
+</ul>
+</section>
+<section id="docker-compose-orquestacion-de-contenedores">
+<h2>4️⃣ <strong>Docker Compose - Orquestación de Contenedores</strong><a class="headerlink" href="#docker-compose-orquestacion-de-contenedores" title="Link to this heading">¶</a></h2>
+<p>Se eligió <strong>Docker Compose</strong> para simplificar la ejecución de Grobid y el análisis:</p>
+<ul class="simple">
+<li><p>✅ Define y administra múltiples servicios en un solo archivo (<cite>docker-compose.yml</cite>).</p></li>
+<li><p>✅ Facilita la ejecución con un solo comando (<cite>docker-compose up –build</cite>).</p></li>
+<li><p>✅ Garantiza que el análisis solo se ejecute cuando Grobid esté listo.</p></li>
+</ul>
+<p>—</p>
+<section id="validacion-de-respuestas">
+<h3>🔹 Validación de Respuestas<a class="headerlink" href="#validacion-de-respuestas" title="Link to this heading">¶</a></h3>
+</section>
+</section>
+<section id="verificacion-de-extraccion-de-datos">
+<h2>1️⃣ <strong>Verificación de Extracción de Datos</strong><a class="headerlink" href="#verificacion-de-extraccion-de-datos" title="Link to this heading">¶</a></h2>
+<p>Para validar que Grobid extrae correctamente los datos de los PDFs, se implementaron pruebas unitarias en <cite>tests/test_extract.py</cite>. Estas pruebas verifican:</p>
+<ul class="simple">
+<li><p>✅ Que los archivos XML generados contienen títulos y resúmenes correctos.</p></li>
+<li><p>✅ Que el número de figuras extraídas coincide con la cantidad presente en el documento.</p></li>
+<li><p>✅ Que los enlaces dentro de los documentos sean correctamente detectados y almacenados.</p></li>
+</ul>
+</section>
+<section id="validacion-de-analisis-de-datos">
+<h2>2️⃣ <strong>Validación de Análisis de Datos</strong><a class="headerlink" href="#validacion-de-analisis-de-datos" title="Link to this heading">¶</a></h2>
+<p>Se implementaron verificaciones para garantizar que los análisis generen resultados coherentes:</p>
+<ul class="simple">
+<li><p>✅ <strong>Resultados esperados:</strong> La nube de palabras (<cite>wordcloud.png</cite>) debe reflejar palabras clave relevantes de los resúmenes.</p></li>
+<li><p>✅ <strong>Gráficos de figuras:</strong> Se comparó manualmente con los documentos para asegurar que el número de figuras sea correcto.</p></li>
+<li><p>✅ <strong>Resultados en CSV:</strong> Se verificó que <cite>results.csv</cite> contenga la estructura correcta y los datos extraídos sean consistentes.</p></li>
+</ul>
+</section>
+<section id="pruebas-de-integracion-en-docker">
+<h2>3️⃣ <strong>Pruebas de Integración en Docker</strong><a class="headerlink" href="#pruebas-de-integracion-en-docker" title="Link to this heading">¶</a></h2>
+<p>Para validar que el proyecto funciona correctamente en un entorno controlado:</p>
+<ul class="simple">
+<li><p>✅ Se ejecutó <cite>docker-compose up –build</cite> en múltiples sistemas para asegurar compatibilidad.</p></li>
+<li><p>✅ Se verificó que los archivos en <cite>output/</cite> se generen correctamente sin errores.</p></li>
+<li><p>✅ Se probó la ejecución manual dentro del contenedor para validar que <cite>main.py</cite> se ejecuta correctamente.</p></li>
+</ul>
+</section>
+<section id="manejo-de-errores-y-robustez">
+<h2>4️⃣ <strong>Manejo de Errores y Robustez</strong><a class="headerlink" href="#manejo-de-errores-y-robustez" title="Link to this heading">¶</a></h2>
+<p>Para garantizar que el sistema es resistente a fallos:</p>
+<ul class="simple">
+<li><p>✅ Se agregó una función en <cite>main.py</cite> que espera a que Grobid esté disponible antes de ejecutar el análisis.</p></li>
+<li><p>✅ Se capturan excepciones en el procesamiento de documentos para evitar que errores individuales detengan todo el análisis.</p></li>
+<li><p>✅ Se agregó control de errores en <cite>process_papers.py</cite> para manejar PDFs corruptos o vacíos.</p></li>
+</ul>
+<p>—</p>
+<section id="estructura-del-codigo">
+<h3>🔹 Estructura del Código<a class="headerlink" href="#estructura-del-codigo" title="Link to this heading">¶</a></h3>
+<p>📌 <strong>El proyecto sigue una estructura modular para facilitar la escalabilidad:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>open_science_ai_project/
+│── papers/              # PDFs a analizar
+│── output/              # Resultados generados
+│── scripts/             # Código fuente
+│   ├── main.py          # Script principal que ejecuta todo
+│   ├── process_papers.py # Procesa PDFs con Grobid
+│   ├── extract_data.py  # Extrae y analiza datos
+│── tests/               # Pruebas unitarias con pytest
+│── Dockerfile           # Definición de la imagen de Docker
+│── docker-compose.yml   # Configuración de Docker Compose
+│── requirements.txt     # Dependencias de Python
+│── README.md            # Documentación de uso
+│── RATIONALE.md         # Justificación técnica del proyecto
+</pre></div>
+</div>
+<p>✅ <strong>Se separaron claramente las responsabilidades</strong> entre la extracción de datos y el procesamiento de PDFs.
+✅ <strong>Se incluyeron pruebas unitarias</strong> para asegurar que la extracción de datos funciona correctamente.
+✅ <strong>Se definió una estructura de directorios</strong> clara y escalable para futuras expansiones.</p>
+<p>—</p>
+</section>
+<section id="mejoras-futuras">
+<h3>🔹 Mejoras Futuras<a class="headerlink" href="#mejoras-futuras" title="Link to this heading">¶</a></h3>
+<p>Algunas mejoras que podrían implementarse:</p>
+<ul class="simple">
+<li><p>📌 <strong>Soporte para análisis de gráficos y tablas dentro de los PDFs.</strong></p></li>
+<li><p>📌 <strong>Optimización del preprocesamiento de texto con NLP (Procesamiento de Lenguaje Natural).</strong></p></li>
+<li><p>📌 <strong>Mejor integración con herramientas de visualización de datos interactivas.</strong></p></li>
+<li><p>📌 <strong>Paralelización del procesamiento de múltiples documentos para mayor eficiencia.</strong></p></li>
+</ul>
+<p>—</p>
+</section>
+<section id="conclusion">
+<h3>📄 Conclusión<a class="headerlink" href="#conclusion" title="Link to this heading">¶</a></h3>
+<p>Este documento explica el razonamiento detrás de las elecciones técnicas del proyecto.
+Con Grobid, Python y Docker, el sistema es <strong>modular, escalable y fácil de ejecutar en cualquier entorno</strong>.
+Además, se implementaron validaciones para garantizar la exactitud de los datos extraídos y la robustez del sistema.</p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Open Science AI Project</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navegación</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Open Science AI Project</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Rationale - Open Science AI Project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduccion">📌 Introducción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#grobid-procesamiento-de-documentos-cientificos">1️⃣ <strong>Grobid - Procesamiento de Documentos Científicos</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-lenguaje-de-programacion">2️⃣ <strong>Python - Lenguaje de Programación</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-reproducibilidad-y-entorno-controlado">3️⃣ <strong>Docker - Reproducibilidad y Entorno Controlado</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-compose-orquestacion-de-contenedores">4️⃣ <strong>Docker Compose - Orquestación de Contenedores</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verificacion-de-extraccion-de-datos">1️⃣ <strong>Verificación de Extracción de Datos</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#validacion-de-analisis-de-datos">2️⃣ <strong>Validación de Análisis de Datos</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pruebas-de-integracion-en-docker">3️⃣ <strong>Pruebas de Integración en Docker</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manejo-de-errores-y-robustez">4️⃣ <strong>Manejo de Errores y Robustez</strong></a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="readme.html" title="capítulo anterior">Open Science AI Project</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Andrea Galindo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/rationale.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xml:space="preserve" xmlns="http://www.tei-c.org/ns/1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.tei-c.org/ns/1.0 https://raw.githubusercontent.com/kermitt2/grobid/master/grobid-home/schemas/xsd/Grobid.xsd"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+	<teiHeader xml:lang="en">
+		<fileDesc>
+			<titleStmt>
+				<title level="a" type="main">A Nonlinear Extension of the Variable Projection (VarPro) Method for NURBS-based Conformal Surface Flattening</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher/>
+				<availability status="unknown"><licence/></availability>
+				<date type="published" when="2025-02-26">26 Feb 2025</date>
+			</publicationStmt>
+			<sourceDesc>
+				<biblStruct>
+					<analytic>
+						<author role="corresp">
+							<persName><forename type="first">Masaaki</forename><surname>Miki</surname></persName>
+							<email>masaakim@g.ecc.u-tokyo.ac.jp</email>
+							<affiliation key="aff0">
+								<orgName type="institution">The University of Tokyo</orgName>
+							</affiliation>
+						</author>
+						<title level="a" type="main">A Nonlinear Extension of the Variable Projection (VarPro) Method for NURBS-based Conformal Surface Flattening</title>
+					</analytic>
+					<monogr>
+						<imprint>
+							<date type="published" when="2025-02-26">26 Feb 2025</date>
+						</imprint>
+					</monogr>
+					<idno type="MD5">600D64460EE40057E359E3B4B8437356</idno>
+					<idno type="arXiv">arXiv:2502.19088v1[cs.CG]</idno>
+				</biblStruct>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<appInfo>
+				<application version="0.7.2" ident="GROBID" when="2025-03-04T16:36+0000">
+					<desc>GROBID - A machine learning software for extracting information from scholarly documents</desc>
+					<ref target="https://github.com/kermitt2/grobid"/>
+				</application>
+			</appInfo>
+		</encodingDesc>
+		<profileDesc>
+			<textClass>
+				<keywords>
+					<term>Conformal mapping</term>
+					<term>conformal flattening</term>
+					<term>variable projection (VarPro) method</term>
+					<term>nonlinear least squares problems</term>
+				</keywords>
+			</textClass>
+			<abstract>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>In the field of computer graphics, conformal surface flattening methods have been extensively studied because they are useful in applications such as texture mapping, geometry processing, and mesh generation. However, most approaches aim to flatten a given input geometry while preserving the conformal property as much as possible. In other words, the resulting flattening is only as conformal as possible to the target surface. By contrast, this study focuses on a special class of surfaces that admits accurate conformal flattening. In this scenario, conformal flattening becomes a coupled problem: the input (or target) surface must be recursively refined while its flattening is being determined. Indeed, the uniformization theorem or the Riemann mapping theorem guarantees the existence of a conformal flattening for any surface, provided that the surface is simply connected and orientable. However, these theorems allow the conformal flattening to include singularities. If singularities are not permitted, then only a special class of surfaces admits conformal flattening-although many surfaces do fall within this class.</p><p>In this paper, we develop a nonuniform rational B-splines (NURBS)-based approach in which both the input surface and its flattening are simultaneously refined, thereby ensuring they remain mutually conformal. Because NURBS surfaces cannot represent singularities, a pair of mutually conformal surfaces taht do not have singularities are naturally obtained. Our approach is inspired by the form-finding method presented in [9, 10], which allows bilinear partial differential equations (PDEs) to be solved by iteratively refining two surfaces in concert. Building on their demonstration that the variable projection (VarPro) method is highly effective, we also attempt to employ VarPro. VarPro is a computational scheme that alternately executes a linear projection and a nonlinear iteration by assuming the problem is partially linear (separable). Because our conformal condition is separable into two nonlinear subproblems, we propose a nonlinear extension of VarPro. Although this generalization significantly increases the computational cost, the quality of the results is noteworthy.</p></div>
+			</abstract>
+		</profileDesc>
+	</teiHeader>
+	<text xml:lang="en">
+		<body>
+<div xmlns="http://www.tei-c.org/ns/1.0"><p>We present a novel conformal surface flattening algorithm that targets nonunifrom rational B-splines (NURBS) surfaces. This method is a nonlinear extension of the variable projection (VarPro) method. While most existing conformal flattening algorithms find as-conformal-as possible flattening by regarding the input surface as given, our method attempts to simultaneously refine both the target and the flattened surfaces so that the generated surfaces are mutually conformal. (a) An input surface. (b) A flattened surface. (c) A "refined" surface that is conformal to (b).</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="1">Introduction</head><p>Conformal surface flattening (or conformal surface parametrization) has been actively studied in geometry and computer graphics because it is useful for applications such as texture mapping, geometry processing, and mesh generation. Two surfaces are mutually conformal when the angle between any pair of tangent vectors at each point is preserved under the projection. In such mappings, the local stretch is uniform in every direction around each point. For instance, a tiny illustration of an elephant drawn on one surface will appear to be the same elephant on the other surface, albeit scaled. Thus, conformal mapping locally preserves shapes, which is the reason for its wide range of applications.</p><p>To date, numerous mesh-based conformal flattening methods have been proposed, such as least-squares conformal maps <ref type="bibr" target="#b7">[8]</ref>, angle-based flattening <ref type="bibr" target="#b13">[14]</ref>, and spectral conformal parametrization methods <ref type="bibr" target="#b2">[3,</ref><ref type="bibr" target="#b3">4]</ref>. Additional methods can be found in <ref type="bibr" target="#b5">[6,</ref><ref type="bibr" target="#b14">15,</ref><ref type="bibr" target="#b12">13]</ref>. However, because these methods take the input surface as given, they are limited to producing the best possible conformal flattening for that fixed surface.</p><p>In this study, we are interested in a special class of surfaces that have accurate conformal flattening. In this case, conformal flattening is fundamentally a coupled problem; the target surface must also be refined during the flattening process. Indeed, the uniformization theorem or the Riemann mapping theorem guarantees the existence of a conformal flattening for any surface, provided that the surface is simply connected and orientable. However, these theorems allow the conformal flattening to include singularities. If singularities are not permitted, then only a special class of surfaces admits conformal flattening-although many surfaces do fall within this class.</p><p>In this paper, we present a novel NURBS-based approach in which one simultaneously computes a pair of mutually conformal surfaces-a curved target surface and its corresponding planar flattening. Our algorithm concurrently refines both surfaces, as depicted in Fig. <ref type="figure" target="#fig_1">1</ref>, thereby ensuring that they remain mutually conformal.</p><p>Our approach is simply to collect all the least-squares errors of all the conditions to form a nonlinear least-squares minimization problem and solve it. Because our problem is one in which variables are naturally grouped into two groups, we explore several approaches developed for this type of problem, including the Gauss-Newton method and the variable projection (VarPro) method. Finally, we propose an inner-outer iterative algorithm as a nonlinear extension of VarPro that can effectively solve nonlinear problems that are separable into two mildly nonlinear subproblems. Thus, finding a mildly linear form for each condition is the key in this work.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2">Methodological Formulation</head><p>In this section, we begin by summarizing the basic concepts of differential geometry and then introduce the conditions we solve in our method.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.1">The first and second fundamental forms</head><p>Let us denote the position vector of a parametric surface as</p><formula xml:id="formula_0">R(θ 1 , θ 2 ) = x(θ 1 , θ 2 ) y(θ 1 , θ 2 ) z(θ 1 , θ 2 ) T ,<label>(1)</label></formula><p>where θ 1 and θ 2 are coordinate parameters, and x, y, z are the Cartesian coordinates of the point on the surface at (θ 1 , θ 2 ). On this coordinate system, the basis vectors are defined as</p><formula xml:id="formula_1">g i = ∂ i R.<label>(2)</label></formula><p>Using this, the first fundamental form, or the metric tensor, is defined as</p><formula xml:id="formula_2">g ij = g i • g j .<label>(3)</label></formula><p>At each point of a surface, the lengths of tangent vectors and the angles between the tangent vectors can be measured using this matrix.</p><p>In classical differential geometry, we also define the second fundamental form as follows:</p><formula xml:id="formula_3">b ij = ∂ ij R • N ,<label>(4)</label></formula><p>where N is a normalized normal vector computed as</p><formula xml:id="formula_4">N = g 1 × g 2 √ g , g = detg ij .<label>(5)</label></formula><p>Using the second fundamental form, we can measure the normal curvature along certain directions.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.2">Method: input and goal</head><p>Our goal is to obtain a pair of G2-continuous watertight NURBS surfaces that are mutually conformal, with one curved (i.e., a target surface) and the other flat (i.e., a flattening). Our algorithm takes a collection of watertight NURBS surfaces as input. This surface does not need to be G1or G2-continuous; it can have creases along shared edges between adjacent patches. The G1and G2-continuity conditions are eventually ensured via our nonlinear least-squares minimization algorithm.</p><p>In the initial step, this algorithm duplicates the input surface into two surfaces: One is used as the initial surface for the target surface, and the other is used as the initial surface for the flattening. Then, two surfaces are recursively updated via our algorithm (see Section 3). During the flattening process, several conditions are enforced on two surfaces, which are described below. In addition to the input surface, the user must provide a flat surface as a reference surface, which is different from the conformal flattening and is used to ensure the G1-and G2-continuity conditions of the target surface and the flattening. The reference surface is not updated during the computation.</p><p>Because we literally flatten surfaces, the surface must have at least one hole, or a boundary loop. For simplicity, we only discuss the fixed-edge condition for the target surface.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.3">Flat condition</head><p>To flatten the flattening, we initially thought that enforcing</p><formula xml:id="formula_5">N x = 0, N y = 0, N z = 1<label>(6)</label></formula><p>all over the surface domain was enough. However, this condition is highly nonlinear and makes the proposed method unreliable. This is understandable, as a normalized vector generally rotates on a sphere. Thus, we used the following mildly nonlinear forms instead:</p><formula xml:id="formula_6">D x = ∂ 1 η∂ 2 ϕ − ∂ 1 ϕ∂ 2 η √ ḡ = 0, D y = ∂ 1 ϕ∂ 2 ξ − ∂ 1 ξ∂ 2 ϕ √ ḡ = 0, D z = ∂ 1 ξ∂ 2 η − ∂ 1 η∂ 2 ξ √ ḡ = √ e √ ḡ ,<label>(7)</label></formula><p>, where three functions represent the x, y and z coordinates of each point of the flattening. Note that, although e is guaranteed to be positive, it can be negative in areas where two directions are almost parallel due to numerical round-off errors. If that's the case, √ e turns NaN. Hence, careful exception handling is needed here.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.4">Conformal condition</head><p>We denote the metric tensors of the target surface and the flattening as g ij and e ij , respectively. Then, the conformal property is written as</p><formula xml:id="formula_7">e ij = λg ij , (<label>8</label></formula><formula xml:id="formula_8">)</formula><p>where λ is the scaling factor proven to be a harmonic function. As this harmonic property is naturally satisfied when a conformal flattening is obtained, it is enough to regard λ as an arbitrary real number. Hence, this condition is equivalent to the following three conditions: </p><formula xml:id="formula_9">g</formula><p>As is obvious, only two out of the three conditions are independent, and we can select any two of them. In our implementation, we selected the first two conditions. Because it is desired to make the condition unit-less, we instead solve</p><formula xml:id="formula_11">g 11 √ ḡ e 12 √ ḡ = g 12 √ ḡ e 11 √ ḡ , g 12 √ ḡ e 22 √ ḡ = g 22 √ ḡ e 12 √ ḡ (<label>10</label></formula><formula xml:id="formula_12">)</formula><p>where ḡ is the determinant of the first fundamental form in the reference surface. We do not use the updated values of the determinants of g ij or e ij in order to keep the condition only mildly nonlinear.</p><p>As far as we tested, dividing them by √ g and √ e immediately makes the method unreliable. For further details, please refer to the discussion about nonlinearity in section 6. This is the primary condition we tackle in the current study.</p><p>These are bi-nonlinear PDEs that we tackle in this study. Because the condition is highly nonlinear and the problem is described with two conditions against two unknown functions, the solution space can easily vanish when the target surface is fixed. In contrast, if we regard the target surface as unknown, the problem is described with five unknown functions, and thus, many solutions are to be expected.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.5">Point handles</head><p>To control the target surface so that we can obtain a desired shape, we need a few point handles that constrain several points on the target surface to specific positions-typically the initial positions on the input surface. This condition is given by</p><formula xml:id="formula_13">x = x, y = ȳ z = z<label>(11)</label></formula><p>where barred symbols represent the target coordinates.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.6">Continuity conditions and reference surface</head><p>The G1-continuous condition of a surface requires the tangent planes of adjacent NURBS patches to overlay. This determines one condition. However, as we deal with three independent functions, there should be three independent G1-continuity conditions in principle, and thus, we aim to make three functions independently G1-continuous.</p><p>For that sake, we set up a reference surface, a flat surface with the same topology as the target surface and the flattening. The basic idea is that we assume x, y and z are all G-1 continuous on the reference surface and allow only deformations that preserve the G-1 continuity.</p><p>On the reference surface, we define the basis vectors, the first fundamental form, etc. as</p><formula xml:id="formula_14">ḡi = ∂ i r, ḡij = ḡi • ḡj , {ḡ ij } = {ḡ ij } −1 , ḡi = ḡij ḡj , (<label>12</label></formula><formula xml:id="formula_15">)</formula><p>where r is the position vector of the reference surface and ḡi are dual basis vectors.</p><p>To determine continuity conditions at any point on an edge curve shared by two adjacent NURBS patches, we define a tangent vector perpendicular to the edge:</p><formula xml:id="formula_16">wi = εim ḡmn vn , (<label>13</label></formula><formula xml:id="formula_17">)</formula><p>where vi is a normalized vector parallel to the edge and εim is the alternator determined on the reference surface. The alternator is defined as</p><formula xml:id="formula_18">ε11 = ε22 = 0, ε12 = −ε 21 = 1 √ ḡ . (<label>14</label></formula><formula xml:id="formula_19">)</formula><p>Note that vi is normalized using ḡij . Hence, ḡij vi vj = ḡij wi wj = 1, ḡij vi wj = 0. In our implementation, we set up the NURBS patches to be consistently oriented. This means, on a shared edge, vi point to the opposite directions between the two adjacent patches. This further ensures wi point to the opposite directions between the two adjacent patches.</p><p>With this setup, to maintain the G1-continuity of the target surface, we impose</p><formula xml:id="formula_20">∂ i x wi SRF1 + ∂ i x wi SRF2 = 0, ∂ i y wi SRF1 + ∂ i y wi SRF2 = 0, ∂ i z wi SRF1 + ∂ i z wi SRF2 = 0.<label>(15)</label></formula><p>These conditions ensure that vectors that are parallel between two patches on the reference surface remain parallel on the target surface.</p><p>As the continuity conditions of the flattening will be automatically satisfied through the conformal property, we do not impose any continuity conditions on the flattening.</p><p>Because we are interested in lines of curvature, we require the surface to be G2-continuous as well. Interestingly, thanks to the G1-continuity, two out of the three G2-continuity conditions are automatically satisfied. Therefore, we only need to consider the second derivatives perpendicular to the shared edge. As mentioned above, we should examine the covariant second derivatives rather than the second partial derivatives.</p><p>For the G2-continuity condition, we take the same approach as the G1-continuity condition. That is, we assume three functions are G2-continuous on the reference surface and allow only deformations that maintain the G2-continuity.</p><p>On the reference surface, the connection coefficients are defined as</p><formula xml:id="formula_21">Γk ij = ∂ ij r • ḡk . (<label>16</label></formula><formula xml:id="formula_22">)</formula><p>This represents the geodesic curvatures of the isoparameter curves. We thus define the covariant differential operator, ∇ij , by</p><formula xml:id="formula_23">∇ij f = ∂ ij f − Γk ij ∂ k f. (<label>17</label></formula><formula xml:id="formula_24">)</formula><p>As this cancels the geodesic curvatures of the isoparameter curves, this is more useful than the partial derivatives, ∂ ij f , in many applications. Note that Γk ij are constants, meaning ∇ij f is a linear differential operator. Thus, we impose ∇ij x wi wj SRF1 = ∇ij x wi wj SRF2 ∇ij y wi wj SRF1 = ∇ij y wi wj SRF2 ∇ij z wi wj SRF1 = ∇ij z wi wj SRF2 .</p><p>(18) This transforms into</p><formula xml:id="formula_25">⇔ ∇ij r wi wj SRF1 = ∇ij r wi wj SRF1 (19) ⇔          b ij N wi wj srf1 = b ij N wi wj srf2 (Γ 1 ij − Γ1 ij )g 1 wi wj srf1 = (Γ 1 ij − Γ1 ij )g 1 wi wj srf2 (Γ 2 ij − Γ2 ij )g 2 wi wj srf1 = (Γ 2 ij − Γ2 ij )g 2 wi wj srf2<label>(20)</label></formula><p>where Γ 1 ij , Γ 2 ij are the connection coefficients determined on the target surface. Therefore, these three independent G2-continuity conditions ensure 1) the second fundamental form of the target surface is G2-continuous, and 2) curves on the reference surface that are G2-continuous remain G2-continuous on the target surface.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.7">Symmetry</head><p>If a mirror symmetry is specified on the x − y plane, with [s x , s y ] T describes its mirror axis, the vector perpendicular to the mirror plane is [−s y , s x ]. In this case, the G1-continuity condition is</p><formula xml:id="formula_26">∂ i x wi s x + ∂ i y wi s y = 0, ∂ i z wi = 0. (<label>21</label></formula><formula xml:id="formula_27">)</formula><p>In addition, the G2-continuity condition is ∇ij x wi wj s y = ∇ij y wi wj s x .</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.8">Boundary alignment</head><p>In many practical scenarios, it would be desirable for the boundary curves/loops to be aligned with the lines of curvature. Hence, along any boundary edge, we impose</p><formula xml:id="formula_29">b ij vj vk e kl = symm ⇔ b ij vj vk e kl εil = 0. (<label>23</label></formula><formula xml:id="formula_30">)</formula><p>This is a special case of alignment conditions introduced in <ref type="bibr" target="#b9">[10]</ref>. However, including the normalized normal vector makes this condition highly nonlinear. To make the condition mildly nonlinear, we instead impose</p><formula xml:id="formula_31">∇ij xD x + ∇ij yD y + ∇ij zD z vj vk e kl = symm ⇔ ∇ij xD x + ∇ij yD y + ∇ij zD z vj vk e kl εil = 0. (<label>24</label></formula><formula xml:id="formula_32">)</formula></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.9">NURBS surfaces</head><p>If NURBS basis functions are packed in N 0 , a function f can be computed by</p><formula xml:id="formula_33">f (θ 1 , θ 2 ) = N 0 (θ 1 , θ 2 )F (θ 1 , θ 2 ),<label>(25)</label></formula><p>where F is a column vector that packs a collection of the values of f at each control point, and θ 1 and θ 2 are coordinate parameters. Similarly, the position vector of a surface is described as</p><formula xml:id="formula_34">R(θ 1 , θ 2 ) = x(θ 1 , θ 2 ) y(θ 1 , θ 2 ) z(θ 1 , θ 2 ) = [N 0 X N 0 Y N 0 Z] T .<label>(26)</label></formula><p>Similarly, we denote the first and second partial derivatives of the NURBS basis functions as</p><formula xml:id="formula_35">N 1,i = ∂ i N 0 , N 2,ij = ∂ ij N 0 . (<label>27</label></formula><formula xml:id="formula_36">)</formula><p>For example, the metric tensor can be computed using</p><formula xml:id="formula_37">g ij = X T N T 1,i N 1,j X + Y T N T 1,i N 1,j Y + Z T N T 1,i N 1,j Z.<label>(28)</label></formula><p>Thus, the least-squares error of the conformal condition can be defined as</p><formula xml:id="formula_38">err = 1 2 g 11 √ ḡ e 12 √ ḡ − g 12 √ ḡ e 11 √ ḡ 2 √ ḡdθ 1 dθ 2 + 1 2 g 12 √ ḡ e 22 √ ḡ − g 22 √ ḡ e 12 √ ḡ 2 ḡdθ 1 dθ 2 .<label>(29)</label></formula><p>Thus, the integral takes the following form:</p><formula xml:id="formula_39">err = 1 2 x T Axy T By 2 √ ḡdθ 1 dθ 2 , (<label>30</label></formula><formula xml:id="formula_40">)</formula><p>where x is a collection of variables for the target surface and y for the flattening. Applying a numerical integration scheme, typically the Gauss integration scheme, one can approximately compute the integral by computing</p><formula xml:id="formula_41">k w k 1 2 x T Axy T By 2 k , (<label>31</label></formula><formula xml:id="formula_42">)</formula><p>where k is an index of an integration point, and w k is the weight coefficient of the integration point multiplied by √ ḡ. The term in the square bracket is the value of the integrand evaluated at each integrating point. Additionally, x is a collection of x, y, and z variables for the target surface, and y is another collection for the other surface that will be flattened.</p><p>In <ref type="bibr" target="#b8">[9]</ref>, it is indicated that the equilibrium equation of a shell structure-an architectural thin surface structure, made of reinforced concrete-takes the form</p><formula xml:id="formula_43">x T Ay = ρ(z)<label>(32)</label></formula><p>at each integrating point. Thus, its least-squares error is</p><formula xml:id="formula_44">1 2 (x T Ay − ρ(z)) 2 ,<label>(33)</label></formula><p>and the least-squares minimization problem is, at least, linear in y. They demonstrated that VarPro can effectively solve this type of problem. Although Eq. ( <ref type="formula" target="#formula_41">31</ref>) is nonlinear in both groups of variables, we believe the basic idea still applies.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="2.10">Stabilization terms</head><p>To suppress the rigid body motion of the flattening, we weakly impose ξ = ξ, η = η, and ϕ = 0,</p><p>to the flattening. For the weight coefficients for those conditions, we used 1.0E − 10. As this condition is applied only weakly to suppress the rigid body motion, we used the initial values of x and y of each point as ξ, η.</p><p>We do not add any stabilization terms to the target surface because the point handles already constrain the rigid body motion, and we are interested in least squares solutions that capture an exact solution.</p><p>The total area of the flattening must be constrained to an initial value. Otherwise, the flattening will shrink to a point.</p><formula xml:id="formula_46">√ edθ 1 dθ 2 = A 0 . (<label>35</label></formula><formula xml:id="formula_47">)</formula><p>We used the Gauss integration scheme to compute the surface area approximately.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3">Review of Related Methods</head><p>As we can see, the problem we are interested in is essentially a nonlinear least-squares problem with the variables naturally divided into two groups. The Gauss-Newton method is accepted as the standard method to solve nonlinear least squares problems. However, as it approximates the Hessian matrix using the gradient vectors, its applications are limited to mildly nonlinear problems only.</p><p>While the current problem is undoubtedly nonlinear, it can be easily solved by using the Gauss-Newton method when one of the two surfaces is completely fixed. In other words, as-conformal-aspossible flattening is actually straightforward; the problem can typically be solved within 20-200 steps using the Gauss-Newton approach. This observation indicates that the problem is mildly nonlinear when one group of variables is fixed.</p><p>However, when both surfaces are refined simultaneously, the coupling term (the off-diagonal blocks in the Gauss-Newton normal equation) makes the Gauss-Newton method unreliable. This underscores that the entire problem we tackle in the current study is highly nonlinear. As it is easy to imagine that many problems fit into this category, we see great value in developing a computational scheme capable of solving this type of problem.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Problem formulation and notation</head><p>Thus, the type of problem we are interested in takes the following form:</p><formula xml:id="formula_48">1 2 i f i (x, y) 2 + 1 2 j g j (x) 2 + 1 2 k h k (y) 2 → min,</formula><p>For clarity, we do not display the weight coefficients included in Eq. (31). In an actual implementation, the weight coefficients must be multiplied when matrix-vector, matrix-matrix, or vector-vector multiplication is executed. We define the residual as</p><formula xml:id="formula_49">r =           f 1 . . . g 1 . . . h 1 . . .          </formula><p>and the Jacobian as J(x, y) = J x (x, y) J y (x, y) ,</p><p>where</p><formula xml:id="formula_50">J x =           ∇ x f 1 . . . ∇ x g 1 . . . 0 . . .           , J y =           ∇ y f 1 . . . 0 . . . ∇ y h 1 . . .           .</formula><p>For convenience, let us define the following block matrices:</p><formula xml:id="formula_51">A = J T x J x , B = J T x J y , C = J T y J x , D = J T y J y .</formula><p>The Gauss-Newton Approach in a Two-Block Setting Algorithm 1 Gauss-Newton method Initialize α = 0.05, ϵ = 1.0E − 06, ϵ 2 = 1.0E − 06 Initialize x, y while J T x r &gt; ϵ and J T y r &gt; ϵ 2 do Update J x ,J y , r</p><formula xml:id="formula_52">∆x ∆y = A B C D −1 J T x r J T y r</formula><p>.</p><p>x ← x − α∆x y ← y − α∆y end while Hence, the most basic approach is to solve the Gauss-Newton normal equation, which is written as</p><formula xml:id="formula_53">A B C D ∆x ∆y = − J T x r J T y r</formula><p>.</p><p>A straightforward application of the Gauss-Newton iteration simultaneously updates x and y by solving the entire normal equation in each iteration.</p><p>The Gauss-Newton method is the most basic method for solving nonlinear least-squares problems. However, the problems must be mildly nonlinear. When solving problems whose variables are naturally grouped into two groups, this method often becomes unstable because the coupling of the two groups of variables makes the entire problem highly nonlinear. For example, in <ref type="bibr" target="#b8">[9]</ref>, it is reported that the Gauss-Newton method was completely unreliable when applied to solve the equilibrium equation, a bilinear condition between two surfaces.</p><p>In the current study, we also observed that the Gauss-Newton method does not converge at all. Hence, we tested the alternating approach. The basic idea underlying this method is to completely exclude B and C from the Gauss-Newton normal equation matrix.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="3.0.1">The Levenberg-Marquardt method</head><p>To stabilize the computation of the correct vectors, it is recommended to add a small number to the diagonal elements of the matrix before the Gauss-Newton normal equation is solved. We add 1.0E − 10 in our implementation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>The Alternating Approach (Blockwise Updates) Algorithm 2 The alternating approach</head><p>Initialize x, y while not pressed(ESC) do Update J x ,J y , r ∆y ← D −1 J T y r y ← y − β∆y Update J x ,J y , r ∆x = A −1 J T x r. x ← x − α∆x end while An immediate remedy, which is useful in practical applications, would be to completely omit the coupling term, the off-diagonal blocks in the Gauss-Newton normal equation matrix. For this sake, we alternately solve two subproblems:</p><formula xml:id="formula_54">1 2 ∥r(x, ȳ)∥ 2 → min 1 2 ∥r(x, y)∥ 2 → min,</formula><p>where symbols being barred implies that they are pinned. Hence, the first problem regards y as given and solves only for x. Contrarily, the second problem regards x as given and solves only for y. Because we assumed that the entire problem is mildly nonlinear in x and y, those subproblems are mildly nonlinear in each group of variables. In this case, each of these subproblems can be approximately solved by recursively computing partial Gauss-Newton steps:</p><formula xml:id="formula_55">∆x = −A −1 J T x r , ∆y = −D −1 J T y r .</formula><p>Let us call the first subproblem the primal subproblem and the second the dual subproblem. This approach is equivalent to setting the off-diagonal blocks in the full Gauss-Newton normal equation to zero:</p><formula xml:id="formula_56">A 0 0 D ∆x ∆y = − J T x r J T y r</formula><p>.</p><p>As long as the step size is set to a small number, there is no substantial difference between simultaneously updating the two variables and doing so in an alternating fashion.</p><p>The blockwise update effectively breaks the large normal system into two smaller ones, and the computation is usually rather stable; thus, it is useful in many practical applications. However, as the variable pair bounces between the solution manifolds of the two subproblems, the method does not converge at all. Hence, it is often unsuitable for academic research.</p><p>Variable Projection (VarPro)</p><formula xml:id="formula_57">Algorithm 3 VarPro Iinitialize α = 0.05, ϵ = 1.0E − 06 Initialize x, y while J T x r &gt; ϵ do Update J x ,J y , r ∆y ← D −1 J T y r y ← y − 1.0∆y Update J x ,J y , r ∆x = (A − BD −1 C) −1 J T x r. x ← x − α∆x end while</formula><p>One way to improve the poor convergence of the alternating approach is to use the off-diagonal blocks even if the two subproblems are separately solved. VarPro specifically exploits the situation in which the problem is strictly linear in one group of variables. In the current paper, we assume the problem is linear in y. In other words, the dual subproblem is linear. In this case, the dual subproblem determines a linear mapping from an x to a y. In other words, y is uniquely determined when x is given.</p><p>Hence, if we ensure y to be a solution of the dual subproblem when x is given, we can eliminate y from the collection of variables. To do so, the correction vector for y can be obtained by solving</p><formula xml:id="formula_58">∆y = −D −1 J T y r ,</formula><p>which is the same equation computed in the alternating approach. The difference is that y is updated with a small step size in an alternating approach; in VarPro, it is updated with a full step size (i.e., 1.0). This update projects the variable pair onto the solution manifold of the dual subproblem. In the following, we call this projection step the dual step.</p><p>After the dual step is completed, the Jacobians and the residual are updated using the updated variables. Then, x is updated by constraining the {x, y} pair onto the solution manifold of the dual subproblem. If the variable pair is coupled, there should be a relationship written as</p><formula xml:id="formula_59">∆y = ∂X ∂x ∆x,<label>(36)</label></formula><p>although computing ∂X ∂x presents a challenge. It follows that</p><formula xml:id="formula_60">(A + B ∂X ∂x )∆x = −J T x r.</formula><p>The most widely accepted method of approximating ∂X ∂x is to rely on</p><formula xml:id="formula_61">∆y = − D −1 C ∆x. (<label>37</label></formula><formula xml:id="formula_62">)</formula><p>Other approaches are reviewed in <ref type="bibr" target="#b6">[7]</ref>. Thus, we obtain</p><formula xml:id="formula_63">(A − BD −1 C)∆x = −J T x r.</formula><p>In the following, we call the correction of x the primal step.</p><p>There is no need to compute ∆y, as the correction of y can be included in the next projection step. Note that, due to nonlinearity, ∆x must be updated with a sufficiently small time step. <ref type="bibr" target="#b8">[9]</ref> reported that VarPro worked very well for solving a bilinear equilibrium equation enforced on two surfaces.</p><p>Although this approach significantly reduces the size of the problem to be solved, we now see that an inverse matrix, D −1 is sandwiched by two matrices B and C. Hence, it is not possible to use the usual methods, such as LU or Cholesky decomposition, to avoid an explicit computation of an inverse matrix. Especially when the problem is deemed large, this presents a key challenge.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>The Schur Complement Method Algorithm 4 Gauss-Newton with Schur complement</head><p>Iinitialize α = 0.05,</p><formula xml:id="formula_64">ϵ 1 = 1.0E − 06, ϵ 2 = 1.0E − 06 Initialize x, y while J T x r &gt; ϵ, J T y r &gt; ϵ 2 do Update J x ,J y , r ∆x = (A − BD −1 C) −1 J T x r − B D −1 J T y r . ∆y = − D −1 J T y r + C ∆x , x ← x − α∆x y ← y − α∆y end while</formula><p>A similar structure can be observed in the two-block Gauss-Newton normal equations. The Schur complement <ref type="bibr" target="#b10">[11,</ref><ref type="bibr" target="#b15">16]</ref> offers a means of reducing the system dimension by eliminating one of the block variables. For example, if A is invertible, we can write</p><formula xml:id="formula_65">∆y = − D −1 J T y r + C ∆x .<label>(38)</label></formula><p>Then, by substituting this equation for ∆y in the Gauss-Newton normal equation, we obtain</p><formula xml:id="formula_66">A − B D −1 C ∆x = − J T x r − B D −1 J T y r .</formula><p>The matrix</p><formula xml:id="formula_67">S = A − B D −1 C<label>(39)</label></formula><p>is called the Schur complement of A. After solving for ∆x, we back-substituted ∆x for Eq. ( <ref type="formula" target="#formula_65">38</ref>) to find ∆y.</p><p>Notably, an {∆x, ∆y} pair computed using the Schur complement yields exactly the same {∆x, ∆y} pair obtained by solving the entire Gauss-Newton normal equation. There is no difference, except in terms of numerical precision.</p><p>However, the Schur complement unveils a close similarity between the pure Gauss-Newton method and VarPro. In fact, by simply replacing J T y r with 0 in the right-hand side of the Gauss-Newton normal equation, we get</p><formula xml:id="formula_68">∆y = − D −1 C ∆x.<label>(40)</label></formula><p>This immediately follows</p><formula xml:id="formula_69">A − B D −1 C ∆x = − J T</formula><p>x r, which is exactly the same equation solved in the primal step of VarPro. If the problem is strictly linear in y, J T y r should be strictly zero after the linear projection. Hence, the Gauss-Newton method should generate the exact same variable pair trajectories if the same linear projection is inserted before solving the Gauss-Newton normal equation.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head>Gauss-Newton with linear projection</head><p>Algorithm 5 VarPro (Gauss-Newton ver)</p><formula xml:id="formula_70">Initialize α = 0.05, ϵ = 1.0E − 06 Initialize x, y while J T x r &gt; ϵ do Update J x ,J y , r ∆y ← D −1 J T y r y ← y − 1.0∆y Update J x ,J y , r ∆x ∆y = A B C D −1 J T x r J T y r</formula><p>.</p><p>x ← x − α∆x end while Hence, we reintroduce the pure Gauss-Newton method into the VarPro primal step. In other words, at each iteration, we insert a linear projection before solving the Gauss-Newton normal equation. As expected, this algorithm produces trajectories for the variable pair identical to those of VarPro, apart from minor numerical differences. Note that the Schur complement is never even computed.  The primary differences between the two methods lie in memory consumption and how correction vectors are computed. The Gauss-Newton method requires storing a matrix in RAM that is roughly twice as large, whereas VarPro needs to solve only a relatively small subproblem. However, VarPro also requires an explicit computation of an inverse matrix, which can be a major bottleneck. Consequently, VarPro is recommended for smaller problems. In cases where the problem is large, abundant memory is available, and one considers the use of VarPro because the Gauss-Newton method appears unreliable, an alternative is simply to insert the linear projection before performing the full Gauss-Newton step.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4">Nonlinear Extension of VarPro</head><p>The classical VarPro, introduced in the context of separable nonlinear least squares by Golub and Pereyra <ref type="bibr" target="#b4">[5]</ref>, hinges on analytically eliminating the linear part of the parameters in each iteration. This method has been revisited by many researchers <ref type="bibr" target="#b0">[1,</ref><ref type="bibr" target="#b1">2,</ref><ref type="bibr" target="#b11">12,</ref><ref type="bibr" target="#b6">7]</ref>. As shown in Fig. <ref type="figure" target="#fig_3">2</ref>, we propose to replace the linear projection with a nonlinear iterative projection. As the algorithm now has an inner-outer loop structure, the total number of iterations becomes enormous. However, we were able to find surfaces that have conformal flattening using this approach.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.1">VarPro with nonlinear iterative projection</head><p>The first idea we tested was to simply replace the dual step of VarPro with inner iterations that recursively solve the dual subproblem: </p><formula xml:id="formula_71">c ← c + 1 end while Update J x ,J y , r ∆x = (A − BD −1 C) −1 J T x r. x ← x − α∆x end while</formula><p>As usual, the Gauss-Newton method was used to solve this subproblem with a small step size. These inner iterations were continued until the L2 norm of the gradient vector, J T y r, reached a sufficiently small number before the primal step was executed.</p><p>However, the subsequent primal step was too unstable. This remained true even when the inner iterations were continued until the L2 norm of the gradient reached approximately 1.0E-10, which took over 400 steps.</p><p>The cause of the issue is that the computation of the correction vector, ∆x = (A−BD −1 C) −1 J T x r, assumes that J T y r is strictly zero. In our nonlinear extension, J T y r cannot be rigorously zero by construction.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="4.2">Gauss-Newton with nonlinear iterative projection</head><p>Thus, we tested the Gauss-Newton method with a nonlinear iterative projection inserted at every step because this version can take into account a non-zero J T y r. This method was the most reliable among all the strategies we tested. This means that the Gauss-Newton method is stable if J T y r is sufficiently small, although it is not rigorously zero. This makes total sense, as we assumed that the problem is separable into two mildly nonlinear subproblems; the problem should still be mildly nonlinear in the vicinity of the solution manifold of the dual subproblem.</p><p>The last remaining task is determining an adequate inner loop termination criterion. We initially anticipated that the total iteration count for the inner loop could be small-around 20. However, we eventually concluded that the L2-norm of the gradient of the dual subproblem must be sufficiently small after each projection. Hence, in our test, we targeted 1.0E − 07 for the L2-Norm of the gradient of the dual subproblem. This allows the L2-Norm of the gradient of the primal subproblem to decrease to at least 1.0E − 06. Additionally, the inner loop was continued until the minimum iteration count (20) and compulsorily terminated when the total iteration count reached the maximum iteration count (160). </p><formula xml:id="formula_72">J T x r &gt; ϵ do c ← 0 while ( J T y r &gt; ϵ 2 and c &lt; m) or c &lt; n do Update J x ,J y , r ∆y ← D −1 J T y r y ← y − β∆y c ← c + 1 end while Update J x ,J y , r ∆x ∆y = A B C D −1 J T x r J T y r</formula><p>.</p><p>x ← x − α∆x end while 5 Results</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.1">Sphere and Hemisphere</head><p>It is well known that a sphere can be conformally flattened if a small cut is introduced somewhere-at the south pole in this work. However, this is only true when the flattening can include singularities. Because NURBS surfaces cannot represent such singularities, a sphere is actually a good example of a surface that does not admit a conformal flattening if singularities are not permitted. Conversely, a hemisphere is a well-known example of a surface that does allow a conformal flattening without singularities. By solving the dual subproblem with the target surfaces fixed, one can easily confirm these, as shown in Fig. <ref type="figure">3</ref>.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="5.2">Examples with arbitrary geometry</head><p>As shown in Fig. <ref type="figure">4</ref>, we defined two simple problems, CUBE and BIRD, to test the proposed method. There are four NURBS patches with 9 × 9 control points in the CUBE problem and three NURBS patches with 9 × 9 control points in the BIRD example. We used degree 3 NURBS surfaces, which are also referred to as order 4 NURBS surfaces. The code was tested on a PC equipped with a Core i9-14900 CPU, an NVIDIA GeForce RTX 4090 GPU, and 128 GB of RAM. We used the CUDA Toolkit library®for the LU decomposition. We selected the variables for the target surface as the primal variables and those for the flattening as the dual variables.</p><p>The results are shown in Fig. <ref type="figure">5</ref>. We also provide plots illustrating how the L2-norm of the gradient vector of the primal subproblem, J T x r, decreases over iterations in Fig. <ref type="figure" target="#fig_9">6</ref>. We list the total computational time and iteration counts below:</p><p>1. For the CUBE problem, the computation took 2.5 hours until the L2-norm of the gradient vector of the primal subproblem decreased to approximately 1.0E − 06, which is approximately 160000 inner iterations and 1200 outer iterations.    2. For the BIRD problem, the computation took 2.0 hours until the L2-norm of the gradient vector of the primal subproblem decreased to approximately 1.0E − 06, which is approximately 160000 inner iterations and 1200 outer iterations.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="6">Limitation and Discussion</head><p>Although the total iteration count is enormous, the biggest limitation stems from the assumption that the two subproblems are mildly nonlinear. Thus, while the original VarPro was relatively easy to implement due to its simple structure, this nonlinear extension requires expertise to formulate conditions in mildly nonlinear forms. While our experience is still limited, we consider 1. normalized vectors and tensors can make the problem highly nonlinear, 2. multiplication of several linear terms (i.e., partial derivatives) is permissible.</p></div>
+<div xmlns="http://www.tei-c.org/ns/1.0"><head n="7">Conclusion</head><p>In this paper, we presented a NURBS-based approach for simultaneously refining and flattening a target doubly curved surface by ensuring that the target surface and its flattening are mutually conformal. This method was based on VarPro but extended so that it can solve nonlinear least-squares problems separable into two mildly nonlinear subproblems. We admit that the computational cost is excessive owing to the inner-outer loop structure of the proposed method. However, given the fantastic quality of the results, we believe this cost is justifiable.</p></div><figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_0"><head></head><label></label><figDesc>(c) Conformally flat surface and its lines of curvature (b) Conformal flattening M ut ua lly co nf or m al Flattening Refinement (a) Input surface (a) Lines of curvature of a surface obtained for the CUBE example.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_1"><head>Figure 1 :</head><label>1</label><figDesc>Figure 1: We present a novel conformal surface flattening algorithm that targets nonunifrom rational B-splines (NURBS) surfaces. This method is a nonlinear extension of the variable projection (VarPro) method. While most existing conformal flattening algorithms find as-conformal-as possible flattening by regarding the input surface as given, our method attempts to simultaneously refine both the target and the flattened surfaces so that the generated surfaces are mutually conformal. (a) An input surface. (b) A flattened surface. (c) A "refined" surface that is conformal to (b).</figDesc><graphic coords="2,270.61,186.42,214.76,110.56" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_3"><head>Figure 2 :</head><label>2</label><figDesc>Figure 2: Comparison of (a) the alternating approach, (b) VarPro, and (c) the nonlinear VarPro proposed in the current paper.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_4"><head>1 2 Algorithm 6</head><label>126</label><figDesc>∥r(x, y)∥ 2 → min. Nonlinear VarPro Initialize α = 0.1, β = 0.05, ϵ = 1.0E − 06, ϵ 2 = 1.0E − 07, n = 20, m = 160 Initialize x, y while J T x r &gt; ϵ do c ← 0 while ( J T y r &gt; ϵ 2 and c &lt; m) or c &lt; n do Update J x ,J y , r ∆y ← D −1 J T y r y ← y − β∆y</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_5"><head>Algorithm 7</head><label>7</label><figDesc>Nonlinear VarPro (Gauss-Newton ver) Initialize α = 0.1, β = 0.05, ϵ = 1.0E − 07, ϵ 2 = 1.0E − 07, n = 20, m = 160 Initialize x, y while</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_6"><head>( a )Figure 3 :Figure 4 :</head><label>a34</label><figDesc>Figure 3: As conformal as possible flattening of a sphere (a,b) and a hemisphere (c,d). While strange wrinkles are formed around the equator of the sphere, a perfect conformal flattening is obtained for the hemisphere. This indicates that, while some surfaces have accurate conformal flattening with no singularities, some surfaces do not.</figDesc><graphic coords="18,162.57,242.31,160.00,82.37" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_7"><head>( a )Figure 5 :</head><label>a5</label><figDesc>Figure 5: Obtained surfaces, their flattening, and lines of curvature using the proposed method. (a,b) a result for the CUBE example, (c,d) a result for the BIRD example.</figDesc><graphic coords="19,296.75,401.17,150.11,84.43" type="bitmap" /></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_8"><head></head><label></label><figDesc>BIRD example. (a) CUBE example.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" xml:id="fig_9"><head>Figure 6 :</head><label>6</label><figDesc>Figure6: Plots illustrating the decrease in the L2-norm of the gradient vector of the primal subproblem. Note that the horizontal axis indicates the iteration count for the outer loop.</figDesc></figure>
+<figure xmlns="http://www.tei-c.org/ns/1.0" type="table" xml:id="tab_0"><head></head><label></label><figDesc>11 e 12 = g 12 e 11 g 12 e 22 = g 22 e 12 g 22 e 11 = g 11 e 22.</figDesc><table /></figure>
+		</body>
+		<back>
+			<div type="references">
+
+				<listBibl>
+
+<biblStruct xml:id="b0">
+	<monogr>
+		<title level="m" type="main">Numerical Methods for Least Squares Problems</title>
+		<author>
+			<persName><forename type="first">Åke</forename><surname>Björck</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1996">1996</date>
+			<biblScope unit="volume">51</biblScope>
+			<pubPlace>SIAM</pubPlace>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b1">
+	<monogr>
+		<title level="m" type="main">Numerical methods for least squares problems</title>
+		<author>
+			<persName><forename type="first">Åke</forename><surname>Björck</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2024">2024</date>
+			<publisher>SIAM</publisher>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b2">
+	<analytic>
+		<title level="a" type="main">Intrinsic parameterizations of surface meshes</title>
+		<author>
+			<persName><forename type="first">Mark</forename><surname>Mathieu Desbrun</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Pierre</forename><surname>Meyer</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Alliez</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">Computer graphics forum</title>
+				<imprint>
+			<publisher>Wiley Online Library</publisher>
+			<date type="published" when="2002">2002</date>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="page" from="209" to="218" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b3">
+	<monogr>
+		<title level="m" type="main">Surface parameterization: a tutorial and survey. Advances in multiresolution for geometric modelling</title>
+		<author>
+			<persName><forename type="first">S</forename><surname>Michael</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Kai</forename><surname>Floater</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Hormann</surname></persName>
+		</author>
+		<imprint>
+			<date type="published" when="2005">2005</date>
+			<biblScope unit="page" from="157" to="186" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b4">
+	<analytic>
+		<title level="a" type="main">The differentiation of pseudo-inverses and nonlinear least squares problems whose variables separate</title>
+		<author>
+			<persName><forename type="first">H</forename><surname>Gene</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Victor</forename><surname>Golub</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Pereyra</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">SIAM Journal on numerical analysis</title>
+		<imprint>
+			<biblScope unit="volume">10</biblScope>
+			<biblScope unit="issue">2</biblScope>
+			<biblScope unit="page" from="413" to="432" />
+			<date type="published" when="1973">1973</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b5">
+	<analytic>
+		<title level="a" type="main">Genus zero surface conformal mapping and its application to brain surface mapping</title>
+		<author>
+			<persName><forename type="first">Xianfeng</forename><surname>Gu</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Yalin</forename><surname>Wang</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Tony</forename><forename type="middle">F</forename><surname>Chan</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Paul</forename><forename type="middle">M</forename><surname>Thompson</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Shing-Tung</forename><surname>Yau</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">IEEE transactions on medical imaging</title>
+		<imprint>
+			<biblScope unit="volume">23</biblScope>
+			<biblScope unit="issue">8</biblScope>
+			<biblScope unit="page" from="949" to="958" />
+			<date type="published" when="2004">2004</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b6">
+	<analytic>
+		<title level="a" type="main">Revisiting the variable projection method for separable nonlinear least squares problems</title>
+		<author>
+			<persName><forename type="first">Je</forename><surname>Hyeong</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Hong</forename></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Christopher</forename><surname>Zach</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Andrew</forename><surname>Fitzgibbon</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</title>
+				<imprint>
+			<date type="published" when="2017">2017</date>
+			<biblScope unit="page" from="5939" to="5947" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b7">
+	<analytic>
+		<title level="a" type="main">Least squares conformal maps for automatic texture atlas generation</title>
+		<author>
+			<persName><forename type="first">Bruno</forename><surname>Lévy</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Nicolas</forename><surname>Sylvain Petitjean</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Jérome</forename><surname>Ray</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Maillot</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Trans. Graph</title>
+		<imprint>
+			<biblScope unit="volume">21</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<biblScope unit="page" from="362" to="371" />
+			<date type="published" when="2002-07">July 2002</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b8">
+	<analytic>
+		<title level="a" type="main">Interactive exploration of tension-compression mixed shells</title>
+		<author>
+			<persName><forename type="first">Masaaki</forename><surname>Miki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Toby</forename><surname>Mitchell</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Graphics (TOG)</title>
+		<imprint>
+			<biblScope unit="issue">6</biblScope>
+			<biblScope unit="page">41</biblScope>
+			<date type="published" when="2022-11">nov 2022</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b9">
+	<analytic>
+		<title level="a" type="main">Alignment conditions for nurbs-based design of grid shells</title>
+		<author>
+			<persName><forename type="first">Masaaki</forename><surname>Miki</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Toby</forename><surname>Mitchell</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Graphics (TOG)</title>
+		<imprint>
+			<biblScope unit="volume">43</biblScope>
+			<biblScope unit="issue">3</biblScope>
+			<date type="published" when="2024-07">jul 2024</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b10">
+	<monogr>
+		<title level="m" type="main">Schur complements and statistics. Linear Algebra and its Applications</title>
+		<author>
+			<persName><forename type="first">Diane</forename><surname>Valerie</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ouellette</forename></persName>
+		</author>
+		<imprint>
+			<date type="published" when="1981">1981</date>
+			<biblScope unit="volume">36</biblScope>
+			<biblScope unit="page" from="187" to="295" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b11">
+	<analytic>
+		<title level="a" type="main">Variable projection for nonlinear least squares problems</title>
+		<author>
+			<persName><forename type="first">P O'</forename><surname>Dianne</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Bert</forename><forename type="middle">W</forename><surname>Leary</surname></persName>
+		</author>
+		<author>
+			<persName><surname>Rust</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Computational Optimization and Applications</title>
+		<imprint>
+			<biblScope unit="volume">54</biblScope>
+			<biblScope unit="page" from="579" to="593" />
+			<date type="published" when="2013">2013</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b12">
+	<analytic>
+		<title level="a" type="main">Boundary first flattening</title>
+		<author>
+			<persName><forename type="first">Rohan</forename><surname>Sawhney</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Keenan</forename><surname>Crane</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">ACM Transactions on Graphics</title>
+		<imprint>
+			<biblScope unit="volume">37</biblScope>
+			<biblScope unit="issue">1</biblScope>
+			<biblScope unit="page" from="1" to="14" />
+			<date type="published" when="2017">2017</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b13">
+	<analytic>
+		<title level="a" type="main">Parameterization of faceted surfaces for meshing using angle-based flattening</title>
+		<author>
+			<persName><forename type="first">Alla</forename><surname>Sheffer</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Eric</forename><surname>De Sturler</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="j">Engineering with computers</title>
+		<imprint>
+			<biblScope unit="volume">17</biblScope>
+			<biblScope unit="page" from="326" to="337" />
+			<date type="published" when="2001">2001</date>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b14">
+	<analytic>
+		<title level="a" type="main">Conformal equivalence of triangle meshes</title>
+		<author>
+			<persName><forename type="first">Boris</forename><surname>Springborn</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Peter</forename><surname>Schröder</surname></persName>
+		</author>
+		<author>
+			<persName><forename type="first">Ulrich</forename><surname>Pinkall</surname></persName>
+		</author>
+	</analytic>
+	<monogr>
+		<title level="m">ACM SIGGRAPH 2008 papers</title>
+				<imprint>
+			<date type="published" when="2008">2008</date>
+			<biblScope unit="page" from="1" to="11" />
+		</imprint>
+	</monogr>
+</biblStruct>
+
+<biblStruct xml:id="b15">
+	<monogr>
+		<author>
+			<persName><forename type="first">Fuzhen</forename><surname>Zhang</surname></persName>
+		</author>
+		<title level="m">The Schur complement and its applications</title>
+				<imprint>
+			<publisher>Springer Science &amp; Business Media</publisher>
+			<date type="published" when="2006">2006</date>
+			<biblScope unit="volume">4</biblScope>
+		</imprint>
+	</monogr>
+</biblStruct>
+
+				</listBibl>
+			</div>
+		</back>
+	</text>
+</TEI>
