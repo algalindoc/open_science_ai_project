@@ -30,3 +30,6 @@ Consulta el archivo `LICENSE` para más información.
 ===============
 - Repositorio en GitHub: https://github.com/algalindoc/open_science_ai_project.git
 - Documentación de Grobid: https://github.com/kermitt2/grobid
+
+.. image:: https://zenodo.org/badge/942804117.svg
+  :target: https://doi.org/10.5281/zenodo.14969304

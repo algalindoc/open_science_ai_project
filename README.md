@@ -1,5 +1,7 @@
 # Open Science AI Project
 
+[![DOI](https://zenodo.org/badge/942804117.svg)](https://doi.org/10.5281/zenodo.14969304)
+
 ## 🚀 Descripción
 Este proyecto utiliza **Grobid** y herramientas de análisis de datos en **Python** para extraer información de documentos científicos en formato PDF. Con Docker, se garantiza una ejecución reproducible y sin complicaciones.
 
@@ -106,4 +108,5 @@ open_science_ai_project/
 ## 📝 Licencia
 Este proyecto está bajo la licencia MIT.  
 Puedes leer más en el archivo [`LICENSE`](LICENSE).
+
 
